@@ -273,6 +273,33 @@ section{position:relative}
 .actions{display:grid;gap:10px;margin-top:18px}
 @media (min-width:900px){.besuch-grid{grid-template-columns:1fr 1fr 1fr}.saal{aspect-ratio:16/6}}
 
+
+/* ===== Kleiner Laden ===== */
+#theke{background:var(--ink2);color:var(--rice);overflow:hidden}
+#theke .kick{color:var(--sakura)}
+.theke-grid{display:grid;gap:26px;margin-top:30px}
+.theke-foto{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3}
+.theke-foto img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+@media (hover:hover){.theke-foto:hover img{transform:scale(1.03)}}
+.theke-foto figcaption{position:absolute;left:12px;bottom:12px;font-size:13px;font-weight:700;background:rgba(22,17,15,.72);padding:6px 12px;border-radius:999px}
+.storys{display:grid;gap:14px;list-style:none}
+.story{background:var(--rice);color:var(--ink);border-radius:22px;padding:20px 20px 18px;transition:box-shadow .25s,transform .25s}
+@media (hover:hover){.story:hover{box-shadow:0 0 0 5px rgba(243,163,181,.45);transform:translateY(-2px)}}
+.story h3{font-family:var(--disp);font-weight:400;font-size:clamp(24px,6.4vw,30px);line-height:1.05;color:var(--lack)}
+.story blockquote{margin-top:10px;font-size:16px;line-height:1.5}
+.story cite{display:block;margin-top:10px;font-style:normal;font-size:13px;color:#5d4c42}
+.antwort{margin-top:26px;display:grid;gap:16px;align-items:center;background:var(--ink);border-radius:22px;padding:22px 20px;box-shadow:inset 0 0 0 1px rgba(246,240,229,.08)}
+.antwort .zahl{display:flex;gap:14px;align-items:baseline;flex-wrap:wrap}
+.antwort .zahl b{font-family:var(--disp);font-weight:400;font-size:44px;line-height:1;color:var(--sakura2)}
+.antwort .zahl span{font-size:15px;font-weight:700;color:rgba(246,240,229,.8)}
+.bubble{position:relative;justify-self:start;background:var(--rice);color:var(--ink);font-weight:900;font-size:20px;padding:12px 18px;border-radius:18px 18px 18px 4px;transition:box-shadow .2s}
+@media (hover:hover){.bubble:hover{box-shadow:0 0 0 5px rgba(243,163,181,.35)}}
+.antwort p{font-size:15px;color:rgba(246,240,229,.8)}
+@media (min-width:900px){.theke-grid{grid-template-columns:1fr 1fr;align-items:start;gap:40px}.theke-foto{aspect-ratio:auto;height:100%;min-height:520px}.antwort{grid-template-columns:auto auto 1fr;gap:28px;padding:24px 28px}}
+
+/* Fotos im Kartenblatt */
+.blatt-foto{border-radius:16px;overflow:hidden;aspect-ratio:16/8;margin-bottom:16px;background:var(--rice3)}
+.blatt-foto img{width:100%;height:100%;object-fit:cover}
 footer.ft{background:#0d0a09;color:rgba(246,240,229,.6);font-size:14px;padding:26px 0 calc(26px + env(safe-area-inset-bottom))}
 footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
@@ -285,7 +312,7 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
   <div class="wrap">
     <a class="logo" href="#hero" aria-label="BBQ Sushi Momo – nach oben"><i></i><span><b>BBQ SUSHI MOMO</b><small>Gossau SG</small></span></a>
     <nav class="nav" aria-label="Seiten">
-      <a href="#beides">Sushi &amp; Momo</a><a href="#karte">Karte</a><a href="#boxen">Boxen</a><a href="#stimmen">Gäste</a><a href="#besuch">Besuch</a>
+      <a href="#beides">Sushi &amp; Momo</a><a href="#theke">Theke</a><a href="#karte">Karte</a><a href="#boxen">Boxen</a><a href="#stimmen">Gäste</a><a href="#besuch">Besuch</a>
     </nav>
     <div class="right">
       <a class="btn line tel" href="tel:+41766800066"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>076 680 00 66</a>
@@ -367,6 +394,30 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
       <cite>Sabine B. auf Google</cite>
       <small>Darum beides: Wer kein Sushi mag, sitzt trotzdem mit am Tisch.</small>
     </figure>
+  </div>
+</section>
+
+
+<section id="theke" class="pad">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="kick">Von der Theke</p>
+      <h2 class="sh">Kleiner Laden, grosses Herz</h2>
+      <p class="lead">«Der Laden ist klein und unscheinbar, aber ein Besuch lohnt sich auf jeden Fall.» So schreibt es Rahel L. – und drei Gäste erzählen, warum.</p>
+    </div>
+    <div class="theke-grid">
+      <figure class="theke-foto reveal"><img src="img/bbq-700.webp" srcset="img/bbq-700.webp 700w, img/bbq-1160.webp 1160w" sizes="(max-width:900px) 100vw, 560px" width="1160" height="880" alt="Rainbow Rolls und BBQ-Sushi vor der gemalten Kirschblüte an der Wand, daneben eine Flasche Sake" loading="lazy"><figcaption>Die Kirschblüte hängt bei uns an der Wand</figcaption></figure>
+      <ul class="storys">
+        <li class="story reveal"><h3>Barhocker für die Kinder</h3><blockquote>«Ich war mit einer Horde hungriger Kinder dort … die Restaurantbetreiber haben ein paar Barhocker zurechtgerückt, damit die Kinder beim Zubereiten des Essens zuschauen konnten. Das hat die Situation beruhigt und war mir eine grosse Hilfe!»</blockquote><cite>Fabian W. auf Google</cite></li>
+        <li class="story reveal"><h3>12 statt 3 Maki</h3><blockquote>«Mir wurde ein Getränk spendiert und am Ende sah ich, dass statt 3 bestellten Makis, 12 drin waren. Ich hab mich sehr gefreut.»</blockquote><cite>Salma auf Google</cite></li>
+        <li class="story reveal"><h3>Auf die Minute bereit</h3><blockquote>«Ausserdem ist es bei Vorbestellung immer fast auf die Minute pünktlich bereit. Wir lieben es!»</blockquote><cite>Rahel L. auf Google</cite></li>
+      </ul>
+    </div>
+    <div class="antwort reveal">
+      <div class="zahl"><b>170</b><span>Bewertungen,<br>170 Antworten</span></div>
+      <span class="bubble">Danke viel mal 💫🙏🏻</span>
+      <p>Auf jede einzelne Bewertung bei Google hat das Team geantwortet – meistens mit diesen drei Worten.</p>
+    </div>
   </div>
 </section>
 
@@ -519,6 +570,7 @@ const KARTE=[
   ["Coca-Cola / Zero","5 dl","3.50",""],["Mineral mit / ohne","5 dl","3.50",""],["Red Bull","2,5 dl","3.50",""]]}
 ];
 const TAGN={v:"vegan",vg:"vegi",s:"scharf",b:"BBQ"};
+const FOTO={rainbow:["rainbow","Rainbow Rolls mit Lachs, Avocado und Ikura"],uramaki:["bbq","BBQ-Sushi und Rainbow Rolls auf Schieferplatte"],nigiri:["nigiri","Nigiri auf rotem Lacktablett"],momo:["momo","Gedämpfte Momo"]};
 const BOXEN=[
  {k:"A",p:15,n:["2 Lachs-Nigiri","4 Gurken-Maki","4 Surimi-Rolls"]},
  {k:"B",p:25,n:["1 Thunfisch-Nigiri","1 Tamago-Nigiri","2 Lachs-Nigiri","4 Surimi-Rolls","2 Futomaki","6 Gurken-Maki"]},
@@ -604,7 +656,8 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   bento.innerHTML=F.map(c=>`<button class="fach${c.w?" w2":""}${c.vegan?" vegan":""}" aria-pressed="false" aria-controls="blatt" data-id="${c.id}"><b>${esc(c.n)}</b><span>${c.items.length} ${c.items.length===1?"Sorte":"Sorten"} · ab ${fr(low(c))}</span></button>`).join("");
   function show(id,scroll){ const c=F.find(x=>x.id===id);
     bento.querySelectorAll(".fach").forEach(b=>b.setAttribute("aria-pressed",b.dataset.id===id));
-    blatt.innerHTML=`<div class="blatt-hd"><h3>${esc(c.n)}</h3><span>${c.items.length} ${c.items.length===1?"Sorte":"Sorten"}</span></div>
+    const ph=FOTO[c.id]; const W={rainbow:[700,1160],bbq:[700,1160],nigiri:[800,1400],momo:[700,1200]};
+    blatt.innerHTML=(ph?`<figure class="blatt-foto"><img src="img/${ph[0]}-${W[ph[0]][0]}.webp" srcset="img/${ph[0]}-${W[ph[0]][0]}.webp ${W[ph[0]][0]}w, img/${ph[0]}-${W[ph[0]][1]}.webp ${W[ph[0]][1]}w" sizes="(max-width:1000px) 92vw, 520px" alt="${esc(ph[1])}" width="${W[ph[0]][1]}" height="${Math.round(W[ph[0]][1]*.75)}"></figure>`:"")+`<div class="blatt-hd"><h3>${esc(c.n)}</h3><span>${c.items.length} ${c.items.length===1?"Sorte":"Sorten"}</span></div>
       <ul class="items">${c.items.map(i=>`<li class="item"><span><b>${esc(i[0])}</b>${i[3]?`<span class="tag ${i[3]}">${TAGN[i[3]]}</span>`:""}${i[1]?`<small>${esc(i[1])}</small>`:""}</span><span class="price">${esc(i[2])}</span></li>`).join("")}</ul>
       <div class="blatt-ft"><p>«ab» = kleinste Portion; Preise in CHF laut Online-Karte.</p><a class="btn red" href="https://www.bbqsushimomo-sg.ch/menue" target="_blank" rel="noopener">Bestellen</a></div>`;
     if(scroll && matchMedia("(max-width:999px)").matches){ const r=blatt.getBoundingClientRect(); if(r.top>innerHeight*.75||r.top<0) blatt.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"}); }
