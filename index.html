@@ -101,6 +101,8 @@ h1{margin-top:12px}
 .hint svg{width:14px;height:14px}
 #hero.done .hint{opacity:0}
 .addr{display:none}
+.k-m{display:none;text-decoration:none;border-bottom:1px solid rgba(243,163,181,.5)}
+@media (max-width:899px){.k-d{display:none}.k-m{display:inline}}
 @media (max-width:899px){ .hcta .btn{flex:1 1 0;padding:0 14px;font-size:15px} .plate{bottom:calc(min(112vw,64svh,640px) * -.2)} }
 @media (max-width:420px){ .logo b{font-size:13px} .logo i{width:26px;height:26px} .logo{gap:8px} .hdr .tel{padding:0 11px;font-size:14px;gap:6px;min-height:38px} .hdr .tel svg{width:15px;height:15px} }
 @media (max-width:899px) and (max-height:760px){ .plate{bottom:calc(min(112vw,64svh,640px) * -.42)} }
@@ -296,7 +298,7 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 <section id="hero" aria-label="Willkommen">
   <div class="wrap hero-in">
     <div class="htext">
-      <p class="kick">Sushi · Momo · BBQ — Gossau SG</p>
+      <p class="kick"><span class="k-d">Sushi · Momo · BBQ — Gossau SG</span><a class="k-m" href="https://www.google.com/maps/dir/?api=1&amp;destination=BBQ+SUSHI+MOMO+St.+Gallerstrasse+66+9200+Gossau" target="_blank" rel="noopener">St. Gallerstrasse 66 · Gossau SG</a></p>
       <h1><span class="h1a">Das beste Sushi</span>
         <span class="ending" id="ending" aria-live="polite">
           <span class="e on"><q>… in der Region!</q><cite>Fabian I. auf Google</cite></span>
@@ -404,7 +406,7 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 <section id="stimmen" class="pad">
   <div class="wrap">
     <div class="reveal">
-      <p class="kick">5,0 von 5 · 170 Bewertungen</p>
+      <p class="kick">Was Gäste auf Google schreiben</p>
       <h2 class="sh">170 Sterne an der Wand</h2>
       <p class="lead">Jeder Stern steht für eine Bewertung auf Google. Tippen Sie einen an – er erzählt Ihnen, was Gäste geschrieben haben.</p>
     </div>
@@ -425,7 +427,7 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 <section id="besuch" class="pad">
   <div class="wrap">
     <div class="reveal">
-      <p class="kick">St. Gallerstrasse 66 · Gossau</p>
+      <p class="kick">Besuch</p>
       <h2 class="sh">Klein, warm, mit Kirschblüten</h2>
       <p class="lead">Holz an den Wänden, rote Stühle, Blumen auf jedem Tisch – und hinten die Theke, an der gerollt wird. Essen Sie bei uns, holen Sie ab oder bestellen Sie online.</p>
     </div>
