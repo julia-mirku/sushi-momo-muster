@@ -471,6 +471,11 @@ footer.ft{background:#0d0a09;color:rgba(246,240,229,.6);font-size:14px;padding:2
 footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+/* Abstaende 2 (24.11): Luecken <= 120 / <= 90 */
+#boxen .boxen-grid{margin-top:0}
+#beides.pad{padding-top:12px}
+@media (max-width:899px){.plate{padding-bottom:44px}}
+@media (min-width:900px){#beides.pad{padding-top:8px}}
 /*NAHT-START*/
 #hero{background:radial-gradient(70% 45% at 50% 72%,rgba(132,63,49,.22),rgba(132,63,49,0) 70%),linear-gradient(to bottom,#16110f 0%,#16110f 50%,#191310 100%)}
 @media (min-width:900px){#hero{background:radial-gradient(45% 60% at 74% 52%,rgba(132,63,49,.22),rgba(132,63,49,0) 70%),linear-gradient(to bottom,#16110f 0%,#16110f 50%,#191310 100%)}}
