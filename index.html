@@ -11,7 +11,7 @@
 <meta property="og:description" content="«Das beste Sushi in der Region!» – 5,0 Sterne aus 170 Bewertungen.">
 <meta property="og:image" content="https://julia-mirku.github.io/sushi-momo-muster/img/teller-1000.jpg">
 <meta name="theme-color" content="#16110f">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23bc5140'/%3E%3Ctext x='32' y='41' font-family='Arial Black,Arial' font-weight='900' font-size='24' text-anchor='middle' fill='%23f5efe4'%3EBSM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23a9513f'/%3E%3Ctext x='32' y='41' font-family='Arial Black,Arial' font-weight='900' font-size='24' text-anchor='middle' fill='%23f5efe4'%3EBSM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -24,7 +24,8 @@
 <style>
 :root{
   --ink:#16110f; --ink2:#231a16; --ink3:#33261f;
-  --lack:#9c3b2c; --lack2:#bc5140; --lackD:#6a271c;
+  --lack:#843f31; --lack2:#a9513f; --lackD:#5a2a21;
+  --tee:#97a36a; --teeD:#5f6b41;
   --holz:#c99057; --holz2:#e2b27a; --holzD:#7c5131; --walnuss:#24190f;
   --rice:#f6f0e5; --rice2:#ece3d3; --rice3:#dcd0bb;
   --sakura:#f3a3b5; --sakura2:#ffd0da;
@@ -57,7 +58,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .btn.holz{background:var(--holz2);color:#2a1a0c}
 @media (hover:hover){.btn.holz:hover{background:#efc391;box-shadow:0 0 0 6px rgba(226,178,122,.25)}}
 @media (hover:hover){
-  .btn.red:hover{background:#c9604c;box-shadow:0 0 0 6px rgba(243,163,181,.22)}
+  .btn.red:hover{background:#b8604c;box-shadow:0 0 0 6px rgba(243,163,181,.22)}
   .btn.line:hover{background:rgba(246,240,229,.1);box-shadow:0 0 0 6px rgba(246,240,229,.08)}
   .btn.rice:hover{background:#fff;box-shadow:0 0 0 6px rgba(243,163,181,.3)}
 }
@@ -79,7 +80,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 @media (min-width:1000px){.nav{display:flex}.hdr .order{display:inline-flex}.right{display:flex;gap:10px;align-items:center}}
 
 /* ===== Hero: Drehteller ===== */
-#hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:radial-gradient(120% 80% at 50% 105%,#3a1a12 0%,var(--ink) 60%)}
+#hero{position:relative;height:100vh;height:100svh;min-height:620px;overflow:hidden;background:radial-gradient(70% 45% at 50% 72%,rgba(132,63,49,.22),rgba(132,63,49,0) 70%),linear-gradient(to bottom,var(--ink) 0%,var(--ink) 50%,#1c1512 100%)}
+@media (min-width:900px){#hero{background:radial-gradient(45% 60% at 74% 52%,rgba(132,63,49,.22),rgba(132,63,49,0) 70%),linear-gradient(to bottom,var(--ink) 0%,var(--ink) 50%,#1c1512 100%)}}
 .hero-in{position:relative;height:100%;padding-top:calc(var(--hdr) + 18px)}
 .htext{position:relative;z-index:2}
 .htext .kick{color:var(--sakura)}
@@ -106,16 +108,19 @@ h1{margin-top:12px}
 .addr{display:none}
 .k-m{display:none;text-decoration:none;border-bottom:1px solid rgba(243,163,181,.5)}
 @media (max-width:899px){.k-d{display:none}.k-m{display:inline}}
-@media (max-width:899px){ .hcta .btn{flex:1 1 0;padding:0 14px;font-size:15px} .plate{bottom:calc(min(112vw,64svh,640px) * -.2)} }
+@media (max-width:899px){ .hcta .btn{flex:1 1 0;padding:0 14px;font-size:15px}
+  .hero-in{display:flex;flex-direction:column}
+  .plate{position:relative;left:auto;bottom:auto;transform:none;width:100%;aspect-ratio:auto;flex:1 1 0;min-height:0;container-type:size;display:flex;align-items:center;justify-content:center;padding:14px 0 58px}
+  .plate .rot{width:min(calc(100cqw - 28px),calc(100cqh - 28px),560px);height:min(calc(100cqw - 28px),calc(100cqh - 28px),560px);flex:none} }
 @media (max-width:420px){ .logo b{font-size:13px} .logo i{width:26px;height:26px} .logo{gap:8px} .hdr .tel{padding:0 11px;font-size:14px;gap:6px;min-height:38px} .hdr .tel svg{width:15px;height:15px} }
-@media (max-width:899px) and (max-height:760px){ .plate{bottom:calc(min(112vw,64svh,640px) * -.42)} }
+
 @media (max-height:700px) and (max-width:899px){ .h1a{font-size:clamp(40px,11.5vw,64px)} .ending{font-size:20px} .score{margin-top:10px} .hcta{margin-top:12px} }
 @media (min-width:900px){
   #hero{min-height:640px}
   .hero-in{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:32px;padding-top:var(--hdr)}
   .h1a{font-size:min(5.6vw,10.5vh,96px)}
   .ending{font-size:clamp(26px,2.4vw,36px)}
-  .plate{position:relative;left:auto;bottom:auto;transform:none;width:min(46vw,calc(100svh - 150px),660px);justify-self:end}
+  .plate{position:relative;left:auto;bottom:auto;transform:none;width:min(44vw,calc(100svh - 190px - var(--bar0,0px)),640px);justify-self:end;margin-right:12px}
   .addr{display:flex;gap:18px;margin-top:22px;font-size:15px;color:rgba(246,240,229,.75)}
   .addr a{text-decoration:none;border-bottom:1px solid rgba(246,240,229,.3)}
   .hint{left:50%;right:auto;transform:translateX(-50%)}
@@ -131,7 +136,7 @@ main>section.pad{margin-top:-1px}
 .reveal.in{opacity:1;transform:none}
 
 /* ===== Sushi oder Momo ===== */
-#beides{--bg:#1c1512;--prev:var(--ink);--next:var(--ink2);color:var(--rice)}
+#beides{--bg:#1c1512;--prev:#1c1512;--next:var(--ink2);color:var(--rice)}
 #beides .kick{color:var(--lack)}
 .switch{position:relative;display:grid;grid-template-columns:1fr 1fr;margin-top:28px;background:var(--rice2);border-radius:999px;padding:6px;max-width:520px}
 .switch .pill{position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 6px);border-radius:999px;background:var(--ink);transition:transform .45s var(--ease)}
@@ -164,7 +169,7 @@ main>section.pad{margin-top:-1px}
 }
 
 /* ===== Bento-Karte ===== */
-#karte{--bg:#311915;--prev:var(--ink2);--next:var(--walnuss);color:var(--rice)}
+#karte{--bg:var(--lack);--prev:var(--ink2);--next:var(--walnuss);color:var(--rice)}
 #karte .kick{color:var(--sakura2)}
 .karte-grid{display:grid;gap:22px;margin-top:30px}
 .bento{background:#120c0a;border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(2,1fr);grid-auto-flow:dense;gap:8px;box-shadow:0 24px 60px rgba(60,5,2,.45),inset 0 0 0 1px rgba(255,255,255,.06)}
@@ -198,20 +203,17 @@ main>section.pad{margin-top:-1px}
 @media (min-width:740px){.karte-grid{grid-template-columns:1.05fr 1fr;align-items:start}.blatt{position:sticky;top:calc(var(--hdr) + 16px);padding:28px 26px;max-height:calc(100vh - var(--hdr) - 32px);overflow:auto;overscroll-behavior:contain}}
 
 /* ===== Boxen ===== */
-#boxen{--bg:var(--walnuss);--prev:#311915;--next:#1c1512;color:var(--rice)}
+#boxen{--bg:var(--walnuss);--prev:var(--lack);--next:#1c1512;color:var(--rice)}
 #boxen .kick{color:var(--holz2)}
 .boxen-grid{display:grid;gap:30px;margin-top:30px}
 .stapel{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:220px;padding:22px 2px 0;border-bottom:3px solid rgba(226,178,122,.35);overflow:hidden;cursor:pointer}
-.kiste{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--holz),var(--holzD));color:#fffaf2;text-shadow:0 1px 2px rgba(60,35,15,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;height:calc(var(--h) * 1%);min-height:58px;transform:translateY(calc(var(--lift,0) * -1px));transition:transform .45s cubic-bezier(.3,1.55,.45,1),box-shadow .2s,filter .2s,background .2s;box-shadow:inset 0 3px 0 rgba(255,255,255,.22)}
-.stapel.pre .kiste{transform:translateY(110%);transition:none}
-.stapel.rein .kiste{animation:rein .75s cubic-bezier(.3,1.5,.45,1) both;animation-delay:calc(var(--i) * 90ms)}
-@keyframes rein{0%{transform:translateY(110%)}100%{transform:translateY(0)}}
-.kiste.hop{animation:hop .55s cubic-bezier(.3,1.6,.45,1)}
-@keyframes hop{0%{transform:translateY(calc(var(--lift,0) * -1px))}35%{transform:translateY(calc(var(--lift,0) * -1px - 18px))}100%{transform:translateY(calc(var(--lift,0) * -1px))}}
+.kiste{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--tee),var(--teeD));color:#fbfaf2;text-shadow:0 1px 2px rgba(40,45,20,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;height:calc(var(--h) * 1%);min-height:58px;transition:box-shadow .2s,filter .2s,background .2s;box-shadow:inset 0 3px 0 rgba(255,255,255,.22)}
+.kiste.dip{animation:dip .3s ease}
+@keyframes dip{0%{transform:translateY(0)}45%{transform:translateY(4px)}100%{transform:translateY(0)}}
 .kiste b{font-family:var(--disp);font-weight:400;font-size:22px;line-height:1}
 .kiste span{font-size:12px;font-weight:700;opacity:.85;margin-top:4px}
-.kiste[aria-pressed="true"]{background:linear-gradient(180deg,var(--rice),var(--rice3));color:var(--ink);text-shadow:none;box-shadow:0 0 0 3px var(--holz2),0 10px 24px rgba(0,0,0,.35)}
-@media (hover:hover){.stapel.ready .kiste[aria-pressed="false"]:hover{filter:brightness(1.12);box-shadow:0 0 0 3px rgba(226,178,122,.55),0 0 22px rgba(226,178,122,.3)}}
+.kiste[aria-pressed="true"]{background:linear-gradient(180deg,var(--rice),var(--rice3));color:var(--ink);text-shadow:none;box-shadow:0 0 0 3px var(--tee),0 10px 24px rgba(0,0,0,.35)}
+@media (hover:hover){.kiste[aria-pressed="false"]:hover{filter:brightness(1.08);box-shadow:0 0 0 3px rgba(151,163,106,.55)}}
 .boxinfo{margin-top:22px;background:rgba(255,236,210,.06);border-radius:22px;padding:22px 20px;box-shadow:inset 0 0 0 1px rgba(246,240,229,.08)}
 .boxinfo .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .boxinfo h3{font-family:var(--disp);font-weight:400;font-size:clamp(24px,7vw,30px);line-height:1;white-space:nowrap}
@@ -250,7 +252,7 @@ main>section.pad{margin-top:-1px}
 @media (hover:hover){.wand.ready button:hover{background:rgba(156,59,44,.12)}}
 .wand-info{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:#5d4c42;margin-top:12px}
 .wand-info a{font-weight:700;color:var(--lack)}
-@media (min-width:740px){.stimmen-grid{grid-template-columns:.9fr 1.1fr;align-items:start;gap:48px}.karte-q{position:sticky;top:calc(var(--hdr) + 20px);min-height:300px;padding:32px}.wand{grid-template-columns:repeat(17,1fr);gap:5px}}
+@media (min-width:740px){.stimmen-grid{grid-template-columns:.9fr 1.1fr;align-items:start;gap:48px}.karte-q{position:sticky;top:calc(var(--hdr) + 20px);min-height:300px;padding:32px}.wand{grid-template-columns:repeat(20,1fr);gap:5px}}
 
 /* ===== Besuch ===== */
 #besuch{--bg:var(--ink);--prev:#1c1512;--next:#0d0a09;color:var(--rice)}
@@ -286,7 +288,7 @@ main>section.pad{margin-top:-1px}
 
 
 /* ===== Kleiner Laden ===== */
-#theke{--bg:var(--ink2);--prev:#1c1512;--next:#311915;color:var(--rice);overflow:hidden}
+#theke{--bg:var(--ink2);--prev:#1c1512;--next:var(--lack);color:var(--rice);overflow:hidden}
 #theke .kick{color:var(--sakura)}
 .theke-grid{display:grid;gap:26px;margin-top:30px}
 .theke-foto{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3}
@@ -315,7 +317,7 @@ main>section.pad{margin-top:-1px}
 /* ===== Weiche Übergänge (18c) ===== */
 main>section.pad{--fade:110px;background:linear-gradient(to bottom,color-mix(in srgb,var(--prev) 50%,var(--bg)) 0,var(--bg) var(--fade),var(--bg) calc(100% - var(--fade)),color-mix(in srgb,var(--next) 50%,var(--bg)) 100%)}
 @media (min-width:740px){main>section.pad{--fade:180px}}
-#hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52px;background:linear-gradient(to bottom,rgba(22,17,15,0),color-mix(in srgb,var(--ink) 50%,#1c1512));pointer-events:none;z-index:2}
+#hero::after{display:none;content:"";position:absolute;left:0;right:0;bottom:0;height:52px;background:linear-gradient(to bottom,rgba(22,17,15,0),color-mix(in srgb,var(--ink) 50%,#1c1512));pointer-events:none;z-index:2}
 
 /* ===== Lightbox (18e) ===== */
 .zoomable{cursor:zoom-in}
@@ -441,7 +443,7 @@ html.bar-off{--bar:0px!important}
 
 /* ===== Eine Stimmung (18h): helle Bloecke jetzt dunkel ===== */
 #beides .kick,#stimmen .kick{color:var(--sakura)}
-#karte .kick{color:var(--sakura)}
+#karte .kick{color:var(--sakura2)}
 .switch{background:rgba(246,240,229,.08)}
 .switch .pill{background:var(--rice)}
 .switch button{color:var(--rice)}
@@ -455,7 +457,7 @@ html.bar-off{--bar:0px!important}
 .dialekt{background:rgba(246,240,229,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.1)}
 .karte-q{background:rgba(246,240,229,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.12),0 10px 30px rgba(0,0,0,.25)}
 #stimmen .karte-q{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);background:rgba(36,27,22,.92)}
-.wand button{color:#c9604c}
+.wand button{color:#c26a55}
 .wand button[aria-pressed="true"]{background:var(--rice);color:#d08a2a}
 @media (hover:hover){.wand.ready button:hover{background:rgba(246,240,229,.1)}}
 .wand-info{color:rgba(246,240,229,.62)}
@@ -622,9 +624,9 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 <section id="stimmen" class="pad">
   <div class="wrap">
     <div class="head reveal">
-      <p class="kick">Was Gäste auf Google schreiben</p>
-      <h2 class="sh">170 Sterne an der Wand</h2>
-      <p class="lead">Jeder Stern steht für eine Bewertung auf Google. Tippen Sie einen an – er erzählt Ihnen, was Gäste geschrieben haben.</p>
+      <p class="kick">5,0 aus 170 Bewertungen auf Google</p>
+      <h2 class="sh">Sterne an der Wand</h2>
+      <p class="lead">Hier hängen die schönsten Stimmen unserer Gäste. Tippen Sie einen Stern an – er erzählt Ihnen, was geschrieben wurde.</p>
     </div>
     <div class="stimmen-grid">
       <div class="karte-q" id="quote">
@@ -633,8 +635,8 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
         <footer><span id="qwho">Fabian I.</span><span id="qwhen">Google · vor 7 Monaten</span></footer>
       </div>
       <div>
-        <div class="wand pre" id="wand" role="group" aria-label="170 Bewertungen"></div>
-        <div class="wand-info"><span id="wandnr">Stern 1 von 170</span><a href="https://g.page/r/CYa2fnp2aaqqEB0/review" target="_blank" rel="noopener">Eigene Bewertung schreiben →</a></div>
+        <div class="wand pre" id="wand" role="group" aria-label="Stimmen unserer Gäste"></div>
+        <div class="wand-info"><span id="wandnr">Tippen Sie einen Stern an</span><a href="https://g.page/r/CYa2fnp2aaqqEB0/review" target="_blank" rel="noopener">Eigene Bewertung schreiben →</a></div>
       </div>
     </div>
   </div>
@@ -761,10 +763,7 @@ const STIMMEN=[
  ["TakeAway Sushi und Momo waren sehr lecker und liebevoll angerichtet. Koch und Köchin sind sehr freundlich.","Mona","vor einem Jahr"],
  ["Beste Sushi der Schweiz.","Nils U.","vor 11 Monaten"],
  ["Wir bestellen 1x pro Monat – es gibt nichts Vergleichbares.","Janine S.","vor einem Jahr"],
- ["Das Sushi gehört zu den besten, die ich je gegessen habe.","Simone B.","vor 2 Monaten"],
- ["Bestes Preis-Leistungs-Verhältnis in der ganzen Ostschweiz!","Manh N.","vor einem Jahr"],
- ["Bestes Sushi seit langem.","Lucia K.","vor einem Jahr"],
- ["Ausgezeichnet, sehr empfehlenswert – der beste Sushi-Momo-Laden. Bravo!","Dalibor V.","vor einem Jahr"]
+ ["Das Sushi gehört zu den besten, die ich je gegessen habe.","Simone B.","vor 2 Monaten"],,,
 ];
 // Di–Fr 11–14 + 17–21, Sa–So 17–21, Mo zu (Google-Profil, geprüft 24.11.2026)
 const HOURS={0:[[17,21]],1:[],2:[[11,14],[17,21]],3:[[11,14],[17,21]],4:[[11,14],[17,21]],5:[[11,14],[17,21]],6:[[17,21]]};
@@ -874,36 +873,26 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
       <div class="facts"><span>${n} Stück</span><span>${per} Fr. pro Stück</span><span>${pers===1?"für 1 Person":"für ca. "+pers+" Personen"}</span></div>
       <ul class="chips">${b.n.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
       <a class="btn holz" href="https://www.bbqsushimomo-sg.ch/im-voraus-bestellen" target="_blank" rel="noopener">Box ${b.k} vorbestellen</a>`; }
-  const ks=[...st.children]; let ready=false, sel=2;
-  const lift=(c,amp)=>ks.forEach((k,i)=>{ const d=Math.abs(i-c); k.style.setProperty("--lift",Math.max(0,amp-d*amp*.42).toFixed(1)); });
-  const rest=()=>ks.forEach((k,i)=>k.style.setProperty("--lift",i===sel?8:0));
-  const hop=k=>{ k.classList.remove("hop"); void k.offsetWidth; k.classList.add("hop"); };
-  const ripple=c=>ks.forEach((k,i)=>setTimeout(()=>hop(k),Math.abs(i-c)*70));
-  st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(!b) return; sel=ks.indexOf(b); show(b.dataset.k); if(ready){ rest(); ripple(sel); } });
-  ks.forEach(k=>k.addEventListener("animationend",()=>k.classList.remove("hop")));
-  if(matchMedia("(hover:hover)").matches){
-    st.addEventListener("pointermove",e=>{ if(!ready) return; const r=st.getBoundingClientRect(); const c=Math.max(0,Math.min(5,Math.floor((e.clientX-r.left)/r.width*6))); lift(c,16); });
-    st.addEventListener("pointerleave",()=>{ if(ready) rest(); });
-  }
+  const ks=[...st.children];
+  const dip=k=>{ k.classList.remove("dip"); void k.offsetWidth; k.classList.add("dip"); };
+  ks.forEach(k=>k.addEventListener("animationend",()=>k.classList.remove("dip")));
+  st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(!b) return; show(b.dataset.k); dip(b); });
+  if(matchMedia("(hover:hover)").matches) ks.forEach(k=>k.addEventListener("pointerenter",()=>dip(k)));
   show("C");
-  const go=()=>{ st.classList.remove("pre"); st.classList.add("rein");
-    setTimeout(()=>{ st.classList.remove("rein"); ready=true; st.classList.add("ready"); rest(); },6*90+800); };
-  if(reduce){ ready=true; st.classList.add("ready"); rest(); }
-  else{ st.classList.add("pre"); const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); go(); } },{rootMargin:"0px 0px -20% 0px"}); io.observe(st); }
 })();
 
 /* ================= Sternenwand ================= */
 (function(){ const w=$("#wand"), qt=$("#qtext"), qw=$("#qwho"), qn=$("#qwhen"), nr=$("#wandnr");
   const star='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.6l2.9 6 6.5.8-4.8 4.5 1.2 6.5L12 17.3l-5.8 3.1 1.2-6.5L2.6 9.4l6.5-.8z"/></svg>';
-  w.innerHTML=Array.from({length:170},(_,i)=>`<button aria-pressed="${i===0}" aria-label="Bewertung ${i+1} von 170" data-i="${i}">${star}</button>`).join("");
+  w.innerHTML=Array.from({length:120},(_,i)=>`<button aria-pressed="${i===0}" aria-label="Stimme ${i+1}" data-i="${i}">${star}</button>`).join("");
   const btns=[...w.children]; let cur=0, ready=false;
   function pick(i){ if(!ready) return; btns[cur].setAttribute("aria-pressed","false"); cur=i; btns[i].setAttribute("aria-pressed","true");
-    const s=STIMMEN[i%STIMMEN.length]; nr.textContent=`Stern ${i+1} von 170`;
+    const s=STIMMEN[i%STIMMEN.length];
     qt.classList.add("fade"); setTimeout(()=>{ qt.textContent=`«${s[0]}»`; qw.textContent=s[1]; qn.textContent="Google · "+s[2]; qt.classList.remove("fade"); },200); }
   w.addEventListener("click",e=>{ const b=e.target.closest("button"); if(b) pick(+b.dataset.i); });
   const light=()=>{ if(reduce){ btns.forEach(b=>b.classList.add("lit")); w.classList.remove("pre"); w.classList.add("ready"); ready=true; return; }
     btns.forEach((b,i)=>setTimeout(()=>b.classList.add("lit"),i*8));
-    setTimeout(()=>{ w.classList.remove("pre"); w.classList.add("ready"); ready=true; },170*8+350); };
+    setTimeout(()=>{ w.classList.remove("pre"); w.classList.add("ready"); ready=true; },120*8+350); };
   const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); light(); } },{rootMargin:"0px 0px -15% 0px"}); io.observe(w);
 })();
 
