@@ -11,7 +11,7 @@
 <meta property="og:description" content="«Das beste Sushi in der Region!» – 5,0 Sterne aus 170 Bewertungen.">
 <meta property="og:image" content="https://julia-mirku.github.io/sushi-momo-muster/img/teller-1000.jpg">
 <meta name="theme-color" content="#16110f">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23b81d12'/%3E%3Ctext x='32' y='41' font-family='Arial Black,Arial' font-weight='900' font-size='24' text-anchor='middle' fill='%23f5efe4'%3EBSM%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23bc5140'/%3E%3Ctext x='32' y='41' font-family='Arial Black,Arial' font-weight='900' font-size='24' text-anchor='middle' fill='%23f5efe4'%3EBSM%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -24,7 +24,8 @@
 <style>
 :root{
   --ink:#16110f; --ink2:#231a16; --ink3:#33261f;
-  --lack:#a5170e; --lack2:#c3261a; --lackD:#6e0f09;
+  --lack:#9c3b2c; --lack2:#bc5140; --lackD:#6a271c;
+  --holz:#c99057; --holz2:#e2b27a; --holzD:#7c5131; --walnuss:#24190f;
   --rice:#f6f0e5; --rice2:#ece3d3; --rice3:#dcd0bb;
   --sakura:#f3a3b5; --sakura2:#ffd0da;
   --wasabi:#9dbb3c;
@@ -53,8 +54,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .btn.red{background:var(--lack2);color:#fff}
 .btn.line{border:2px solid currentColor}
 .btn.rice{background:var(--rice);color:var(--ink)}
+.btn.holz{background:var(--holz2);color:#2a1a0c}
+@media (hover:hover){.btn.holz:hover{background:#efc391;box-shadow:0 0 0 6px rgba(226,178,122,.25)}}
 @media (hover:hover){
-  .btn.red:hover{background:#d8352a;box-shadow:0 0 0 6px rgba(243,163,181,.22)}
+  .btn.red:hover{background:#c9604c;box-shadow:0 0 0 6px rgba(243,163,181,.22)}
   .btn.line:hover{background:rgba(246,240,229,.1);box-shadow:0 0 0 6px rgba(246,240,229,.08)}
   .btn.rice:hover{background:#fff;box-shadow:0 0 0 6px rgba(243,163,181,.3)}
 }
@@ -95,7 +98,7 @@ h1{margin-top:12px}
 .score small{font-size:13px;line-height:1.25;color:rgba(246,240,229,.75);font-weight:500}
 .hcta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .plate{position:absolute;z-index:1;left:50%;width:min(112vw,64svh,640px);aspect-ratio:1;bottom:calc(min(112vw,64svh,640px) * -.36);transform:translateX(-50%)}
-.plate .rot{width:100%;height:100%;border-radius:50%;overflow:hidden;transform:rotate(calc(var(--p,0) * 150deg - 18deg));box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px rgba(165,23,14,.25);will-change:transform}
+.plate .rot{width:100%;height:100%;border-radius:50%;overflow:hidden;transform:rotate(calc(var(--p,0) * 150deg - 18deg));box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px rgba(156,59,44,.25);will-change:transform}
 .plate img{width:100%;height:100%;object-fit:cover}
 .hint{position:absolute;z-index:3;right:16px;bottom:16px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,240,229,.75);display:flex;gap:8px;align-items:center;transition:opacity .4s;background:rgba(22,17,15,.6);padding:6px 10px;border-radius:999px}
 .hint svg{width:14px;height:14px}
@@ -147,7 +150,7 @@ section{position:relative}
 .favs li{display:flex;justify-content:space-between;gap:12px;padding:12px 4px;border-bottom:1px solid rgba(22,17,15,.15);border-radius:8px;transition:background-color .2s}
 .favs li span small{display:block;font-size:14px;color:#5d4c42}
 .price{font-weight:900;white-space:nowrap;font-variant-numeric:tabular-nums;padding:2px 8px;border-radius:8px;align-self:flex-start;transition:background-color .2s,color .2s}
-@media (hover:hover){.favs li:hover{background:rgba(165,23,14,.06)} .favs li:hover .price,.item:hover .price{background:var(--lack2);color:#fff}}
+@media (hover:hover){.favs li:hover{background:rgba(156,59,44,.06)} .favs li:hover .price,.item:hover .price{background:var(--lack2);color:#fff}}
 .dialekt{margin-top:40px;padding:22px 22px 20px;border-radius:22px;background:var(--ink);color:var(--rice);display:grid;gap:8px;transition:box-shadow .25s}
 .dialekt q{font-size:21px;font-weight:900;line-height:1.3;quotes:"«" "»"}
 .dialekt cite{font-style:normal;font-size:14px;opacity:.75}
@@ -178,7 +181,7 @@ section{position:relative}
 .blatt-hd span{font-size:14px;color:#5d4c42;text-align:right}
 .items{list-style:none}
 .item{display:flex;justify-content:space-between;gap:14px;padding:13px 6px;border-bottom:1px solid rgba(22,17,15,.13);border-radius:8px;transition:background-color .2s}
-@media (hover:hover){.item:hover{background:rgba(165,23,14,.07)}}
+@media (hover:hover){.item:hover{background:rgba(156,59,44,.07)}}
 .item b{font-weight:900}
 .item small{display:block;font-size:14px;color:#5d4c42;line-height:1.4;margin-top:2px}
 .tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:2px}
@@ -194,25 +197,30 @@ section{position:relative}
 @media (min-width:740px){.karte-grid{grid-template-columns:1.05fr 1fr;align-items:start}.blatt{position:sticky;top:calc(var(--hdr) + 16px);padding:28px 26px;max-height:calc(100vh - var(--hdr) - 32px);overflow:auto;overscroll-behavior:contain}}
 
 /* ===== Boxen ===== */
-#boxen{--bg:var(--ink);--prev:var(--lack);--next:var(--rice);color:var(--rice)}
-#boxen .kick{color:var(--sakura)}
+#boxen{--bg:var(--walnuss);--prev:var(--lack);--next:var(--rice);color:var(--rice)}
+#boxen .kick{color:var(--holz2)}
 .boxen-grid{display:grid;gap:30px;margin-top:30px}
-.stapel{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:220px;padding:0 2px;border-bottom:3px solid var(--ink3)}
-.kiste{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--lack2),var(--lackD));display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;height:calc(var(--h) * 1%);min-height:58px;transition:box-shadow .2s,filter .2s,background .2s;box-shadow:inset 0 3px 0 rgba(255,255,255,.18)}
+.stapel{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:220px;padding:22px 2px 0;border-bottom:3px solid rgba(226,178,122,.35);overflow:hidden;cursor:pointer}
+.kiste{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--holz),var(--holzD));color:#fffaf2;text-shadow:0 1px 2px rgba(60,35,15,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;height:calc(var(--h) * 1%);min-height:58px;transform:translateY(calc(var(--lift,0) * -1px));transition:transform .45s cubic-bezier(.3,1.55,.45,1),box-shadow .2s,filter .2s,background .2s;box-shadow:inset 0 3px 0 rgba(255,255,255,.22)}
+.stapel.pre .kiste{transform:translateY(110%);transition:none}
+.stapel.rein .kiste{animation:rein .75s cubic-bezier(.3,1.5,.45,1) both;animation-delay:calc(var(--i) * 90ms)}
+@keyframes rein{0%{transform:translateY(110%)}100%{transform:translateY(0)}}
+.kiste.hop{animation:hop .55s cubic-bezier(.3,1.6,.45,1)}
+@keyframes hop{0%{transform:translateY(calc(var(--lift,0) * -1px))}35%{transform:translateY(calc(var(--lift,0) * -1px - 18px))}100%{transform:translateY(calc(var(--lift,0) * -1px))}}
 .kiste b{font-family:var(--disp);font-weight:400;font-size:22px;line-height:1}
 .kiste span{font-size:12px;font-weight:700;opacity:.85;margin-top:4px}
-.kiste[aria-pressed="true"]{background:linear-gradient(180deg,var(--rice),var(--rice3));color:var(--ink);box-shadow:0 0 0 3px var(--sakura)}
-@media (hover:hover){.kiste[aria-pressed="false"]:hover{filter:brightness(1.15);box-shadow:0 0 0 3px rgba(243,163,181,.5)}}
-.boxinfo{margin-top:22px;background:var(--ink2);border-radius:22px;padding:22px 20px;box-shadow:inset 0 0 0 1px rgba(246,240,229,.08)}
+.kiste[aria-pressed="true"]{background:linear-gradient(180deg,var(--rice),var(--rice3));color:var(--ink);text-shadow:none;box-shadow:0 0 0 3px var(--holz2),0 10px 24px rgba(0,0,0,.35)}
+@media (hover:hover){.stapel.ready .kiste[aria-pressed="false"]:hover{filter:brightness(1.12);box-shadow:0 0 0 3px rgba(226,178,122,.55),0 0 22px rgba(226,178,122,.3)}}
+.boxinfo{margin-top:22px;background:rgba(255,236,210,.06);border-radius:22px;padding:22px 20px;box-shadow:inset 0 0 0 1px rgba(246,240,229,.08)}
 .boxinfo .top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
 .boxinfo h3{font-family:var(--disp);font-weight:400;font-size:clamp(24px,7vw,30px);line-height:1;white-space:nowrap}
-.boxinfo .pr{font-family:var(--disp);font-size:30px;line-height:1;color:var(--sakura2);padding:4px 10px;border-radius:12px;transition:background-color .2s}
-@media (hover:hover){.boxinfo .pr:hover{background:rgba(243,163,181,.15)}}
+.boxinfo .pr{font-family:var(--disp);font-size:30px;line-height:1;color:var(--holz2);padding:4px 10px;border-radius:12px;transition:background-color .2s}
+@media (hover:hover){.boxinfo .pr:hover{background:rgba(226,178,122,.15)}}
 .boxinfo .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 .boxinfo .facts span{font-size:14px;font-weight:700;padding:5px 12px;border-radius:999px;background:rgba(246,240,229,.08)}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px;list-style:none}
 .chips li{font-size:14px;padding:5px 10px;border-radius:10px;background:rgba(246,240,229,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.12);transition:background-color .2s}
-@media (hover:hover){.chips li:hover{background:rgba(243,163,181,.18)}}
+@media (hover:hover){.chips li:hover{background:rgba(226,178,122,.2)}}
 .boxinfo .btn{margin-top:20px}
 .boxfoto{border-radius:22px;overflow:hidden;aspect-ratio:3/4;max-height:640px}
 .boxfoto img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
@@ -238,7 +246,7 @@ section{position:relative}
 .wand.pre button{opacity:.12}
 .wand button.lit{opacity:1}
 .wand button[aria-pressed="true"]{background:var(--ink);color:#ffb21e}
-@media (hover:hover){.wand.ready button:hover{background:rgba(165,23,14,.12)}}
+@media (hover:hover){.wand.ready button:hover{background:rgba(156,59,44,.12)}}
 .wand-info{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:#5d4c42;margin-top:12px}
 .wand-info a{font-weight:700;color:var(--lack)}
 @media (min-width:740px){.stimmen-grid{grid-template-columns:.9fr 1.1fr;align-items:start;gap:48px}.karte-q{position:sticky;top:calc(var(--hdr) + 20px);min-height:300px;padding:32px}.wand{grid-template-columns:repeat(17,1fr);gap:5px}}
@@ -559,7 +567,7 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
     <div>
       <div class="reveal">
         <p class="kick">Zum Abholen</p>
-        <h2 class="sh">Sushi-Boxen A–F</h2>
+        <h2 class="sh">Sushi-Boxen <span style="white-space:nowrap">A–F</span></h2>
         <p class="lead">Von der Box für eine Person bis zur grossen Platte für den Geburtstag. Die Höhe zeigt, wie viele Stücke drin sind.</p>
       </div>
       <div class="stapel" id="stapel" role="group" aria-label="Sushi-Box wählen"></div>
@@ -808,15 +816,29 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* ================= Boxen A–F ================= */
 (function(){ const st=$("#stapel"), info=$("#boxinfo");
   const pcs=b=>b.n.reduce((s,x)=>s+parseInt(x),0); const max=Math.max(...BOXEN.map(pcs));
-  st.innerHTML=BOXEN.map(b=>`<button class="kiste" aria-pressed="false" data-k="${b.k}" style="--h:${Math.round(28+72*pcs(b)/max)}"><b>${b.k}</b><span>${pcs(b)}</span></button>`).join("");
+  st.innerHTML=BOXEN.map((b,i)=>`<button class="kiste" aria-pressed="false" data-k="${b.k}" style="--h:${Math.round(28+72*pcs(b)/max)};--i:${i}"><b>${b.k}</b><span>${pcs(b)}</span></button>`).join("");
   function show(k){ const b=BOXEN.find(x=>x.k===k), n=pcs(b), per=(b.p/n).toFixed(2), pers=Math.max(1,Math.round(n/12));
     st.querySelectorAll(".kiste").forEach(x=>x.setAttribute("aria-pressed",x.dataset.k===k));
     info.innerHTML=`<div class="top"><h3>Sushi Box ${b.k}</h3><span class="pr">${b.p}.–</span></div>
       <div class="facts"><span>${n} Stück</span><span>${per} Fr. pro Stück</span><span>${pers===1?"für 1 Person":"für ca. "+pers+" Personen"}</span></div>
       <ul class="chips">${b.n.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
-      <a class="btn red" href="https://www.bbqsushimomo-sg.ch/im-voraus-bestellen" target="_blank" rel="noopener">Box ${b.k} vorbestellen</a>`; }
-  st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(b) show(b.dataset.k); });
+      <a class="btn holz" href="https://www.bbqsushimomo-sg.ch/im-voraus-bestellen" target="_blank" rel="noopener">Box ${b.k} vorbestellen</a>`; }
+  const ks=[...st.children]; let ready=false, sel=2;
+  const lift=(c,amp)=>ks.forEach((k,i)=>{ const d=Math.abs(i-c); k.style.setProperty("--lift",Math.max(0,amp-d*amp*.42).toFixed(1)); });
+  const rest=()=>ks.forEach((k,i)=>k.style.setProperty("--lift",i===sel?8:0));
+  const hop=k=>{ k.classList.remove("hop"); void k.offsetWidth; k.classList.add("hop"); };
+  const ripple=c=>ks.forEach((k,i)=>setTimeout(()=>hop(k),Math.abs(i-c)*70));
+  st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(!b) return; sel=ks.indexOf(b); show(b.dataset.k); if(ready){ rest(); ripple(sel); } });
+  ks.forEach(k=>k.addEventListener("animationend",()=>k.classList.remove("hop")));
+  if(matchMedia("(hover:hover)").matches){
+    st.addEventListener("pointermove",e=>{ if(!ready) return; const r=st.getBoundingClientRect(); const c=Math.max(0,Math.min(5,Math.floor((e.clientX-r.left)/r.width*6))); lift(c,16); });
+    st.addEventListener("pointerleave",()=>{ if(ready) rest(); });
+  }
   show("C");
+  const go=()=>{ st.classList.remove("pre"); st.classList.add("rein");
+    setTimeout(()=>{ st.classList.remove("rein"); ready=true; st.classList.add("ready"); rest(); },6*90+800); };
+  if(reduce){ ready=true; st.classList.add("ready"); rest(); }
+  else{ st.classList.add("pre"); const io=new IntersectionObserver(es=>{ if(es[0].isIntersecting){ io.disconnect(); go(); } },{rootMargin:"0px 0px -20% 0px"}); io.observe(st); }
 })();
 
 /* ================= Sternenwand ================= */
