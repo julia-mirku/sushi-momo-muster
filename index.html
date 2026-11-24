@@ -208,8 +208,9 @@ main>section.pad{margin-top:-1px}
 .boxen-grid{display:grid;gap:30px;margin-top:30px}
 .stapel{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:220px;padding:22px 2px 0;border-bottom:3px solid rgba(226,178,122,.35);overflow:hidden;cursor:pointer}
 .kiste{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--tee),var(--teeD));color:#fbfaf2;text-shadow:0 1px 2px rgba(40,45,20,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;height:calc(var(--h) * 1%);min-height:58px;transition:box-shadow .2s,filter .2s,background .2s;box-shadow:inset 0 3px 0 rgba(255,255,255,.22)}
-.kiste.dip{animation:dip .3s ease}
-@keyframes dip{0%{transform:translateY(0)}45%{transform:translateY(4px)}100%{transform:translateY(0)}}
+@media (hover:hover){.kiste{transition:transform .38s ease,box-shadow .2s,filter .2s,background .2s}.kiste:hover{transform:translateY(4px)}}
+.boxinfo>*{transition:opacity .22s ease}
+.boxinfo.wechsel>*{opacity:0}
 .kiste b{font-family:var(--disp);font-weight:400;font-size:22px;line-height:1}
 .kiste span{font-size:12px;font-weight:700;opacity:.85;margin-top:4px}
 .kiste[aria-pressed="true"]{background:linear-gradient(180deg,var(--rice),var(--rice3));color:var(--ink);text-shadow:none;box-shadow:0 0 0 3px var(--tee),0 10px 24px rgba(0,0,0,.35)}
@@ -225,11 +226,11 @@ main>section.pad{margin-top:-1px}
 .chips li{font-size:14px;padding:5px 10px;border-radius:10px;background:rgba(246,240,229,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.12);transition:background-color .2s}
 @media (hover:hover){.chips li:hover{background:rgba(226,178,122,.2)}}
 .boxinfo .btn{margin-top:20px}
-.boxfoto{border-radius:22px;overflow:hidden;aspect-ratio:3/4;max-height:640px}
+.boxfoto{border-radius:22px;overflow:hidden;aspect-ratio:1160/880}
 .boxfoto img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 @media (hover:hover){.boxfoto:hover img{transform:scale(1.03)}}
 .boxfoto figcaption{margin:0}
-.boxquote{margin-top:18px;font-size:16px;color:rgba(246,240,229,.85)}
+.boxquote{margin-top:16px;font-size:16px;line-height:1.5;color:rgba(246,240,229,.88);padding:18px 20px;border-radius:18px;background:rgba(255,236,210,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.1)}
 .boxquote q{quotes:"«" "»"}
 .boxquote cite{font-style:normal;opacity:.7;font-size:14px}
 @media (min-width:740px){.boxen-grid{grid-template-columns:1.15fr .85fr;align-items:start;gap:56px}.stapel{height:260px;gap:12px}}
@@ -252,7 +253,7 @@ main>section.pad{margin-top:-1px}
 @media (hover:hover){.wand.ready button:hover{background:rgba(156,59,44,.12)}}
 .wand-info{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:#5d4c42;margin-top:12px}
 .wand-info a{font-weight:700;color:var(--lack)}
-@media (min-width:740px){.stimmen-grid{grid-template-columns:.9fr 1.1fr;align-items:start;gap:48px}.karte-q{position:sticky;top:calc(var(--hdr) + 20px);min-height:300px;padding:32px}.wand{grid-template-columns:repeat(20,1fr);gap:5px}}
+@media (min-width:740px){.stimmen-grid{grid-template-columns:minmax(0,.62fr) minmax(0,1fr);align-items:stretch;gap:36px}.karte-q{position:relative;top:auto;min-height:0;padding:26px 26px 22px}.karte-q blockquote{font-size:clamp(18px,1.7vw,22px)}.wand{grid-template-columns:repeat(20,1fr);gap:5px}}
 
 /* ===== Besuch ===== */
 #besuch{--bg:var(--ink);--prev:#1c1512;--next:#0d0a09;color:var(--rice)}
@@ -356,10 +357,11 @@ main>section.pad{background:var(--bg)}
   .fach{min-height:110px}
   .herkunft{margin-top:18px}
   .boxen-grid{align-items:stretch}
-  .boxen-r{contain:size}
+  .boxen-r{display:flex;flex-direction:column}
+
   .bubble{white-space:nowrap}
-  .boxfoto{position:relative;aspect-ratio:auto;height:100%;max-height:none}
-  .boxfoto figcaption{position:absolute;left:0;right:0;bottom:0;padding:60px 20px 18px;background:linear-gradient(to bottom,rgba(22,17,15,0),rgba(22,17,15,.85));margin:0}
+  .boxfoto{position:relative}
+
   .stapel{height:min(180px,21vh);margin-top:20px}
   .chips{gap:5px;margin-top:12px}
   .chips li{font-size:13px;padding:3px 9px}
@@ -396,7 +398,7 @@ main>section.pad{background:var(--bg)}
   .stapel{height:150px;margin-top:14px}
   .boxinfo{padding:14px 18px}
   .boxinfo h3,.boxinfo .pr{font-size:24px}
-  .karte-q{min-height:260px;padding:26px}
+  .karte-q{padding:20px 22px}
   .wand{gap:3px}
   .kontakt a small{display:none}
   .kontakt{margin-top:8px;gap:0}
@@ -455,8 +457,10 @@ html.bar-off{--bar:0px!important}
 .favs li span small{color:rgba(246,240,229,.62)}
 @media (hover:hover){.favs li:hover{background:rgba(246,240,229,.06)}}
 .dialekt{background:rgba(246,240,229,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.1)}
-.karte-q{background:rgba(246,240,229,.06);box-shadow:inset 0 0 0 1px rgba(246,240,229,.12),0 10px 30px rgba(0,0,0,.25)}
-#stimmen .karte-q{-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);background:rgba(36,27,22,.92)}
+.karte-q{background:var(--rice);color:var(--ink);box-shadow:inset 0 0 0 3px rgba(132,63,49,.18),0 10px 30px rgba(0,0,0,.25)}
+.karte-q footer{color:#5d4c42}
+.karte-q .st{color:#c98a1c}
+#stimmen .karte-q{background:var(--rice)}
 .wand button{color:#c26a55}
 .wand button[aria-pressed="true"]{background:var(--rice);color:#d08a2a}
 @media (hover:hover){.wand.ready button:hover{background:rgba(246,240,229,.1)}}
@@ -627,7 +631,8 @@ footer.ft{background:linear-gradient(to bottom,#120e0c 0%,#0d0a09 100%)}
       <div class="boxinfo" id="boxinfo" aria-live="polite"></div>
     </div>
     <div class="boxen-r reveal">
-      <figure class="boxfoto"><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 100vw, 480px" width="1200" height="1600" alt="Grosse runde Sushi-Platte mit Nigiri, Maki und Rainbow Rolls" loading="lazy"><figcaption class="boxquote"><q>Wir haben die Sushi Box A &amp; B vorbestellt und konnten es pünktlich abholen. Es war einfach himmlisch, extrem frisch.</q> <cite>– Fabienne B. auf Google</cite></figcaption></figure>
+      <figure class="boxfoto"><img src="img/rainbow-700.webp" srcset="img/rainbow-700.webp 700w, img/rainbow-1160.webp 1160w" sizes="(max-width:900px) 100vw, 480px" width="1160" height="880" alt="Rainbow Rolls mit Lachs, Avocado und Ikura" loading="lazy"></figure>
+      <p class="boxquote"><q>Wir haben die Sushi Box A &amp; B vorbestellt und konnten es pünktlich abholen. Es war einfach himmlisch, extrem frisch.</q> <cite>– Fabienne B. auf Google</cite></p>
     </div>
   </div>
 </section>
@@ -750,7 +755,7 @@ const KARTE=[
   ["Coca-Cola / Zero","5 dl","3.50",""],["Mineral mit / ohne","5 dl","3.50",""],["Red Bull","2,5 dl","3.50",""]]}
 ];
 const TAGN={v:"vegan",vg:"vegi",s:"scharf",b:"BBQ"};
-const FOTO={rainbow:["rainbow","Rainbow Rolls mit Lachs, Avocado und Ikura"]};
+const FOTO={};
 const BOXEN=[
  {k:"A",p:15,n:["2 Lachs-Nigiri","4 Gurken-Maki","4 Surimi-Rolls"]},
  {k:"B",p:25,n:["1 Thunfisch-Nigiri","1 Tamago-Nigiri","2 Lachs-Nigiri","4 Surimi-Rolls","2 Futomaki","6 Gurken-Maki"]},
@@ -884,12 +889,14 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
       <div class="facts"><span>${n} Stück</span><span>${per} Fr. pro Stück</span><span>${pers===1?"für 1 Person":"für ca. "+pers+" Personen"}</span></div>
       <ul class="chips">${b.n.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
       <a class="btn holz" href="https://www.bbqsushimomo-sg.ch/im-voraus-bestellen" target="_blank" rel="noopener">Box ${b.k} vorbestellen</a>`; }
-  const ks=[...st.children];
-  const dip=k=>{ k.classList.remove("dip"); void k.offsetWidth; k.classList.add("dip"); };
-  ks.forEach(k=>k.addEventListener("animationend",()=>k.classList.remove("dip")));
-  st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(!b) return; show(b.dataset.k); dip(b); });
-  if(matchMedia("(hover:hover)").matches) ks.forEach(k=>k.addEventListener("pointerenter",()=>dip(k)));
+  /* gleiche Hoehe fuer alle Boxen -> nichts springt beim Wechsel */
+  const fix=()=>{ info.style.minHeight=""; let h=0; const cur=st.querySelector('[aria-pressed="true"]'); BOXEN.forEach(b=>{ show(b.k); h=Math.max(h,info.offsetHeight); }); info.style.minHeight=h+"px"; show(cur?cur.dataset.k:"C"); };
+  st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(!b||b.getAttribute("aria-pressed")==="true") return;
+    st.querySelectorAll(".kiste").forEach(x=>x.setAttribute("aria-pressed",x===b));
+    if(reduce){ show(b.dataset.k); return; }
+    info.classList.add("wechsel"); setTimeout(()=>{ show(b.dataset.k); requestAnimationFrame(()=>info.classList.remove("wechsel")); },200); });
   show("C");
+  document.fonts.ready.then(fix); let rt; addEventListener("resize",()=>{ clearTimeout(rt); rt=setTimeout(fix,200); });
 })();
 
 /* ================= Sternenwand ================= */
