@@ -95,12 +95,12 @@ h1{margin-top:12px}
 .ending .e cite{display:block;font-style:normal;font-size:14px;font-weight:500;letter-spacing:.02em;margin-top:6px;color:rgba(246,240,229,.7)}
 .score{display:flex;align-items:center;gap:12px;margin-top:16px}
 .stars{position:relative;font-size:22px;letter-spacing:2px;line-height:1;color:rgba(246,240,229,.2)}
-.stars span{position:absolute;inset:0 auto 0 0;overflow:hidden;color:#ffb21e;white-space:nowrap;width:calc(var(--p,0)*100%)}
+.stars span{position:absolute;inset:0 auto 0 0;overflow:hidden;color:#ffb21e;white-space:nowrap;width:calc(var(--s,1)*100%)}
 .score b{font-family:var(--disp);font-weight:400;font-size:34px;line-height:1;width:2.75em;flex:none;font-variant-numeric:tabular-nums}
 .score small{font-size:13px;line-height:1.25;color:rgba(246,240,229,.75);font-weight:500}
 .hcta{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .plate{position:absolute;z-index:1;left:50%;width:min(112vw,64svh,640px);aspect-ratio:1;bottom:calc(min(112vw,64svh,640px) * -.36);transform:translateX(-50%)}
-.plate .rot{width:100%;height:100%;border-radius:50%;overflow:hidden;transform:rotate(calc(var(--p,0) * 150deg - 18deg));box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px rgba(156,59,44,.25);will-change:transform}
+.plate .rot{width:100%;height:100%;border-radius:50%;overflow:hidden;transform:rotate(calc(var(--p,0) * 150deg - 18deg));box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 10px rgba(122,34,50,.3);will-change:transform}
 .plate img{width:100%;height:100%;object-fit:cover}
 .hint{position:absolute;z-index:3;right:16px;bottom:16px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,240,229,.75);display:flex;gap:8px;align-items:center;transition:opacity .4s;background:rgba(23,13,16,.6);padding:6px 10px;border-radius:999px}
 .hint svg{width:14px;height:14px}
@@ -529,7 +529,7 @@ footer.ft{background:linear-gradient(to bottom,#120a0d 0%,#0e080a 100%)}
       </h1>
       <div class="score" aria-label="5,0 Sterne aus 170 Google-Bewertungen">
         <span class="stars" aria-hidden="true">★★★★★<span>★★★★★</span></span>
-        <b id="cnt" aria-hidden="true">0</b>
+        <b id="cnt" data-n="170" aria-hidden="true">170</b>
         <small>von 170 Gästen<br>5,0 Sterne auf Google</small>
       </div>
       <div class="hcta">
@@ -813,15 +813,20 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const hero=$("#hero"), cnt=$("#cnt"), ends=$$("#ending .e"), now=()=>performance.now();
   let p=0,playing=false,done=false,t0=0,raf=0,shown=0;
   const DUR=1300;
-  const set=v=>{ hero.style.setProperty("--p",v.toFixed(4)); cnt.textContent=Math.round(v*170);
+  const set=v=>{ hero.style.setProperty("--p",v.toFixed(4));
     const i=v<.36?0:v<.72?1:2; if(i!==shown){ ends[shown].classList.remove("on"); ends[i].classList.add("on"); shown=i; } };
   const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
   function finish(){ if(done) return; done=true; playing=false; p=1; set(1); cancelAnimationFrame(raf); hero.classList.add("done"); }
   function loop(){ const k=Math.min(1,(now()-t0)/DUR); p=ease(k); set(p); if(k>=1) finish(); else raf=requestAnimationFrame(loop); }
   function play(){ if(playing||done) return; playing=true; t0=now(); raf=requestAnimationFrame(loop); setTimeout(()=>{ if(!done) finish(); },DUR+250); }
+  /* Zahl und Sterne laufen gleich nach dem Laden selbst hoch – nie «0» stehen lassen (V6, 25.11) */
+  const N=+cnt.dataset.n, sc=cnt.closest(".score");
+  const zaehl=v=>{ cnt.textContent=Math.round(v*N); sc.style.setProperty("--s",v.toFixed(3)); };
+  if(reduce){ zaehl(1); } else { zaehl(0); const z0=now()+350; const zl=()=>{ const k=Math.max(0,Math.min(1,(now()-z0)/1200)); zaehl(ease(k)); if(k<1) requestAnimationFrame(zl); }; requestAnimationFrame(zl); setTimeout(()=>zaehl(1),2000); }
   if(reduce || scrollY>10 || location.hash){ p=1; set(1); done=true; hero.classList.add("done"); return; }
   scrollTo(0,0);
-  addEventListener("scroll",()=>{ if(!done && scrollY>0) scrollTo(0,0); },{passive:true});
+  /* Scrollen ohne unsere Geste (Link, Script, Bildlaufleiste): Teller sofort fertig, Seite frei */
+  addEventListener("scroll",()=>{ if(!done && scrollY>0) finish(); },{passive:true});
   addEventListener("wheel",e=>{ if(done) return; e.preventDefault(); if(e.deltaY>0) play(); },{passive:false});
   /* Touch: derselbe Wisch laeuft nach 170 sofort als normales Scrollen weiter */
   let ty=null, lockedGesture=false;
