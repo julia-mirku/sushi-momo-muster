@@ -127,7 +127,7 @@ section{position:relative}
 .reveal.in{opacity:1;transform:none}
 
 /* ===== Sushi oder Momo ===== */
-#beides{background:var(--rice);color:var(--ink)}
+#beides{--bg:var(--rice);--prev:var(--ink);--next:var(--ink2);color:var(--ink)}
 #beides .kick{color:var(--lack)}
 .switch{position:relative;display:grid;grid-template-columns:1fr 1fr;margin-top:28px;background:var(--rice2);border-radius:999px;padding:6px;max-width:520px}
 .switch .pill{position:absolute;top:6px;bottom:6px;left:6px;width:calc(50% - 6px);border-radius:999px;background:var(--ink);transition:transform .45s var(--ease)}
@@ -153,14 +153,14 @@ section{position:relative}
 .dialekt cite{font-style:normal;font-size:14px;opacity:.75}
 .dialekt small{font-size:14px;color:var(--sakura)}
 @media (hover:hover){.dialekt:hover{box-shadow:0 0 0 6px rgba(243,163,181,.35)}}
-@media (min-width:900px){
+@media (min-width:740px){
   .dual .pane{grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
   .beides-top{display:grid;grid-template-columns:1fr auto;align-items:end;gap:30px}
   .switch{margin-top:0;width:440px}
 }
 
 /* ===== Bento-Karte ===== */
-#karte{background:var(--lack);color:var(--rice)}
+#karte{--bg:var(--lack);--prev:var(--ink2);--next:var(--ink);color:var(--rice)}
 #karte .kick{color:var(--sakura2)}
 .karte-grid{display:grid;gap:22px;margin-top:30px}
 .bento{background:#120c0a;border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(2,1fr);grid-auto-flow:dense;gap:8px;box-shadow:0 24px 60px rgba(60,5,2,.45),inset 0 0 0 1px rgba(255,255,255,.06)}
@@ -191,10 +191,10 @@ section{position:relative}
 .herkunft{margin-top:26px;font-size:14px;color:rgba(246,240,229,.85)}
 .herkunft b{color:#fff}
 @media (min-width:700px){.bento{grid-template-columns:repeat(4,1fr)}.fach{min-height:112px}}
-@media (min-width:1000px){.karte-grid{grid-template-columns:1.05fr 1fr;align-items:start}.blatt{position:sticky;top:calc(var(--hdr) + 16px);padding:28px 26px;max-height:calc(100vh - var(--hdr) - 32px);overflow:auto;overscroll-behavior:contain}}
+@media (min-width:740px){.karte-grid{grid-template-columns:1.05fr 1fr;align-items:start}.blatt{position:sticky;top:calc(var(--hdr) + 16px);padding:28px 26px;max-height:calc(100vh - var(--hdr) - 32px);overflow:auto;overscroll-behavior:contain}}
 
 /* ===== Boxen ===== */
-#boxen{background:var(--ink);color:var(--rice)}
+#boxen{--bg:var(--ink);--prev:var(--lack);--next:var(--rice);color:var(--rice)}
 #boxen .kick{color:var(--sakura)}
 .boxen-grid{display:grid;gap:30px;margin-top:30px}
 .stapel{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:220px;padding:0 2px;border-bottom:3px solid var(--ink3)}
@@ -217,13 +217,14 @@ section{position:relative}
 .boxfoto{border-radius:22px;overflow:hidden;aspect-ratio:3/4;max-height:640px}
 .boxfoto img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 @media (hover:hover){.boxfoto:hover img{transform:scale(1.03)}}
+.boxfoto figcaption{margin:0}
 .boxquote{margin-top:18px;font-size:16px;color:rgba(246,240,229,.85)}
 .boxquote q{quotes:"«" "»"}
 .boxquote cite{font-style:normal;opacity:.7;font-size:14px}
-@media (min-width:900px){.boxen-grid{grid-template-columns:1.15fr .85fr;align-items:start;gap:56px}.stapel{height:260px;gap:12px}}
+@media (min-width:740px){.boxen-grid{grid-template-columns:1.15fr .85fr;align-items:start;gap:56px}.stapel{height:260px;gap:12px}}
 
 /* ===== Sternenwand ===== */
-#stimmen{background:var(--rice);color:var(--ink)}
+#stimmen{--bg:var(--rice);--prev:var(--ink);--next:var(--ink);color:var(--ink)}
 #stimmen .kick{color:var(--lack)}
 .stimmen-grid{display:grid;gap:26px;margin-top:30px}
 .karte-q{position:sticky;top:calc(var(--hdr) + 8px);z-index:2;background:var(--ink);color:var(--rice);border-radius:22px;padding:22px 20px;min-height:210px;box-shadow:0 10px 30px rgba(22,17,15,.25);display:flex;flex-direction:column;justify-content:space-between;gap:16px}
@@ -240,15 +241,16 @@ section{position:relative}
 @media (hover:hover){.wand.ready button:hover{background:rgba(165,23,14,.12)}}
 .wand-info{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:14px;color:#5d4c42;margin-top:12px}
 .wand-info a{font-weight:700;color:var(--lack)}
-@media (min-width:900px){.stimmen-grid{grid-template-columns:.9fr 1.1fr;align-items:start;gap:48px}.karte-q{position:sticky;top:calc(var(--hdr) + 20px);min-height:300px;padding:32px}.wand{grid-template-columns:repeat(17,1fr);gap:5px}}
+@media (min-width:740px){.stimmen-grid{grid-template-columns:.9fr 1.1fr;align-items:start;gap:48px}.karte-q{position:sticky;top:calc(var(--hdr) + 20px);min-height:300px;padding:32px}.wand{grid-template-columns:repeat(17,1fr);gap:5px}}
 
 /* ===== Besuch ===== */
-#besuch{background:var(--ink);color:var(--rice)}
+#besuch{--bg:var(--ink);--prev:var(--rice);--next:#0d0a09;color:var(--rice)}
 #besuch .kick{color:var(--sakura)}
 .saal{border-radius:22px;overflow:hidden;margin-top:26px;aspect-ratio:16/8}
 .saal img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
 @media (hover:hover){.saal:hover img{transform:scale(1.03)}}
 .besuch-grid{display:grid;gap:22px;margin-top:22px}
+.besuch-grid .saal{margin-top:0}
 .card{background:var(--ink2);border-radius:22px;padding:22px 20px;box-shadow:inset 0 0 0 1px rgba(246,240,229,.08)}
 .card h3{font-family:var(--disp);font-weight:400;font-size:24px;line-height:1.1}
 .status{display:inline-flex;align-items:center;gap:8px;margin-top:10px;font-weight:700;font-size:15px;padding:6px 12px;border-radius:999px;background:rgba(246,240,229,.08)}
@@ -271,11 +273,11 @@ section{position:relative}
 .pay{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .pay span{font-size:13px;font-weight:700;padding:5px 11px;border-radius:999px;background:rgba(246,240,229,.08)}
 .actions{display:grid;gap:10px;margin-top:18px}
-@media (min-width:900px){.besuch-grid{grid-template-columns:1fr 1fr 1fr}.saal{aspect-ratio:16/6}}
+@media (min-width:740px){.besuch-grid{grid-template-columns:1fr 1fr 1fr}.saal{aspect-ratio:16/6}}
 
 
 /* ===== Kleiner Laden ===== */
-#theke{background:var(--ink2);color:var(--rice);overflow:hidden}
+#theke{--bg:var(--ink2);--prev:var(--rice);--next:var(--lack);color:var(--rice);overflow:hidden}
 #theke .kick{color:var(--sakura)}
 .theke-grid{display:grid;gap:26px;margin-top:30px}
 .theke-foto{position:relative;border-radius:22px;overflow:hidden;aspect-ratio:4/3}
@@ -295,11 +297,125 @@ section{position:relative}
 .bubble{position:relative;justify-self:start;background:var(--rice);color:var(--ink);font-weight:900;font-size:20px;padding:12px 18px;border-radius:18px 18px 18px 4px;transition:box-shadow .2s}
 @media (hover:hover){.bubble:hover{box-shadow:0 0 0 5px rgba(243,163,181,.35)}}
 .antwort p{font-size:15px;color:rgba(246,240,229,.8)}
-@media (min-width:900px){.theke-grid{grid-template-columns:1fr 1fr;align-items:start;gap:40px}.theke-foto{aspect-ratio:auto;height:100%;min-height:520px}.antwort{grid-template-columns:auto auto 1fr;gap:28px;padding:24px 28px}}
+@media (min-width:740px){.theke-grid{grid-template-columns:1fr 1fr;align-items:start;gap:40px}.theke-foto{aspect-ratio:auto;height:100%;min-height:520px}.antwort{grid-template-columns:auto auto 1fr;gap:28px;padding:24px 28px}}
 
 /* Fotos im Kartenblatt */
 .blatt-foto{border-radius:16px;overflow:hidden;aspect-ratio:16/8;margin-bottom:16px;background:var(--rice3)}
 .blatt-foto img{width:100%;height:100%;object-fit:cover}
+
+/* ===== Weiche Übergänge (18c) ===== */
+main>section.pad{background:linear-gradient(to bottom,color-mix(in srgb,var(--prev) 50%,var(--bg)) 0,var(--bg) 96px,var(--bg) calc(100% - 96px),color-mix(in srgb,var(--next) 50%,var(--bg)) 100%)}
+#hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:96px;background:linear-gradient(to bottom,rgba(22,17,15,0),color-mix(in srgb,var(--ink) 50%,var(--rice)));pointer-events:none;z-index:2}
+
+/* ===== Lightbox (18e) ===== */
+.zoomable{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(10,8,7,.94);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s,visibility 0s .25s;touch-action:none;overflow:hidden}
+.lb.open{opacity:1;visibility:visible;transition:opacity .25s}
+.lb img{max-width:96vw;max-height:88vh;max-height:88dvh;width:auto;height:auto;border-radius:12px;transform-origin:0 0;cursor:zoom-in;user-select:none;-webkit-user-drag:none}
+.lb.zoomed img{cursor:grab}
+.lb .x{position:absolute;top:calc(12px + env(safe-area-inset-top));right:12px;width:48px;height:48px;border-radius:50%;background:rgba(246,240,229,.14);color:var(--rice);font-size:26px;line-height:48px;text-align:center;transition:background-color .2s}
+@media (hover:hover){.lb .x:hover{background:rgba(243,163,181,.35)}}
+.lb p{position:absolute;bottom:calc(14px + env(safe-area-inset-bottom));left:16px;right:16px;text-align:center;font-size:13px;color:rgba(246,240,229,.7)}
+
+/* ===== Unter den Bildschirm: Computer (18a/18b) ===== */
+@media (min-width:740px){
+  .pad{padding:64px 0}
+  .sh{font-size:min(4.6vw,7.2vh,64px)}
+  .head{display:grid;grid-template-columns:1.15fr 1fr;gap:6px 48px;align-items:end}
+  .head .kick{grid-column:1/-1}
+  .head .lead{margin:0 0 4px}
+  .pane figure{aspect-ratio:auto;height:min(50vh,440px)}
+  .favs li{padding:9px 4px}
+  .dialekt{margin-top:24px;grid-template-columns:1fr minmax(220px,auto);align-items:center;gap:4px 28px;padding:16px 24px}
+  .dialekt q{font-size:18px;grid-row:span 2}
+  .dialekt cite,.dialekt small{grid-column:2}
+  .theke-grid{grid-template-columns:1fr 1fr;align-items:stretch;gap:32px;margin-top:26px}
+  .theke-l{display:flex;flex-direction:column;gap:14px;contain:size}
+  .theke-foto{flex:1 1 auto;min-height:0;aspect-ratio:auto;height:auto}
+  .story{padding:16px 20px 14px}
+  .story blockquote{font-size:15px;margin-top:6px}
+  .story cite{margin-top:6px}
+  .storys{gap:12px}
+  .antwort{margin-top:0;grid-template-columns:auto 1fr;gap:10px 18px;padding:16px 20px}
+  .antwort .zahl b{font-size:38px}
+  .antwort p{grid-column:1/-1;font-size:14px}
+  .bubble{font-size:17px;justify-self:end}
+  .karte-grid{margin-top:26px}
+  .fach{min-height:110px}
+  .herkunft{margin-top:18px}
+  .boxen-grid{align-items:stretch}
+  .boxen-r{contain:size}
+  .bubble{white-space:nowrap}
+  .boxfoto{position:relative;aspect-ratio:auto;height:100%;max-height:none}
+  .boxfoto figcaption{position:absolute;left:0;right:0;bottom:0;padding:60px 20px 18px;background:linear-gradient(to bottom,rgba(22,17,15,0),rgba(22,17,15,.85));margin:0}
+  .stapel{height:min(180px,21vh);margin-top:20px}
+  .chips{gap:5px;margin-top:12px}
+  .chips li{font-size:13px;padding:3px 9px}
+  .boxinfo .btn{margin-top:14px;min-height:44px}
+  #besuch .card{padding:18px 20px}
+  .days button{min-height:42px}
+  .kontakt a{padding:7px 8px}
+  .dayinfo{min-height:0}
+  .boxinfo{margin-top:16px;padding:18px 20px}
+  .stimmen-grid{margin-top:26px}
+  .besuch-grid{grid-template-columns:1.25fr 1fr 1fr;margin-top:26px}
+  .besuch-grid .saal{grid-row:span 2;margin:0;aspect-ratio:auto;contain:size;height:100%}
+  .besuch-grid .card.wide{grid-column:2/4}
+  .card.wide .actions{display:flex;flex-wrap:wrap;margin-top:14px}
+  .card.wide .actions .btn{padding:0 16px;font-size:15px;min-height:44px}
+  .card.wide p{margin-top:6px!important}
+}
+@media (min-width:740px) and (max-height:800px){
+  .pad{padding:40px 0}
+  .lead{font-size:16px;line-height:1.45}
+  .kick{font-size:12px}
+  .pane figure{height:min(46vh,400px)}
+  .favs li{padding:6px 4px}
+  .pane p{font-size:16px}
+  .dialekt{margin-top:16px;padding:12px 20px}
+  .dialekt q{font-size:16px}
+  .story{padding:12px 18px 10px}
+  .story h3{font-size:24px}
+  .story blockquote{font-size:14px;line-height:1.45}
+  .antwort{padding:12px 18px}
+  .antwort .zahl b{font-size:32px}
+  .fach{min-height:94px;padding:12px}
+  .herkunft{font-size:13px;margin-top:12px}
+  .stapel{height:150px;margin-top:14px}
+  .boxinfo{padding:14px 18px}
+  .boxinfo h3,.boxinfo .pr{font-size:24px}
+  .karte-q{min-height:260px;padding:26px}
+  .wand{gap:3px}
+  .kontakt a small{display:none}
+  .kontakt{margin-top:8px;gap:0}
+  .pay{margin-top:8px}
+  .days{margin-top:10px}
+  .dayinfo{margin-top:10px}
+  .dayinfo span{font-size:20px}
+  .theke-grid,.karte-grid,.stimmen-grid,.besuch-grid{margin-top:18px}
+}
+@media (min-width:1200px){.card.wide{display:grid;grid-template-columns:1fr auto;gap:4px 20px;align-items:center}.card.wide .actions{margin-top:0;grid-row:1/3;grid-column:2}}
+@media (min-width:740px){.karte-grid{align-items:stretch}.blatt{position:relative;top:auto;contain:size;max-height:none;overflow:auto;padding:22px 24px}.blatt-foto{aspect-ratio:16/6.5}}
+@media (min-width:740px) and (max-width:1023px){
+  .bento{grid-template-columns:repeat(3,1fr)}
+  .fach{min-height:88px;padding:12px}
+  .fach b{font-size:16px}
+  .fach[data-id=vegan]{grid-column:span 3}
+  .fach[data-id=drinks]{grid-column:span 2}
+  .wand{grid-template-columns:repeat(10,1fr)}
+  .besuch-grid{grid-template-columns:1fr 1fr}
+  .besuch-grid .saal{grid-row:auto;grid-column:1/-1;contain:none;height:auto}
+  .besuch-grid .card.wide{grid-column:1/-1}
+  .head{grid-template-columns:1fr}
+  .beides-top{grid-template-columns:1fr;gap:16px}
+  .switch{width:100%;max-width:none}
+  .dialekt{grid-template-columns:1fr}
+  .dialekt q{grid-row:auto}
+  .dialekt cite,.dialekt small{grid-column:1}
+  .besuch-grid .saal{aspect-ratio:16/6}
+  .antwort{grid-template-columns:1fr}
+  .bubble{justify-self:start}
+}
 footer.ft{background:#0d0a09;color:rgba(246,240,229,.6);font-size:14px;padding:26px 0 calc(26px + env(safe-area-inset-bottom))}
 footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
@@ -400,30 +516,32 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 
 <section id="theke" class="pad">
   <div class="wrap">
-    <div class="reveal">
+    <div class="head reveal">
       <p class="kick">Von der Theke</p>
       <h2 class="sh">Kleiner Laden, grosses Herz</h2>
       <p class="lead">«Der Laden ist klein und unscheinbar, aber ein Besuch lohnt sich auf jeden Fall.» So schreibt es Rahel L. – und drei Gäste erzählen, warum.</p>
     </div>
     <div class="theke-grid">
+      <div class="theke-l">
       <figure class="theke-foto reveal"><img src="img/bbq-700.webp" srcset="img/bbq-700.webp 700w, img/bbq-1160.webp 1160w" sizes="(max-width:900px) 100vw, 560px" width="1160" height="880" alt="Rainbow Rolls und BBQ-Sushi vor der gemalten Kirschblüte an der Wand, daneben eine Flasche Sake" loading="lazy"><figcaption>Die Kirschblüte hängt bei uns an der Wand</figcaption></figure>
+      <div class="antwort reveal">
+      <div class="zahl"><b>170</b><span>Bewertungen,<br>170 Antworten</span></div>
+      <span class="bubble">Danke viel mal 💫🙏🏻</span>
+      <p>Auf jede einzelne Bewertung bei Google hat das Team geantwortet – meistens mit diesen drei Worten.</p>
+    </div>
+      </div>
       <ul class="storys">
         <li class="story reveal"><h3>Barhocker für die Kinder</h3><blockquote>«Ich war mit einer Horde hungriger Kinder dort … die Restaurantbetreiber haben ein paar Barhocker zurechtgerückt, damit die Kinder beim Zubereiten des Essens zuschauen konnten. Das hat die Situation beruhigt und war mir eine grosse Hilfe!»</blockquote><cite>Fabian W. auf Google</cite></li>
         <li class="story reveal"><h3>12 statt 3 Maki</h3><blockquote>«Mir wurde ein Getränk spendiert und am Ende sah ich, dass statt 3 bestellten Makis, 12 drin waren. Ich hab mich sehr gefreut.»</blockquote><cite>Salma auf Google</cite></li>
         <li class="story reveal"><h3>Auf die Minute bereit</h3><blockquote>«Ausserdem ist es bei Vorbestellung immer fast auf die Minute pünktlich bereit. Wir lieben es!»</blockquote><cite>Rahel L. auf Google</cite></li>
       </ul>
     </div>
-    <div class="antwort reveal">
-      <div class="zahl"><b>170</b><span>Bewertungen,<br>170 Antworten</span></div>
-      <span class="bubble">Danke viel mal 💫🙏🏻</span>
-      <p>Auf jede einzelne Bewertung bei Google hat das Team geantwortet – meistens mit diesen drei Worten.</p>
-    </div>
   </div>
 </section>
 
 <section id="karte" class="pad">
   <div class="wrap">
-    <div class="reveal">
+    <div class="head reveal">
       <p class="kick">Die ganze Karte</p>
       <h2 class="sh">Eine Bento-Box voller Fächer</h2>
       <p class="lead">Tippen Sie auf ein Fach – daneben öffnet sich alles, was drin ist, mit Preis. Grüner Punkt: vegan nach Zutatenliste.</p>
@@ -441,22 +559,21 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
     <div>
       <div class="reveal">
         <p class="kick">Zum Abholen</p>
-        <h2 class="sh">Sushi-Boxen A bis F</h2>
+        <h2 class="sh">Sushi-Boxen A–F</h2>
         <p class="lead">Von der Box für eine Person bis zur grossen Platte für den Geburtstag. Die Höhe zeigt, wie viele Stücke drin sind.</p>
       </div>
       <div class="stapel" id="stapel" role="group" aria-label="Sushi-Box wählen"></div>
       <div class="boxinfo" id="boxinfo" aria-live="polite"></div>
     </div>
-    <div class="reveal">
-      <figure class="boxfoto"><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 100vw, 480px" width="1200" height="1600" alt="Grosse runde Sushi-Platte mit Nigiri, Maki und Rainbow Rolls" loading="lazy"></figure>
-      <p class="boxquote"><q>Wir haben die Sushi Box A &amp; B vorbestellt und konnten es pünktlich abholen. Es war einfach himmlisch, extrem frisch.</q> <cite>– Fabienne B. auf Google</cite></p>
+    <div class="boxen-r reveal">
+      <figure class="boxfoto"><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 100vw, 480px" width="1200" height="1600" alt="Grosse runde Sushi-Platte mit Nigiri, Maki und Rainbow Rolls" loading="lazy"><figcaption class="boxquote"><q>Wir haben die Sushi Box A &amp; B vorbestellt und konnten es pünktlich abholen. Es war einfach himmlisch, extrem frisch.</q> <cite>– Fabienne B. auf Google</cite></figcaption></figure>
     </div>
   </div>
 </section>
 
 <section id="stimmen" class="pad">
   <div class="wrap">
-    <div class="reveal">
+    <div class="head reveal">
       <p class="kick">Was Gäste auf Google schreiben</p>
       <h2 class="sh">170 Sterne an der Wand</h2>
       <p class="lead">Jeder Stern steht für eine Bewertung auf Google. Tippen Sie einen an – er erzählt Ihnen, was Gäste geschrieben haben.</p>
@@ -477,13 +594,13 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 
 <section id="besuch" class="pad">
   <div class="wrap">
-    <div class="reveal">
+    <div class="head reveal">
       <p class="kick">Besuch</p>
       <h2 class="sh">Klein, warm, mit Kirschblüten</h2>
       <p class="lead">Holz an den Wänden, rote Stühle, Blumen auf jedem Tisch – und hinten die Theke, an der gerollt wird. Essen Sie bei uns, holen Sie ab oder bestellen Sie online.</p>
     </div>
-    <figure class="saal reveal"><img src="img/saal-900.webp" srcset="img/saal-900.webp 900w, img/saal-1600.webp 1600w" sizes="(max-width:1180px) 100vw, 1180px" width="1600" height="700" alt="Gastraum von BBQ Sushi Momo mit Holzwänden und roten Stühlen" loading="lazy"></figure>
     <div class="besuch-grid">
+      <figure class="saal reveal"><img src="img/saal-900.webp" srcset="img/saal-900.webp 900w, img/saal-1600.webp 1600w" sizes="(max-width:1180px) 100vw, 1180px" width="1600" height="700" alt="Gastraum von BBQ Sushi Momo mit Holzwänden und roten Stühlen" loading="lazy"></figure>
       <div class="card">
         <h3>Öffnungszeiten</h3>
         <span class="status" id="status"><i></i><span>…</span></span>
@@ -499,7 +616,7 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
         </ul>
         <div class="pay"><span>TWINT</span><span>Abholung</span><span>Vor Ort essen</span><span>App fürs iPhone</span></div>
       </div>
-      <div class="card">
+      <div class="card wide">
         <h3>Bestellen &amp; reservieren</h3>
         <p style="margin-top:10px;font-size:15px;color:rgba(246,240,229,.8)">Online bestellen und abholen. Ein Gast schreibt: «Wir mussten nur 10 min warten.»</p>
         <div class="actions">
@@ -512,6 +629,8 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
   </div>
 </section>
 </main>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto gross"><img alt=""><button class="x" type="button" aria-label="Schliessen">×</button><p>Tippen zum Zoomen · ausserhalb tippen zum Schliessen</p></div>
 
 <footer class="ft"><div class="wrap"><span>BBQ Sushi Momo · St. Gallerstrasse 66 · 9200 Gossau SG</span><span>Entwurf · nur zur Ansicht</span></div></footer>
 
@@ -607,29 +726,49 @@ const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ================= Drehteller: Seite steht, bis 170 erreicht sind ================= */
+/* ================= Drehteller: ein Wisch spielt bis 170, Seite steht so lange, danach sofort frei ================= */
 (function(){
-  const hero=$("#hero"), cnt=$("#cnt"), ends=$$("#ending .e"), html=document.documentElement, now=()=>performance.now();
-  let p=0,target=0,done=false,doneAt=0,tFull=0,raf=0,shown=0;
+  const hero=$("#hero"), cnt=$("#cnt"), ends=$$("#ending .e"), now=()=>performance.now();
+  let p=0,playing=false,done=false,t0=0,raf=0,shown=0;
+  const DUR=1300;
   const set=v=>{ hero.style.setProperty("--p",v.toFixed(4)); cnt.textContent=Math.round(v*170);
     const i=v<.36?0:v<.72?1:2; if(i!==shown){ ends[shown].classList.remove("on"); ends[i].classList.add("on"); shown=i; } };
-  function finish(){ if(done) return; done=true; doneAt=now(); p=1; set(1); cancelAnimationFrame(raf); raf=0; hero.classList.add("done"); }
-  const check=()=>{ if(!done && target>=1 && tFull && (p>=0.995 || now()-tFull>1400)) finish(); };
-  /* Höchstgeschwindigkeit: auch ein harter Wisch spielt alles bis 170 durch, ~1,1 s */
-  function loop(){ raf=0; if(done) return; const d=target-p; p+=Math.sign(d)*Math.min(Math.abs(d)*0.12+0.002,0.016); if(Math.abs(target-p)<0.003) p=target; set(p); check(); if(!done) raf=requestAnimationFrame(loop); }
-  const go=()=>{ if(!raf && !done) raf=requestAnimationFrame(loop); };
-  const push=d=>{ target=Math.max(0,Math.min(1,target+d)); if(target>.98) target=1; if(target>=1 && !tFull){ tFull=now(); setTimeout(check,1450); } go(); check(); };
-  const swallow=e=>{ if(done){ if(now()-doneAt<500) e.preventDefault(); return true; } e.preventDefault(); return false; };
+  const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+  function finish(){ if(done) return; done=true; playing=false; p=1; set(1); cancelAnimationFrame(raf); hero.classList.add("done"); }
+  function loop(){ const k=Math.min(1,(now()-t0)/DUR); p=ease(k); set(p); if(k>=1) finish(); else raf=requestAnimationFrame(loop); }
+  function play(){ if(playing||done) return; playing=true; t0=now(); raf=requestAnimationFrame(loop); setTimeout(()=>{ if(!done) finish(); },DUR+250); }
   if(reduce || scrollY>10 || location.hash){ p=1; set(1); done=true; hero.classList.add("done"); return; }
   scrollTo(0,0);
   addEventListener("scroll",()=>{ if(!done && scrollY>0) scrollTo(0,0); },{passive:true});
-  addEventListener("wheel",e=>{ if(swallow(e)) return;
-    const dy=e.deltaMode===1?e.deltaY*32:e.deltaMode===2?e.deltaY*600:e.deltaY; push(Math.max(-.34,Math.min(.34,dy/320))); },{passive:false});
-  let ty=null;
-  addEventListener("touchstart",e=>{ ty=e.touches[0].clientY; },{passive:true});
-  addEventListener("touchmove",e=>{ if(swallow(e)||ty==null) return; const y=e.touches[0].clientY; push((ty-y)/300); ty=y; },{passive:false});
-  addEventListener("keydown",e=>{ if(done) return; if(["ArrowDown","PageDown"," ","End"].includes(e.key)){ e.preventDefault(); push(.34); } if(["ArrowUp","PageUp"].includes(e.key)){ e.preventDefault(); push(-.34); } });
-  $$('a[href^="#"]').forEach(a=>a.addEventListener("click",()=>{ if(!done){ finish(); doneAt=0; } }));
+  addEventListener("wheel",e=>{ if(done) return; e.preventDefault(); if(e.deltaY>0) play(); },{passive:false});
+  /* Touch: derselbe Wisch laeuft nach 170 sofort als normales Scrollen weiter */
+  let ty=null, lockedGesture=false;
+  addEventListener("touchstart",e=>{ ty=e.touches[0].clientY; lockedGesture=!done; },{passive:true});
+  addEventListener("touchmove",e=>{ if(ty==null) return; const y=e.touches[0].clientY;
+    if(!done){ e.preventDefault(); if(ty-y>6) play(); return; }
+    if(lockedGesture){ e.preventDefault(); scrollBy(0,ty-y); ty=y; } },{passive:false});
+  addEventListener("touchend",()=>{ ty=null; lockedGesture=false; },{passive:true});
+  addEventListener("keydown",e=>{ if(done) return; if(["ArrowDown","PageDown"," ","End"].includes(e.key)){ e.preventDefault(); play(); } if(["ArrowUp","PageUp","Home"].includes(e.key)) e.preventDefault(); });
+  $$('a[href^="#"]').forEach(a=>a.addEventListener("click",()=>{ if(!done) finish(); }));
+})();
+
+/* ================= Foto gross (Lightbox mit Zoom) ================= */
+(function(){ const lb=$("#lb"), im=lb.querySelector("img"); let z=1,x=0,y=0,drag=null,moved=false;
+  const big=img=>{ const ss=(img.getAttribute("srcset")||"").split(",").map(t=>t.trim().split(" ")[0]).filter(Boolean); return ss.length?ss[ss.length-1]:img.currentSrc||img.src; };
+  const apply=()=>{ im.style.transform=`translate(${x}px,${y}px) scale(${z})`; lb.classList.toggle("zoomed",z>1); };
+  const open=img=>{ im.src=big(img); im.alt=img.alt; z=1;x=0;y=0; apply(); lb.classList.add("open"); document.documentElement.style.overflow="hidden"; };
+  const close=()=>{ lb.classList.remove("open"); document.documentElement.style.overflow=""; };
+  const sel=".pane figure img,.theke-foto img,.boxfoto img,.besuch-grid .saal img,.blatt-foto img";
+  document.addEventListener("click",e=>{ const img=e.target.closest(sel); if(img){ e.preventDefault(); open(img); } });
+  const mark=()=>$$(sel).forEach(i=>i.classList.add("zoomable")); mark(); new MutationObserver(mark).observe($("#blatt"),{childList:true});
+  lb.querySelector(".x").addEventListener("click",close);
+  lb.addEventListener("click",e=>{ if(e.target===lb) close(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&lb.classList.contains("open")) close(); });
+  im.addEventListener("pointerdown",e=>{ e.preventDefault(); drag={sx:e.clientX,sy:e.clientY,x,y}; moved=false; im.setPointerCapture(e.pointerId); });
+  im.addEventListener("pointermove",e=>{ if(!drag) return; const dx=e.clientX-drag.sx, dy=e.clientY-drag.sy; if(Math.abs(dx)+Math.abs(dy)>6) moved=true; if(z>1&&moved){ x=drag.x+dx; y=drag.y+dy; apply(); } });
+  im.addEventListener("pointerup",e=>{ if(!drag) return; drag=null; if(moved) return;
+    const r=im.getBoundingClientRect(); if(z===1){ const ox=e.clientX-r.left, oy=e.clientY-r.top; z=2.4; x=-(ox*(z-1)); y=-(oy*(z-1)); } else { z=1;x=0;y=0; } apply(); });
+  lb.addEventListener("wheel",e=>e.preventDefault(),{passive:false});
 })();
 
 /* ================= Header ================= */
