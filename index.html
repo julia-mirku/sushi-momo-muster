@@ -424,6 +424,18 @@ main>section.pad{background:linear-gradient(to bottom,color-mix(in srgb,var(--pr
   .antwort{grid-template-columns:1fr}
   .bubble{justify-self:start}
 }
+
+/* ===== Entwurfs-Hinweis (Regel 22) ===== */
+:root{--bar:0px}
+.entwurf{position:fixed;inset:0 0 auto 0;z-index:60;background:var(--rice2);color:var(--ink);font-size:12.5px;line-height:1.4;font-weight:500;text-align:center;padding:6px 16px;transition:transform .45s var(--ease);box-shadow:0 1px 0 rgba(22,17,15,.12)}
+.entwurf b{font-weight:900}
+.entwurf i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--lack2);margin-right:7px;vertical-align:1px}
+.hdr{top:var(--bar)}
+html.bar-anim .hdr{transition:top .45s var(--ease),background-color .3s,box-shadow .3s}
+.hero-in{padding-top:calc(var(--hdr) + var(--bar0,0px) + 18px)}
+@media (min-width:900px){.hero-in{padding-top:calc(var(--hdr) + var(--bar0,0px))}}
+html.bar-off .entwurf{transform:translateY(-102%)}
+html.bar-off{--bar:0px!important}
 footer.ft{background:#0d0a09;color:rgba(246,240,229,.6);font-size:14px;padding:26px 0 calc(26px + env(safe-area-inset-bottom))}
 footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
 
@@ -431,6 +443,9 @@ footer.ft .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-b
 </style>
 </head>
 <body>
+
+<div class="entwurf" id="entwurf" role="note"><i aria-hidden="true"></i><b>Website-Entwurf von Julia &amp; Robin Mirku</b> · nur zur Ansicht – einige Links und Funktionen sind noch nicht aktiv.</div>
+<script>(function(){var b=document.getElementById("entwurf"),h=b.offsetHeight+"px",r=document.documentElement;r.style.setProperty("--bar",h);r.style.setProperty("--bar0",h);})();</script>
 
 <header class="hdr" id="hdr">
   <div class="wrap">
@@ -733,6 +748,17 @@ const DN=["So","Mo","Di","Mi","Do","Fr","Sa"], DL=["Sonntag","Montag","Dienstag"
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ================= Entwurfs-Hinweis: weg bei der ersten Bewegung ================= */
+(function(){ const bar=$("#entwurf"), html=document.documentElement;
+  const size=()=>{ const h=bar.offsetHeight; html.style.setProperty("--bar0",h+"px"); if(!html.classList.contains("bar-off")) html.style.setProperty("--bar",h+"px"); };
+  size(); addEventListener("resize",size);
+  const off=()=>{ if(html.classList.contains("bar-off")) return; html.classList.add("bar-anim"); html.classList.add("bar-off"); html.style.setProperty("--bar","0px");
+    ["wheel","touchmove","keydown","scroll"].forEach(t=>removeEventListener(t,on)); };
+  const on=e=>{ if(e.type==="keydown"&&!["ArrowDown","PageDown"," ","End"].includes(e.key)) return; if(e.type==="wheel"&&e.deltaY<=0) return; if(e.type==="scroll"&&scrollY<5) return; off(); };
+  if(scrollY>10||location.hash) off();
+  else ["wheel","touchmove","keydown","scroll"].forEach(t=>addEventListener(t,on,{passive:true}));
+})();
 
 /* ================= Drehteller: ein Wisch spielt bis 170, Seite steht so lange, danach sofort frei ================= */
 (function(){
