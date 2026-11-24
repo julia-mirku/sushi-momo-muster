@@ -66,7 +66,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ===== Header ===== */
 .hdr{position:fixed;inset:0 0 auto 0;z-index:50;height:var(--hdr);display:flex;align-items:center;transition:background-color .3s,box-shadow .3s}
-.hdr.solid{background:rgba(23,13,16,.9);box-shadow:0 1px 0 rgba(246,240,229,.08);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.hdr.solid{background:rgba(23,13,16,.98);box-shadow:0 1px 0 rgba(246,240,229,.08);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 .hdr .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
 .logo i{width:30px;height:30px;border-radius:50%;background:var(--lack2);flex:none;box-shadow:inset 0 -6px 0 rgba(0,0,0,.18)}
@@ -206,6 +206,7 @@ main>section.pad{margin-top:-1px}
 #boxen{--bg:var(--walnuss);--prev:var(--lack);--next:#1d0f14;color:var(--rice)}
 #boxen .kick{color:var(--holz2)}
 .boxen-grid{display:grid;gap:30px;margin-top:30px}
+@media (max-width:899px){.boxen-grid>div:first-child,.boxen-r{display:contents}.boxen-grid .reveal{order:1}#stapel{order:2;margin-top:0}#boxfoto{order:3}#boxinfo{order:4;margin-top:0}.boxen-grid .boxquote{order:5;margin-top:0}}
 .stapel{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;align-items:end;height:220px;padding:22px 2px 0;border-bottom:3px solid rgba(226,178,122,.35);overflow:hidden;cursor:pointer}
 .kiste{position:relative;border-radius:10px 10px 4px 4px;background:linear-gradient(180deg,var(--tee),var(--teeD));color:#fbfaf2;text-shadow:0 1px 2px rgba(40,45,20,.45);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:8px;height:calc(var(--h) * 1%);min-height:0;transition:box-shadow .2s,filter .2s,background .2s;box-shadow:inset 0 3px 0 rgba(255,255,255,.22)}
 @media (hover:hover){.kiste{transition:transform .38s ease,box-shadow .2s,filter .2s,background .2s}.kiste:hover{transform:translateY(4px)}}
@@ -367,7 +368,7 @@ main>section.pad{background:var(--bg)}
   .bubble{white-space:nowrap}
   .boxfoto{position:relative}
 
-  .stapel{height:min(180px,21vh);margin-top:20px}
+  .stapel{height:clamp(170px,23vh,200px);margin-top:20px}
   .chips{gap:5px;margin-top:12px}
   .chips li{font-size:13px;padding:3px 9px}
   .boxinfo .btn{margin-top:14px;min-height:44px}
@@ -400,7 +401,7 @@ main>section.pad{background:var(--bg)}
   .antwort .zahl b{font-size:32px}
   .fach{min-height:94px;padding:12px}
   .herkunft{font-size:13px;margin-top:12px}
-  .stapel{height:150px;margin-top:14px}
+  .stapel{height:160px;margin-top:14px}
   .boxinfo{padding:14px 18px}
   .boxinfo h3,.boxinfo .pr{font-size:24px}
   .karte-q{padding:20px 22px}
@@ -889,7 +890,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* ================= Boxen A–F ================= */
 (function(){ const st=$("#stapel"), info=$("#boxinfo");
   const pcs=b=>b.n.reduce((s,x)=>s+parseInt(x),0); const maxP=Math.max(...BOXEN.map(b=>b.p)); const byP=[...BOXEN].sort((a,c)=>a.p-c.p); const rk=b=>byP.indexOf(b);
-  st.innerHTML=BOXEN.map((b,i)=>`<button class="kiste" aria-pressed="false" data-k="${b.k}" style="--h:${(32+68*(.5*b.p/maxP+.5*rk(b)/(BOXEN.length-1))).toFixed(1)};--i:${i}"><b>${b.k}</b><span>${b.p}.–</span></button>`).join("");
+  st.innerHTML=BOXEN.map((b,i)=>`<button class="kiste" aria-pressed="false" data-k="${b.k}" style="--h:${(42+58*(.5*b.p/maxP+.5*rk(b)/(BOXEN.length-1))).toFixed(1)};--i:${i}"><b>${b.k}</b><span>${b.p}.–</span></button>`).join("");
   const SETFOTO={A:"set-A",B:"set-B",C:"set-C",D:"set-D",E:"set-E",F:"set-F"}; /* img/set-X-700.webp + -1600.webp */
   const bild=$("#boxbild"), platz=$("#boxplatz"), fig=$("#boxfoto");
   function foto(k,b){ const f=SETFOTO[k];
@@ -902,7 +903,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
       <ul class="chips">${b.n.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>
       <a class="btn holz" href="https://www.bbqsushimomo-sg.ch/im-voraus-bestellen" target="_blank" rel="noopener">Box ${b.k} vorbestellen</a>`; }
   /* gleiche Hoehe fuer alle Boxen -> nichts springt beim Wechsel */
-  const fix=()=>{ info.style.minHeight=""; let h=0; const cur=st.querySelector('[aria-pressed="true"]'); BOXEN.forEach(b=>{ show(b.k); h=Math.max(h,info.offsetHeight); }); info.style.minHeight=h+"px"; show(cur?cur.dataset.k:"C"); };
+  const fix=()=>{ info.style.minHeight=""; if(innerWidth<900) return; let h=0; const cur=st.querySelector('[aria-pressed="true"]'); BOXEN.forEach(b=>{ show(b.k); h=Math.max(h,info.offsetHeight); }); info.style.minHeight=h+"px"; show(cur?cur.dataset.k:"C"); };
   st.addEventListener("click",e=>{ const b=e.target.closest(".kiste"); if(!b||b.getAttribute("aria-pressed")==="true") return;
     st.querySelectorAll(".kiste").forEach(x=>x.setAttribute("aria-pressed",x===b));
     if(reduce){ show(b.dataset.k); return; }
