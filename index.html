@@ -890,7 +890,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 (function(){ const st=$("#stapel"), info=$("#boxinfo");
   const pcs=b=>b.n.reduce((s,x)=>s+parseInt(x),0); const maxP=Math.max(...BOXEN.map(b=>b.p)); const byP=[...BOXEN].sort((a,c)=>a.p-c.p); const rk=b=>byP.indexOf(b);
   st.innerHTML=BOXEN.map((b,i)=>`<button class="kiste" aria-pressed="false" data-k="${b.k}" style="--h:${(32+68*(.5*b.p/maxP+.5*rk(b)/(BOXEN.length-1))).toFixed(1)};--i:${i}"><b>${b.k}</b><span>${b.p}.–</span></button>`).join("");
-  const SETFOTO={}; /* z.B. A:"set-A" -> img/set-A-700.webp + img/set-A-1600.webp, sobald Toms Fotos da sind */
+  const SETFOTO={A:"set-A",B:"set-B",C:"set-C",D:"set-D",E:"set-E",F:"set-F"}; /* img/set-X-700.webp + -1600.webp */
   const bild=$("#boxbild"), platz=$("#boxplatz"), fig=$("#boxfoto");
   function foto(k,b){ const f=SETFOTO[k];
     if(f){ bild.src=`img/${f}-700.webp`; bild.srcset=`img/${f}-700.webp 700w, img/${f}-1600.webp 1600w`; bild.sizes="(max-width:900px) 100vw, 480px"; bild.alt=`Sushi Box ${k}: ${b.n.join(", ")}`; bild.hidden=false; platz.hidden=true; }
