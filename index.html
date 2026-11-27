@@ -826,6 +826,28 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
   .htext .kick{font-size:12px}
 }
 @media (max-width:899px) and (max-height:700px){.h1a{font-size:clamp(34px,10.4vw,58px)}.ending{font-size:18px}}
+
+/* ===== 27.11 Julia: erster Bildschirm Handy (Luecke, Teller, quer) ===== */
+@media (max-width:899px){
+  html.bar-off .hero-in{padding-top:calc(var(--hdr) + 8px)}
+  .plate{padding:0}
+  .plate .rot{width:min(calc(100vw - 32px),calc(100cqh - 36px),600px);height:min(calc(100vw - 32px),calc(100cqh - 36px),600px)}
+}
+@media (max-width:899px) and (orientation:landscape) and (max-height:540px){
+  #hero{min-height:0}
+  .hero-in{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;gap:18px;padding-top:calc(var(--hdr) + var(--bar0,0px))}
+  html.bar-off .hero-in{padding-top:var(--hdr)}
+  .plate{height:calc(100svh - var(--hdr) - var(--bar0,0px) - 12px);padding:0;align-self:center}
+  html.bar-off .plate{height:calc(100svh - var(--hdr) - 12px)}
+  .plate .rot{width:min(100cqw,100cqh);height:min(100cqw,100cqh)}
+  .htext .kick{margin:0}
+  h1{margin-top:2px}
+  .h1a{font-size:clamp(28px,5vw,44px)}
+  .ending{font-size:16px;min-height:2.3em;margin-top:2px}
+  .score{margin-top:4px}
+  .hcta{margin-top:8px}
+  .addr{display:none}
+}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* Bloecke: feste Fassung (27.11 Julia) */(function(){var h=document.documentElement;h.setAttribute("data-theke","fotos");h.setAttribute("data-stuehle","an");h.setAttribute("data-sterne","ast");h.setAttribute("data-schild","schild")})();</script>
@@ -872,11 +894,11 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
       </div>
       <p class="addr"><a href="https://www.google.com/maps/dir/?api=1&destination=BBQ+SUSHI+MOMO+St.+Gallerstrasse+66+9200+Gossau" target="_blank" rel="noopener">St. Gallerstrasse 66, 9200 Gossau</a><span>Di–So geöffnet</span></p>
     </div>
-    <div class="plate"><div class="rot" id="rot" aria-hidden="true"><img class="tw-top" src="img/mandala-560.webp" srcset="img/mandala-560.webp 560w, img/mandala-1000.webp 1000w" sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" fetchpriority="high"></div><div class="tw-tog" id="twtog" role="group" aria-label="Sushi oder Momo zeigen" hidden><button type="button" data-z="0" aria-pressed="true">Sushi</button><button type="button" data-z="1" aria-pressed="false">Momo</button></div></div>
+    <div class="plate"><div class="rot" id="rot" aria-hidden="true"><img class="tw-top" src="img/mandala-560.webp" srcset="img/mandala-560.webp 560w, img/mandala-1000.webp 1000w" sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" fetchpriority="high"></div></div>
     <script>/* Teller: Sushi -> Momo (einzige Fassung, 27.11 Julia) */
     (function(){var r=document.getElementById("rot");r.insertAdjacentHTML("afterbegin",'<img class="tw-mo" src="img/momo-teller-560.webp" srcset="img/momo-teller-560.webp 560w, img/momo-teller-1000.webp 1000w" sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" decoding="async" fetchpriority="low">');document.documentElement.setAttribute("data-teller","3");var mo=r.querySelector(".tw-mo");mo.addEventListener("load",function(){r.classList.add("mo-ok")});if(mo.complete&&mo.naturalWidth)r.classList.add("mo-ok");})();</script>
   </div>
-  <p class="hint" id="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Scrollen – der Teller dreht sich</p>
+  
 </section>
 
 <section id="beides" class="pad">
@@ -1172,7 +1194,15 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 (function(){ const bar=$("#entwurf"), html=document.documentElement;
   const size=()=>{ const h=bar.offsetHeight; html.style.setProperty("--bar0",h+"px"); if(!html.classList.contains("bar-off")) html.style.setProperty("--bar",h+"px"); };
   size(); addEventListener("resize",size);
-  const off=()=>{ if(html.classList.contains("bar-off")) return; html.classList.add("bar-anim"); html.classList.add("bar-off"); html.style.setProperty("--bar","0px");
+  const flip=fn=>{ const hi=document.querySelector("#hero .hero-in"), tx=hi&&hi.querySelector(".htext"), pl=hi&&hi.querySelector(".plate"), ro=pl&&pl.querySelector(".rot");
+      if(!ro||!matchMedia("(max-width:899px)").matches||scrollY>innerHeight||matchMedia("(prefers-reduced-motion:reduce)").matches){ fn(); return; }
+      const a=tx.getBoundingClientRect(), b=ro.getBoundingClientRect(); fn(); const a2=tx.getBoundingClientRect(), b2=ro.getBoundingClientRect(), P=pl.getBoundingClientRect();
+      const sc=b.width/b2.width, dx=(b.left+b.width/2)-(b2.left+b2.width/2), dy=(b.top+b.height/2)-(b2.top+b2.height/2);
+      tx.style.transition=pl.style.transition="none"; tx.style.transform=`translateY(${a.top-a2.top}px)`;
+      pl.style.transformOrigin=`${b2.left+b2.width/2-P.left}px ${b2.top+b2.height/2-P.top}px`; pl.style.transform=`translate(${dx}px,${dy}px) scale(${sc})`;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{ tx.style.transition=pl.style.transition="transform .45s var(--ease)"; tx.style.transform=pl.style.transform="";
+        setTimeout(()=>{ tx.style.transition=pl.style.transition=""; },500); })); };
+  const off=()=>{ if(html.classList.contains("bar-off")) return; flip(()=>{ html.classList.add("bar-anim"); html.classList.add("bar-off"); html.style.setProperty("--bar","0px"); });
     ["wheel","touchmove","keydown","scroll"].forEach(t=>removeEventListener(t,on)); };
   const on=e=>{ if(e.type==="keydown"&&!["ArrowDown","PageDown"," ","End"].includes(e.key)) return; if(e.type==="wheel"&&e.deltaY<=0) return; if(e.type==="scroll"&&scrollY<5) return; off(); };
   if(scrollY>10||location.hash) off();
