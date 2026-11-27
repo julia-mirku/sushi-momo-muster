@@ -865,6 +865,29 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
   .logo .wm img{height:auto}
   .logo i.lg.st{width:95px;height:54px}
 }
+
+/* ===== 27.11 Karte als 2. Block: Farbuebergaenge der Nachbarn ===== */
+#karte.pad{background:linear-gradient(to bottom,#1a0e12 0%,#6b1e2d 16%,#7a2232 50%,#6b1e2d 84%,#1a0e12 100%)}
+#theke.pad{background:linear-gradient(to bottom,#201016 0%,#241219 45%,#6b1e2d 100%)}
+
+/* ===== 27.11 Pruefung: Logo-Kante, Leere unter dem Kopf, einzelne Woerter ===== */
+@media (min-width:1200px){.logo i.lg{margin-left:0}}
+@media (min-width:900px) and (min-height:800px){
+  #hero{height:auto;min-height:0}
+  .hero-in{height:auto;padding-top:calc(var(--hdr) + var(--bar0,0px) + 44px)!important;padding-bottom:64px}
+}
+h2,h3,h4,.sh{text-wrap:balance}
+
+/* ===== 27.11 Sprache DE/EN ===== */
+.lang{display:inline-flex;align-items:center;padding:3px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(246,240,229,.28);flex:none}
+.lang button{font:inherit;font-size:12.5px;font-weight:700;letter-spacing:.08em;line-height:1;padding:8px 10px;border-radius:999px;color:rgba(246,240,229,.72);transition:background-color .25s,color .25s}
+.lang button[aria-pressed="true"]{background:var(--rice);color:var(--ink)}
+@media (hover:hover){.lang button[aria-pressed="false"]:hover{color:var(--rice);background:rgba(246,240,229,.14)}}
+@media (max-width:899px){
+  .lang{position:fixed;left:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:55;background:rgba(23,13,16,.84);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,.35),inset 0 0 0 1px rgba(246,240,229,.2)}
+  .lang button{padding:9px 11px}
+}
+html.lb-open .lang{display:none}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* Bloecke: feste Fassung (27.11 Julia) */(function(){var h=document.documentElement;h.setAttribute("data-theke","fotos");h.setAttribute("data-stuehle","an");h.setAttribute("data-sterne","ast");h.setAttribute("data-schild","schild")})();</script>
@@ -878,9 +901,10 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
   <div class="wrap">
     <a class="logo" href="#hero" aria-label="BBQ Sushi Momo – nach oben"><i class="lg"><img src="img/logo-mark.svg" alt="" width="62" height="37"></i><span class="wm"><img src="img/logo-wort.svg" alt="" width="178" height="38"></span></a>
     <nav class="nav" aria-label="Seiten">
-      <a href="#beides">Sushi &amp; Momo</a><a href="#theke">Geschichten</a><a href="#karte">Karte</a><a href="#boxen">Boxen</a><a href="#stimmen">Gäste</a><a href="#besuch">Besuch</a>
+      <a href="#karte">Karte</a><a href="#beides">Sushi &amp; Momo</a><a href="#theke">Geschichten</a><a href="#boxen">Boxen</a><a href="#stimmen">Gäste</a><a href="#besuch">Besuch</a>
     </nav>
     <div class="right">
+      <div class="lang" id="lang" role="group" aria-label="Sprache · Language"><button type="button" data-l="de" aria-pressed="true">DE</button><button type="button" data-l="en" aria-pressed="false">EN</button></div>
       <a class="btn line tel" href="tel:+41766800066"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>076 680 00 66</a>
       <button class="korb-btn" id="korbBtn" type="button" hidden aria-label="Warenkorb öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="korbN">0</b></button>
       <a class="btn red order" href="https://www.bbqsushimomo-sg.ch/menue" target="_blank" rel="noopener">Bestellen</a>
@@ -918,12 +942,27 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
   
 </section>
 
+<section id="karte" class="pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="kick">Die ganze Karte</p>
+      <h2 class="sh">Eine Bento-Box voller&nbsp;Fächer</h2>
+      <p class="lead">Tippen Sie auf ein Fach – es öffnet sich, was drin ist, mit Preis. Grüner Punkt: vegan nach&nbsp;Zutatenliste.</p>
+    </div>
+    <div class="karte-grid">
+      <div class="bento" id="bento" role="group" aria-label="Kategorien der Karte"></div>
+      <div class="blatt" id="blatt" aria-live="polite"></div>
+    </div>
+    <p class="herkunft">Herkunft: <b>Rind</b> Schweiz · <b>Lachs</b> Schottland · <b>Thunfisch</b> Philippinen / Vietnam · <b>Crevetten</b> Vietnam. Allergene sagen wir Ihnen gern am Telefon: 076 680 00 66.</p>
+  </div>
+</section>
+
 <section id="beides" class="pad">
   <div class="wrap">
     <div class="beides-top reveal">
       <div>
         <p class="kick">Zwei Küchen, eine Theke</p>
-        <h2 class="sh">Sushi oder Momo?</h2>
+        <h2 class="sh">Sushi oder&nbsp;Momo?</h2>
       </div>
       <div class="switch" id="switch" role="tablist" aria-label="Küche wählen" data-k="sushi">
         <span class="pill"></span>
@@ -937,7 +976,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
         <figure><img src="img/nigiri-800.webp" srcset="img/nigiri-800.webp 800w, img/nigiri-1400.webp 1400w" sizes="(max-width:900px) 100vw, 600px" width="1400" height="1050" alt="Nigiri mit Lachs, Thunfisch und Crevetten auf rotem Lacktablett" loading="lazy"></figure>
         <div>
           <h3>Frisch gemacht, wenn Sie bestellen.</h3>
-          <p>Maki, Nigiri und Rainbow Rolls – das loben unsere Gäste am meisten. Für Vegi-Gäste gibt es Avocado, Mango und Inari.</p>
+          <p>Maki, Nigiri und Rainbow Rolls – das loben unsere Gäste am meisten. Für Vegi-Gäste gibt es Avocado, Mango und Inari.</p>
           <ul class="favs">
             <li><span>Rainbow Salmon<small>Lachs, Avocado, Gurke, Frischkäse, Ikura</small></span><b class="price">ab 11.–</b></li>
             <li><span>BBQ Salmon Nigiri<small>Lachs mit Knoblauch-Panko und Teriyaki</small></span><b class="price">8.50</b></li>
@@ -972,7 +1011,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
     </div>
     <div class="theke-grid">
       <div class="theke-l">
-      <figure class="theke-foto reveal"><img src="img/bbq-700.webp" srcset="img/bbq-700.webp 700w, img/bbq-1160.webp 1160w" sizes="(max-width:900px) 100vw, 560px" width="1160" height="880" alt="Rainbow Rolls und BBQ-Sushi vor der gemalten Kirschblüte an der Wand, daneben eine Flasche Sake" loading="lazy"><figcaption>Die Kirschblüte ist bei uns an die Wand gemalt</figcaption></figure>
+      <figure class="theke-foto reveal"><img src="img/bbq-700.webp" srcset="img/bbq-700.webp 700w, img/bbq-1160.webp 1160w" sizes="(max-width:900px) 100vw, 560px" width="1160" height="880" alt="Rainbow Rolls und BBQ-Sushi vor der gemalten Kirschblüte an der Wand, daneben eine Flasche Sake" loading="lazy"><figcaption>Die Kirschblüte ist bei uns an die Wand gemalt</figcaption></figure>
       <div class="antwort reveal">
       <div class="zahl"><b>170</b><span>Bewertungen,<br>170 Antworten</span></div>
       <span class="bubble">Danke viel mal 💫🙏🏻</span>
@@ -988,21 +1027,6 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
   </div>
 </section>
 
-<section id="karte" class="pad">
-  <div class="wrap">
-    <div class="head reveal">
-      <p class="kick">Die ganze Karte</p>
-      <h2 class="sh">Eine Bento-Box voller&nbsp;Fächer</h2>
-      <p class="lead">Tippen Sie auf ein Fach – es öffnet sich, was drin ist, mit Preis. Grüner Punkt: vegan nach&nbsp;Zutatenliste.</p>
-    </div>
-    <div class="karte-grid">
-      <div class="bento" id="bento" role="group" aria-label="Kategorien der Karte"></div>
-      <div class="blatt" id="blatt" aria-live="polite"></div>
-    </div>
-    <p class="herkunft">Herkunft: <b>Rind</b> Schweiz · <b>Lachs</b> Schottland · <b>Thunfisch</b> Philippinen / Vietnam · <b>Crevetten</b> Vietnam. Allergene sagen wir Ihnen gern am Telefon: 076 680 00 66.</p>
-  </div>
-</section>
-
 <section id="galerie" class="pad">
   <div class="wrap">
     <div class="head reveal">
@@ -1011,7 +1035,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
     </div>
     <div class="galerie reveal" role="group" aria-label="Fotos aus unserer Küche">
       <figure><img src="img/teller-560.webp" srcset="img/teller-560.webp 560w, img/teller-1000.webp 1000w" sizes="(max-width:900px) 70vw, 380px" width="1000" height="1000" alt="Grosse runde Sushi-Platte mit Maki, Nigiri, Uramaki und Blüten" loading="lazy"><figcaption>Grosse Sushi-Platte</figcaption></figure>
-      <figure><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 60vw, 290px" width="1200" height="1600" alt="Sushi-Platte mit Sashimi, Nigiri, Maki und Rainbow Rolls" loading="lazy"><figcaption>Sashimi, Nigiri &amp; Maki</figcaption></figure>
+      <figure><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 60vw, 290px" width="1200" height="1600" alt="Sushi-Platte mit Sashimi, Nigiri, Maki und Rainbow Rolls" loading="lazy"><figcaption>Sashimi, Nigiri &amp; Maki</figcaption></figure>
       <figure><img src="img/rainbow-700.webp" srcset="img/rainbow-700.webp 700w, img/rainbow-1160.webp 1160w" sizes="(max-width:900px) 90vw, 500px" width="1160" height="880" alt="Rainbow Roll mit Lachs, Avocado und Ikura vor der gemalten Kirschblüte" loading="lazy"><figcaption>Rainbow Roll</figcaption></figure>
     </div>
   </div>
@@ -1022,10 +1046,10 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
     <div>
       <div class="reveal">
         <p class="kick">Zum Abholen</p>
-        <h2 class="sh">Sushi-Boxen <span style="white-space:nowrap">A–F</span></h2>
+        <h2 class="sh">Sushi-Boxen&nbsp;<span style="white-space:nowrap">A–F</span></h2>
         <p class="lead">Von der Box für eine Person bis zur grossen Platte für den Geburtstag. Je höher die Stufe, desto grösser die Box.</p>
       </div>
-      <div class="stuehle" id="stuehle"><b>Wie viele seid ihr?</b><div role="group" aria-label="Personen wählen"></div><small aria-live="polite"></small></div>
+      <div class="stuehle" id="stuehle"><b>Für wie viele Personen?</b><div role="group" aria-label="Personen wählen"></div><small aria-live="polite"></small></div>
       <div class="stapel" id="stapel" role="group" aria-label="Sushi-Box wählen"></div>
       <div class="boxinfo" id="boxinfo" aria-live="polite"></div>
     </div>
@@ -1061,7 +1085,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
   <div class="wrap">
     <div class="head reveal">
       <p class="kick">Besuch</p>
-      <h2 class="sh">Klein, warm, mit Kirschblüten</h2>
+      <h2 class="sh">Klein, warm, mit&nbsp;Kirschblüten</h2>
       <p class="lead">Holz an den Wänden, rote Stühle, Blumen auf jedem Tisch – und hinten die Theke, an der gerollt&nbsp;wird.</p>
     </div>
     <div class="besuch-grid">
@@ -1083,7 +1107,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
         <div class="pay"><a href="https://apps.apple.com/ch/app/bbq-sushi-momo/id6472249607" target="_blank" rel="noopener">App für iPhone</a><a href="https://play.google.com/store/apps/details?id=com.foodbooking.bbqsushimomo" target="_blank" rel="noopener">App für Android</a></div>
       </div>
       <div class="card wide">
-        <h3>Bestellen &amp; reservieren</h3>
+        <h3>Bestellen &amp;&nbsp;reservieren</h3>
         <p style="margin-top:10px;font-size:15px;color:rgba(246,240,229,.8)">Online bestellen und abholen. Ein Gast schreibt: «Wir mussten nur 10&nbsp;min&nbsp;warten.»</p>
         <div class="actions">
           <a class="btn red" href="https://www.bbqsushimomo-sg.ch/menue" target="_blank" rel="noopener">Online bestellen</a>
@@ -1126,7 +1150,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
 /* ================= Daten (Karte von bbqsushimomo-sg.ch, Stand 24.11.2026) ================= */
 /* [name, zutaten, preis, tags]  tags: v = vegan nach Zutatenliste, vg = vegetarisch, s = scharf, b = BBQ / gegart */
 const KARTE=[
- {id:"rainbow",n:"Rainbow Rolls",w:2,items:[
+ {id:"rainbow",n:"Rainbow Rolls",w:2,items:[
   ["Rainbow Salmon","Lachs, Avocado, Gurke, Frischkäse, Ikura","ab 11.–",""],
   ["Rainbow Lachs","Frischkäse, Gurke, Lachs, Ikura","ab 11.–",""],
   ["Rainbow BBQ Salmon","Frischkäse, Gurke, gegrillter Lachs, Teriyaki, Panko","ab 11.–","b"],
@@ -1263,7 +1287,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   /* 27.11 Julia: am Handy folgt der Teller dem Finger – hoch = Momo, runter = zurueck zu Sushi; loslassen = zum naechsten Ende; ganz gedreht laeuft derselbe Wisch als Seite weiter */
   let scrub=null;
   const SD=()=>Math.max(220,Math.min(360,innerHeight*.42));
-  addEventListener("touchstart",e=>{ scrub=null; if(scrollY>2||e.touches.length>1) return; if(e.target.closest&&e.target.closest(".tw-tog,.entwurf,.hdr,.korb")) return;
+  addEventListener("touchstart",e=>{ scrub=null; if(scrollY>2||e.touches.length>1) return; if(e.target.closest&&e.target.closest(".tw-tog,.entwurf,.hdr,.korb,#lang")) return;
     if(playing){ cancelAnimationFrame(raf); playing=false; tok++; } scrub={y0:e.touches[0].clientY,p0:p,moved:false}; },{passive:true});
   addEventListener("touchmove",e=>{ if(!scrub) return; const y=e.touches[0].clientY, d=scrub.y0-y; if(!scrub.moved&&Math.abs(d)<4) return; scrub.moved=true;
     const np=scrub.p0+d/SD();
@@ -1283,7 +1307,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const close=()=>{ lb.classList.remove("open"); document.documentElement.style.overflow=""; };
   const sel=".pane figure img,.theke-foto img,.boxfoto img,.besuch-grid .saal img,.blatt-foto img,.galerie img";
   document.addEventListener("click",e=>{ const img=e.target.closest(sel); if(img){ e.preventDefault(); open(img); } });
-  const mark=()=>$$(sel).forEach(i=>i.classList.add("zoomable")); mark(); new MutationObserver(mark).observe($("#blatt"),{childList:true});
+  const mark=()=>$$(sel).forEach(i=>{ i.classList.add("zoomable"); if(!i.onclick) i.onclick=function(){}; }); mark(); new MutationObserver(mark).observe($("#blatt"),{childList:true});
   lb.querySelector(".x").addEventListener("click",close);
   lb.addEventListener("click",e=>{ if(e.target===lb) close(); });
   addEventListener("keydown",e=>{ if(e.key==="Escape"&&lb.classList.contains("open")) close(); });
@@ -1496,5 +1520,66 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* 27.11: Karte – Verlauf unten weg, wenn die Liste zu Ende ist */
 (function(){ const b=document.getElementById("blatt"); if(!b) return; const chk=()=>{ const l=b.querySelector(".items"); if(l) l.classList.toggle("ende",l.scrollTop+l.clientHeight>=l.scrollHeight-4); }; b.addEventListener("scroll",chk,true); new MutationObserver(chk).observe(b,{childList:true}); addEventListener("resize",chk); chk(); })();
 </script>
+<script>/* 27.11: QR-Link ?menu / ?karte / #karte -> direkt zur Karte */
+(function(){ if(!/[?&](menu|karte)\b/.test(location.search)&&location.hash!=="#karte") return;
+  const go=()=>{ const k=document.getElementById("karte"); if(!k) return; document.documentElement.classList.add("bar-off"); document.documentElement.style.setProperty("--bar","0px");
+    const y=k.getBoundingClientRect().top+scrollY-(parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hdr"))||62); scrollTo(0,Math.max(0,y)); };
+  if(document.readyState==="complete") go(); else addEventListener("load",()=>setTimeout(go,30)); })();</script>
+<script>/* 27.11 Sprache DE/EN */
+(function(){
+const T={"Website-Entwurf von": "Website draft by", "· nur zur Ansicht – einige Links und Funktionen sind noch nicht aktiv.": "· preview only – some links and features are not active yet.", "Auf Wunsch überarbeiten wir auch Ihre App – teilweise oder komplett. Sagen Sie uns Bescheid, der Entwurf ist kostenlos.": "We can also redesign your app – partly or completely. Just let us know, the draft is free.", "Ihre App überarbeiten wir gern – teilweise oder komplett, Entwurf kostenlos.": "We’re happy to redesign your app too – partly or completely, draft free.", "Karte": "Menu", "Sushi & Momo": "Sushi & Momo", "Geschichten": "Stories", "Boxen": "Boxes", "Gäste": "Reviews", "Besuch": "Visit", "Bestellen": "Order", "Sushi · Momo · BBQ — Gossau SG": "Sushi · Momo · BBQ — Gossau SG", "St. Gallerstrasse 66 · Gossau SG": "St. Gallerstrasse 66 · Gossau SG", "Das beste Sushi": "The best sushi", "… in der Region!": "… in the region!", "… was wir je gegessen haben.": "… we’ve ever eaten.", "… in Gossau SG!": "… in Gossau SG!", "Fabian I. auf Google": "Fabian I. on Google", "Moriz U. auf Google": "Moriz U. on Google", "Zhui W. auf Google": "Zhui W. on Google", "Fabian W. auf Google": "Fabian W. on Google", "Rahel L. auf Google": "Rahel L. on Google", "Salma auf Google": "Salma on Google", "– Fabienne B. auf Google": "– Fabienne B. on Google", "von 170 Gästen": "from 170 guests", "5,0 Sterne auf Google": "5.0 stars on Google", "Online bestellen": "Order online", "Tisch reservieren": "Book a table", "St. Gallerstrasse 66, 9200 Gossau": "St. Gallerstrasse 66, 9200 Gossau", "Di–So geöffnet": "Open Tue–Sun", "Die ganze Karte": "The full menu", "Eine Bento-Box voller Fächer": "A bento box full of compartments", "Tippen Sie auf ein Fach – es öffnet sich, was drin ist, mit Preis. Grüner Punkt: vegan nach Zutatenliste.": "Tap a compartment to see what’s inside, with prices. Green dot: vegan according to the ingredients.", "Herkunft:": "Origin:", "Rind": "Beef", "Schweiz ·": "Switzerland ·", "Lachs": "Salmon", "Schottland ·": "Scotland ·", "Thunfisch": "Tuna", "Philippinen / Vietnam ·": "Philippines / Vietnam ·", "Crevetten": "Prawns", "Vietnam. Allergene sagen wir Ihnen gern am Telefon: 076 680 00 66.": "Vietnam. We’re happy to tell you about allergens by phone: 076 680 00 66.", "«ab» = kleinste Portion; Preise in CHF laut Online-Karte.": "«from» = smallest portion; prices in CHF as on the online menu.", "«ab» = kleinste Portion; der Endpreis steht im Bestellsystem.": "«from» = smallest portion; the final price is shown in the ordering system.", "Vorspeisen": "Starters", "Getränke": "Drinks", "Dessert": "Desserts", "Vegan": "Vegan", "vegan": "vegan", "vegi": "veggie", "scharf": "spicy", "heiss": "hot", "BBQ": "BBQ", "Momo": "Momo", "Sushi": "Sushi", "Algensalat": "Seaweed salad", "Misosuppe": "Miso soup", "Edamame": "Edamame", "Rindfleisch-Momo": "Beef momo", "Vegi-Momo": "Veggie momo", "Lachs Tatar": "Salmon tartare", "Lachstatar": "Salmon tartare", "Thunfischtatar": "Tuna tartare", "Rainbow Lachs": "Rainbow Salmon", "Tofutasche": "Tofu pouch", "Dessert Kokos": "Coconut dessert", "Dessert Schokolade": "Chocolate dessert", "Lachsrogen": "Salmon roe", "Fliegenfischrogen": "Flying fish roe", "Krebsfleisch": "Crab meat", "japanisches Omelett": "Japanese omelette", "Crevette": "Prawn", "Gurke": "Cucumber", "Avocado": "Avocado", "Wakame": "Wakame", "Ingwer-, Zitronen- oder Minztee": "Ginger, lemon or mint tea", "Mineral mit / ohne": "Sparkling / still water", "Pflaumenwein, 75 cl": "Plum wine, 75 cl", "Reiswein, 72 cl": "Rice wine, 72 cl", "japanisches Bier, 3,3 dl": "Japanese beer, 3.3 dl", "ohne Zucker, 5 dl": "sugar-free, 5 dl", "Oishi Grüntee Honig & Zitrone": "Oishi green tea honey & lemon", "Oishi Schwarztee Zitrone": "Oishi black tea lemon", "Futomaki mit Thunfischtatar und Gurke": "Futomaki with tuna tartare and cucumber", "Lachs mit Knoblauch-Panko und Teriyaki": "Salmon with garlic panko and teriyaki", "Lachs mit Knoblauch-Panko, Teriyaki": "Salmon with garlic panko, teriyaki", "gedämpfte Teigtaschen, Schweizer Rindfleisch, mit Gemüse": "steamed dumplings, Swiss beef, with vegetables", "Rindfleisch aus der Schweiz, mit Gemüse": "Swiss beef, with vegetables", "gekochter Thunfisch, Gurke, Sesam": "cooked tuna, cucumber, sesame", "als Auftakt": "to start", "Von Hand gefaltet, gedämpft.": "Folded by hand, steamed.", "12 statt 3 Maki": "12 maki instead of 3", "Zwei Küchen, eine Theke": "Two kitchens, one counter", "Sushi oder Momo?": "Sushi or momo?", "Frisch gemacht, wenn Sie bestellen.": "Made fresh when you order.", "Maki, Nigiri und Rainbow Rolls – das loben unsere Gäste am meisten. Für Vegi-Gäste gibt es Avocado, Mango und Inari.": "Maki, nigiri and rainbow rolls – our guests’ favourites. For vegetarians there’s avocado, mango and inari.", "Momo sind tibetische Teigtaschen – bei uns mit Schweizer Rindfleisch oder als Vegi-Variante mit Spinat, Karotten, Champignons und Käse. Dazu gibt es Gemüse.": "Momo are Tibetan dumplings – ours are filled with Swiss beef or, for vegetarians, with spinach, carrots, mushrooms and cheese. Served with vegetables.", "Spinat, Karotten, Zwiebeln, Champignons, Käse": "Spinach, carrots, onions, mushrooms, cheese", "Von der Theke": "From the counter", "Kleiner Laden, grosses Herz": "Small place, big heart", "«Der Laden ist klein und unscheinbar, aber ein Besuch lohnt sich auf jeden Fall.» So schreibt Rahel L. Drei Geschichten von der Theke.": "«The place is small and unassuming, but it’s definitely worth a visit.» That’s what Rahel L. wrote. Three stories from the counter.", "Barhocker für die Kinder": "Bar stools for the kids", "«Ich war mit einer Horde hungriger Kinder dort … die Restaurantbetreiber haben ein paar Barhocker zurechtgerückt, damit die Kinder beim Zubereiten des Essens zuschauen konnten. Das hat die Situation beruhigt und war mir eine grosse Hilfe!»": "«I was there with a horde of hungry children … the owners set up a few bar stools so the kids could watch the food being made. It calmed everything down and was a huge help!»", "Auf die Minute bereit": "Ready to the minute", "«Ausserdem ist es bei Vorbestellung immer fast auf die Minute pünktlich bereit. Wir lieben es!»": "«And when we order ahead, it’s always ready almost to the minute. We love it!»", "«Mir wurde ein Getränk spendiert und am Ende sah ich, dass statt 3 bestellten Makis, 12 drin waren. Ich hab mich sehr gefreut.»": "«They gave me a drink on the house, and at the end I saw there were 12 maki in the box instead of the 3 I’d ordered. I was really pleased.»", "Aus unserer Küche": "From our kitchen", "So sieht es bei uns aus": "This is what it looks like here", "Grosse Sushi-Platte": "Large sushi platter", "Sashimi, Nigiri & Maki": "Sashimi, nigiri & maki", "Rainbow Roll": "Rainbow roll", "Tippen zum Zoomen · ausserhalb tippen zum Schliessen": "Tap to zoom · tap outside to close", "Zum Abholen": "To take away", "Sushi-Boxen": "Sushi boxes", "Von der Box für eine Person bis zur grossen Platte für den Geburtstag. Je höher die Stufe, desto grösser die Box.": "From a box for one to a big platter for a birthday. The higher the step, the bigger the box.", "Für wie viele Personen?": "How many people?", "Foto von Box C folgt": "Photo of Box C coming soon", "für 1 Person": "for 1 person", "Online bestellen und abholen. Ein Gast schreibt: «Wir mussten nur 10 min warten.»": "Order online and collect. One guest writes: «We only had to wait 10 minutes.»", "Im Voraus bestellen": "Order ahead", "Anrufen, vorbestellen": "Call to pre-order", "Bestellen & reservieren": "Order & book", "App für iPhone": "App for iPhone", "App für Android": "App for Android", "E-Mail": "Email", "Bequem mit TWINT bezahlen": "Pay easily with TWINT", "Vor Ort und bei Abholung – ohne Bargeld, ohne Karte.": "In the restaurant and on collection – no cash, no card.", "QR-Code mit der App scannen": "Scan the QR code with the app", "Betrag eingeben und bestätigen": "Enter the amount and confirm", "Was Gäste schreiben": "What guests write", "Sterne an der Wand": "Stars on the wall", "Blüten an der Wand": "Blossoms on the wall", "Die Kirschblüte ist bei uns an die Wand gemalt": "Our cherry blossom is painted on the wall", "Hier hängen die schönsten Stimmen unserer Gäste.": "This is where our guests’ loveliest words hang.", "Tippen Sie eine Blüte an": "Tap a blossom", "Tippen Sie einen Stern an": "Tap a star", "– und lesen Sie, was sie geschrieben haben.": "– and read what they wrote.", "Auf jede einzelne Bewertung bei Google hat das Team geantwortet – meistens mit diesen drei Worten.": "The team has replied to every single Google review – usually with these three words.", "Danke viel mal 💫🙏🏻": "Danke viel mal 💫🙏🏻", "170 Antworten": "170 replies", "Bewertungen,": "reviews,", "Eigene Bewertung schreiben →": "Write your own review →", "«Ich bin ein grosser Sushi-Esser. Doch keines war so frisch und geschmacklich überzeugend wie bei BBQ-Sushi, ein absoluter Geheimtipp! Alles wird erst bei Bestellung frisch zubereitet.»": "«I eat a lot of sushi. But none has been as fresh and as convincing in taste as at BBQ Sushi – an absolute hidden gem! Everything is made fresh only when you order.»", "«Das Sushi gehört zu den besten, die ich je gegessen habe.»": "«The sushi is among the best I’ve ever eaten.»", "Wir haben die Sushi Box A & B vorbestellt und konnten es pünktlich abholen. Es war einfach himmlisch, extrem frisch.": "We pre-ordered Sushi Box A & B and were able to collect them right on time. Simply heavenly, extremely fresh.", "Ich bin ein grosser Sushi-Esser. Doch keines war so frisch und geschmacklich überzeugend wie bei BBQ-Sushi, ein absoluter Geheimtipp! Alles wird erst bei Bestellung frisch zubereitet.": "I eat a lot of sushi. But none has been as fresh and as convincing in taste as at BBQ Sushi – an absolute hidden gem! Everything is made fresh only when you order.", "Das beste Sushi und die besten Momos, die ich je gegessen habe!": "The best sushi and the best momos I’ve ever eaten!", "Die Rindfleisch-Momos waren einfach herausragend – vermutlich die besten in der Umgebung.": "The beef momos were simply outstanding – probably the best around.", "Super handgemachte Momo’s zu fairen Preisen!": "Great handmade momos at fair prices!", "Es ist super frisch und immer so schön angerichtet. Wir sind sehr begeistert und empfehlen es von Herzen weiter.": "It’s super fresh and always so beautifully presented. We love it and recommend it wholeheartedly.", "Die Momo’s haben eine wundervolle Grösse. Die Rindfleisch-Momo sind schön saftig und super gewürzt.": "The momos are a wonderful size. The beef momos are nice and juicy and perfectly seasoned.", "TakeAway Sushi und Momo waren sehr lecker und liebevoll angerichtet. Koch und Köchin sind sehr freundlich.": "The takeaway sushi and momo were delicious and lovingly presented. Both chefs are very friendly.", "Beste Sushi der Schweiz.": "Best sushi in Switzerland.", "Wir bestellen 1x pro Monat – es gibt nichts Vergleichbares.": "We order once a month – there’s nothing like it.", "Das Sushi gehört zu den besten, die ich je gegessen habe.": "The sushi is among the best I’ve ever eaten.", "Klein, warm, mit Kirschblüten": "Small, warm, with cherry blossoms", "Holz an den Wänden, rote Stühle, Blumen auf jedem Tisch – und hinten die Theke, an der gerollt wird.": "Wood on the walls, red chairs, flowers on every table – and at the back, the counter where the rolling happens.", "Öffnungszeiten": "Opening hours", "Antippen für die ganze Woche": "Tap for the whole week", "So erreichen Sie uns": "How to reach us", "Route in Google Maps": "Directions in Google Maps", "Jetzt offen": "Open now", "Geschlossen": "Closed", "Ruhetag": "Closed", "Montag": "Monday", "Dienstag": "Tuesday", "Mittwoch": "Wednesday", "Donnerstag": "Thursday", "Freitag": "Friday", "Samstag": "Saturday", "Sonntag": "Sunday", "Mo": "Mon", "Di": "Tue", "Mi": "Wed", "Do": "Thu", "Fr": "Fri", "Sa": "Sat", "So": "Sun", "Entwurf · nur zur Ansicht": "Draft · preview only", "BBQ Sushi Momo · St. Gallerstrasse 66 · 9200 Gossau SG": "BBQ Sushi Momo · St. Gallerstrasse 66 · 9200 Gossau SG", "Ihre Bestellung": "Your order", "Noch nichts im Korb.": "Your basket is empty.", "Summe": "Total", "Korb leeren": "Empty basket", "Bestellung abschliessen": "Complete order", "Entwurf: Die Bestellung schliessen Sie im Online-Bestellsystem von BBQ Sushi Momo ab (Abholung oder Lieferung).": "Draft: you complete the order in BBQ Sushi Momo’s online ordering system (collection or delivery).", "Maki Gurke": "Maki Cucumber", "Lachs-Nigiri": "salmon nigiri", "Thunfisch-Nigiri": "tuna nigiri", "Ebi-Nigiri": "ebi nigiri", "Thunfisch-Maki": "tuna maki", "Lachs-Sashimi": "salmon sashimi", "Lachs-Futomaki": "salmon futomaki", "BBQ-Lachs-Nigiri": "BBQ salmon nigiri", "Thunfisch-Avocado-Nigiri": "tuna avocado nigiri", "Ebi-Avocado-Nigiri": "ebi avocado nigiri", "Avocado-Nigiri": "avocado nigiri", "Inari-Nigiri": "inari nigiri", "Gurken-Maki": "cucumber maki", "Lachs-Avocado-Maki": "salmon avocado maki", "Avocado-Maki": "avocado maki", "Lachs-Avocado-Nigiri": "salmon avocado nigiri", "Surimi-Rolls": "surimi rolls"}, ING={"Lachs": "salmon", "Thunfisch": "tuna", "Avocado": "avocado", "Gurke": "cucumber", "Frischkäse": "cream cheese", "Ikura": "ikura", "Mango": "mango", "Salat": "lettuce", "Sesam": "sesame", "Schnittlauch": "chives", "Panko": "panko", "Teriyaki": "teriyaki", "Mayonnaise": "mayonnaise", "Tobiko": "tobiko", "Krebsfleisch": "crab meat", "Ebi Fry": "ebi fry", "gegrillter Lachs": "grilled salmon", "Thunfischtatar": "tuna tartare", "Crevette": "prawn", "Wakame": "wakame", "Edamame": "edamame", "Inari": "inari", "Sushireis": "sushi rice", "Spinat": "spinach", "Karotten": "carrots", "Zwiebeln": "onions", "Champignons": "mushrooms", "Käse": "cheese", "Tofutasche": "tofu pouch", "Algensalat": "seaweed salad", "Maki": "Maki", "Nigiri": "Nigiri", "Futomaki": "Futomaki", "Uramaki": "Uramaki", "Bowls": "Bowls", "Vorspeisen": "Starters", "Gunkan": "Gunkan", "Sashimi": "Sashimi"}, A={"BBQ Sushi Momo – nach oben": "BBQ Sushi Momo – back to top", "Seiten": "Pages", "Willkommen": "Welcome", "5,0 Sterne aus 170 Google-Bewertungen": "5.0 stars from 170 Google reviews", "Kategorien der Karte": "Menu categories", "Küche wählen": "Choose a kitchen", "Personen wählen": "Choose number of people", "Sushi-Box wählen": "Choose a sushi box", "Fotos aus unserer Küche": "Photos from our kitchen", "Stimmen unserer Gäste": "Our guests’ words", "Wochentag wählen": "Choose a day", "Öffnungszeiten der Woche zeigen": "Show the week’s opening hours", "Warenkorb öffnen": "Open basket", "In den Korb": "Add to basket", "Eins weniger": "One less", "Schliessen": "Close", "Foto gross": "Large photo", "TWINT QR-Code": "TWINT QR code", "1 Person": "1 person", "Gastraum von BBQ Sushi Momo mit Holzwänden und roten Stühlen": "BBQ Sushi Momo dining room with wooden walls and red chairs", "Gedämpfte Momo im Kreis angerichtet": "Steamed momo arranged in a circle", "Grosse runde Sushi-Platte mit Maki, Nigiri, Uramaki und Blüten": "Large round sushi platter with maki, nigiri, uramaki and flowers", "Nigiri mit Lachs, Thunfisch und Crevetten auf rotem Lacktablett": "Nigiri with salmon, tuna and prawns on a red lacquer tray", "Rainbow Roll mit Lachs, Avocado und Ikura vor der gemalten Kirschblüte": "Rainbow roll with salmon, avocado and ikura in front of the painted cherry blossom", "Rainbow Rolls und BBQ-Sushi vor der gemalten Kirschblüte an der Wand, daneben eine Flasche Sake": "Rainbow rolls and BBQ sushi in front of the cherry blossom painted on the wall, with a bottle of sake", "Sushi-Platte mit Sashimi, Nigiri, Maki und Rainbow Rolls": "Sushi platter with sashimi, nigiri, maki and rainbow rolls", "Ihre Bestellung": "Your order"}, TITLE="BBQ Sushi Momo Gossau – sushi & momo on St. Gallerstrasse 66";
+const H=document.documentElement, box=document.getElementById("lang");
+let lang="de"; try{ const q=/[?&]lang=(en|de)\b/.exec(location.search); if(q){ lang=q[1]; localStorage.setItem("momo-lang",lang); } else lang=localStorage.getItem("momo-lang")||"de"; }catch(e){}
+const mark=()=>box&&box.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===lang?"true":"false"));
+mark();
+box&&box.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b||b.dataset.l===lang) return; try{localStorage.setItem("momo-lang",b.dataset.l)}catch(x){}
+  const u=new URL(location.href); u.searchParams.delete("lang"); if(b.dataset.l==="en"){ lang="en"; mark(); run(); history.replaceState(null,"",u.pathname+u.search+u.hash); } else { location.replace(u.pathname+u.search+u.hash); } });
+const ago=x=>{ let m; if(x==="einem Jahr") return "a year ago"; if(x==="einem Monat") return "a month ago"; if(x==="einer Woche") return "a week ago";
+  if(m=/^(\d+) Jahren$/.exec(x)) return m[1]+" years ago"; if(m=/^(\d+) Monaten$/.exec(x)) return m[1]+" months ago"; if(m=/^(\d+) Wochen$/.exec(x)) return m[1]+" weeks ago"; if(m=/^(\d+) Tagen$/.exec(x)) return m[1]+" days ago"; return null; };
+const day=d=>T[d]||d;
+const list=s=>{ const parts=s.split(", "); const out=parts.map(x=>ING[x]!==undefined?ING[x]:(T[x]!==undefined?T[x].toLowerCase():null)); if(out.some(x=>x==null)) return null; const r=out.join(", "); return r.charAt(0).toUpperCase()+r.slice(1); };
+const boxItems=s=>s.split(", ").map(x=>{ const m=/^(\d+) (.+)$/.exec(x); if(!m) return x; const n=T[m[2]]!==undefined?T[m[2]]:m[2]; return m[1]+" "+n; }).join(", ");
+const R=[
+ [/^(\d+) Sorten · ab (.+)$/,m=>m[1]+(m[1]==="1"?" kind":" kinds")+" · from "+m[2]],
+ [/^(\d+) Sorten$/,m=>m[1]+" kinds"],
+ [/^ab (.+)$/,m=>"from "+m[1]],
+ [/^(\d+) Stück$/,m=>m[1]+" pieces"],
+ [/^([\d.]+) Fr\. pro Stück$/,m=>"CHF "+m[1]+" per piece"],
+ [/^für ca\. (\d+) Personen$/,m=>"for about "+m[1]+" people"],
+ [/^(\d+) Personen$/,m=>m[1]+" people"],
+ [/^Box ([A-F]) · (\d+) Stück · reicht für (ca\. )?(\d+) Person(en)?$/,m=>"Box "+m[1]+" · "+m[2]+" pieces · serves "+(m[3]?"about ":"")+m[4]+(m[4]==="1"?" person":" people")],
+ [/^Box ([A-F]) vorbestellen$/,m=>"Pre-order Box "+m[1]],
+ [/^Sushi Box ([A-F]): (.+)$/,m=>"Sushi Box "+m[1]+": "+boxItems(m[2])],
+ [/^Stimme (\d+)$/,m=>"Review "+m[1]],
+ [/^Google · vor (.+)$/,m=>{ const a=ago(m[1]); return a?"Google · "+a:null; }],
+ [/^vor (.+)$/,m=>ago(m[1])],
+ [/^(.+) auf Google$/,m=>m[1]+" on Google"],
+ [/^Jetzt offen · bis (.+)$/,m=>"Open now · until "+m[1]],
+ [/^Geschlossen · öffnet heute (.+)$/,m=>"Closed · opens today at "+m[1]],
+ [/^Geschlossen · öffnet morgen (.+)$/,m=>"Closed · opens tomorrow at "+m[1]],
+ [/^Geschlossen · öffnet (\S+) (.+)$/,m=>"Closed · opens "+day(m[1])+" at "+m[2]],
+ [/^Öffnet heute (.+)$/,m=>"Opens today at "+m[1]],
+ [/^Öffnet morgen (.+)$/,m=>"Opens tomorrow at "+m[1]],
+ [/^Öffnet (\S+) (.+)$/,m=>"Opens "+day(m[1])+" at "+m[2]],
+ [/^(\S+) · heute$/,m=>day(m[1])+" · today"],
+ [/^(.+) · (Maki|Nigiri|Futomaki|Uramaki|Bowls|Vorspeisen|Gunkan|Sashimi)$/,m=>{ const a=T[m[1]]!==undefined?T[m[1]]:list(m[1]); return a==null?null:a+" · "+ING[m[2]]; }],
+ [/^«([^«»]+)»$/,m=>{ const t=T[m[1]]; return t!==undefined?"«"+t+"»":null; }],
+ [/^.+, .+$/,m=>list(m[0])],
+];
+const tr=k=>{ if(T[k]!==undefined) return T[k]; for(const [re,f] of R){ const m=re.exec(k); if(m){ const r=f(m); if(r!=null) return r; } } return null; };
+const SKIP=new Set(["SCRIPT","STYLE","NOSCRIPT"]);
+const doText=n=>{ const p=n.parentElement; if(!p||SKIP.has(p.tagName)||p.closest("#lang")) return; const raw=n.data; const k=raw.replace(/\s+/g," ").trim(); if(!k) return;
+  const t=tr(k); if(t==null||t===k) return; const nv=raw.match(/^\s*/)[0]+t+raw.match(/\s*$/)[0]; if(n.data!==nv) n.data=nv; };
+const ATT=["aria-label","alt","title","placeholder"];
+const doEl=e=>{ for(const a of ATT){ const v=e.getAttribute&&e.getAttribute(a); if(!v) continue; const k=v.replace(/\s+/g," ").trim(); const t=A[k]!==undefined?A[k]:tr(k); if(t!=null&&t!==v) e.setAttribute(a,t); } };
+const walk=root=>{ if(root.nodeType===3){ doText(root); return; } if(root.nodeType!==1) return; doEl(root);
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT|NodeFilter.SHOW_ELEMENT); let n; while(n=w.nextNode()){ if(n.nodeType===3) doText(n); else doEl(n); } };
+let on=false;
+function run(){ if(on) return; on=true; H.lang="en"; document.title=TITLE; walk(document.body);
+  new MutationObserver(ms=>{ for(const m of ms){ if(m.type==="characterData") doText(m.target); else if(m.type==="attributes") doEl(m.target); else m.addedNodes.forEach(walk); } })
+   .observe(document.body,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:ATT}); }
+window.__momoRunEN=run;
+if(lang==="en"){ if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run); else run(); }
+})();</script>
 </body>
 </html>
