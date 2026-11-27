@@ -573,21 +573,9 @@ html[data-sterne="ast"] .wand button[aria-pressed="true"]{transform:scale(1.2);-
 
 /* Sushi oder Momo: eine Theke, die Platte wird gewechselt */
 .buehne{display:none}
-html[data-theke="theke"] .buehne{display:block;position:relative;grid-area:1/1;aspect-ratio:2457/1536;border-radius:22px;overflow:hidden;background:#24161a}
-html[data-theke="theke"] .buehne img{position:absolute;display:block}
-html[data-theke="theke"] .buehne .bg{inset:0;width:100%;height:100%;object-fit:cover}
-html[data-theke="theke"] .buehne .tl{left:15.47%;top:41.67%;width:68.38%;height:auto;transition:transform .85s cubic-bezier(.65,0,.25,1),opacity .6s;will-change:transform}
-html[data-theke="theke"] .buehne .tl.m{transform:translateX(135%);opacity:0}
-html[data-theke="theke"] .buehne.momo .tl.s{transform:translateX(-135%);opacity:0}
-html[data-theke="theke"] .buehne.momo .tl.m{transform:none;opacity:1}
-html[data-theke="theke"] .dual .pane>figure{display:none}
-html[data-theke="theke"] .dual .pane{grid-area:2/1}
-html[data-theke="theke"] .dual{row-gap:22px}
 @media (min-width:900px){
-  html[data-theke="theke"] .dual{grid-template-columns:1.1fr 1fr;column-gap:48px;align-items:center}
-  html[data-theke="theke"] .dual .pane{grid-area:1/2;display:block}
 }
-@media (prefers-reduced-motion:reduce){html[data-theke="theke"] .buehne .tl{transition:none}}
+@media (prefers-reduced-motion:reduce){}
 /* Boxen: «Wie viele seid ihr?» – Stuehle waehlen die Box */
 .stuehle{display:none}
 html[data-stuehle="an"] .stuehle{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin-top:22px}
@@ -840,11 +828,11 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
 @media (max-width:899px) and (max-height:700px){.h1a{font-size:clamp(34px,10.4vw,58px)}.ending{font-size:18px}}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
-<script>/* 27.11 Entwurf: Varianten je Block */(function(){var D={"theke": "fotos", "stuehle": "an", "sterne": "ast", "schild": "schild"},h=document.documentElement;for(var k in D){var v=D[k];try{v=localStorage.getItem("momo-"+k)||v}catch(e){}var q=new RegExp("[?&]"+k+"=(\\w+)").exec(location.search);if(q)v=q[1];h.setAttribute("data-"+k,v)}})();</script>
+<script>/* Bloecke: feste Fassung (27.11 Julia) */(function(){var h=document.documentElement;h.setAttribute("data-theke","fotos");h.setAttribute("data-stuehle","an");h.setAttribute("data-sterne","ast");h.setAttribute("data-schild","schild")})();</script>
 </head>
 <body>
 
-<div class="entwurf" id="entwurf" role="note" data-jr onclick="if(!event.target.closest('a'))window.open('https://webstudio-mirku.ch/','_blank','noopener')"><i aria-hidden="true"></i><b>Website-Entwurf von <a class="jr-link" href="https://webstudio-mirku.ch/" target="_blank" rel="noopener">Julia &amp; Robin Mirku</a></b> · nur zur Ansicht&nbsp;– einige Links und Funktionen sind noch nicht aktiv.<span class="tw-w" id="tw-w" lang="de"><span class="tw-l">Variante wählen</span><span class="tw-b" role="group" aria-label="Teller-Variante wählen"><button type="button" data-v="3" aria-pressed="true" aria-label="Variante 1: Sushi → Momo"><b>1</b><i> Sushi → Momo</i></button><button type="button" data-v="2" aria-pressed="false" aria-label="Variante 2: Ringe"><b>2</b><i> Ringe</i></button></span></span><span class="ew-app"><span class="ew-lang">Auf Wunsch überarbeiten wir auch Ihre App – teilweise oder komplett. Sagen Sie uns Bescheid, der Entwurf ist kostenlos.</span><span class="ew-kurz">Ihre App überarbeiten wir gern – teilweise oder komplett, Entwurf kostenlos.</span></span></div>
+<div class="entwurf" id="entwurf" role="note" data-jr onclick="if(!event.target.closest('a'))window.open('https://webstudio-mirku.ch/','_blank','noopener')"><i aria-hidden="true"></i><b>Website-Entwurf von <a class="jr-link" href="https://webstudio-mirku.ch/" target="_blank" rel="noopener">Julia &amp; Robin Mirku</a></b> · nur zur Ansicht&nbsp;– einige Links und Funktionen sind noch nicht aktiv.<span class="ew-app"><span class="ew-lang">Auf Wunsch überarbeiten wir auch Ihre App – teilweise oder komplett. Sagen Sie uns Bescheid, der Entwurf ist kostenlos.</span><span class="ew-kurz">Ihre App überarbeiten wir gern – teilweise oder komplett, Entwurf kostenlos.</span></span></div>
 <script>(function(){var b=document.getElementById("entwurf"),h=b.offsetHeight+"px",r=document.documentElement;r.style.setProperty("--bar",h);r.style.setProperty("--bar0",h);})();</script>
 
 <header class="hdr" id="hdr">
@@ -885,18 +873,8 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
       <p class="addr"><a href="https://www.google.com/maps/dir/?api=1&destination=BBQ+SUSHI+MOMO+St.+Gallerstrasse+66+9200+Gossau" target="_blank" rel="noopener">St. Gallerstrasse 66, 9200 Gossau</a><span>Di–So geöffnet</span></p>
     </div>
     <div class="plate"><div class="rot" id="rot" aria-hidden="true"><img class="tw-top" src="img/mandala-560.webp" srcset="img/mandala-560.webp 560w, img/mandala-1000.webp 1000w" sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" fetchpriority="high"></div><div class="tw-tog" id="twtog" role="group" aria-label="Sushi oder Momo zeigen" hidden><button type="button" data-z="0" aria-pressed="true">Sushi</button><button type="button" data-z="1" aria-pressed="false">Momo</button></div></div>
-    <script>/* 27.11 Teller-Variante: 1 Mandala · 2 zwei Ringe gegenlaeufig · 3 Sushi -> Momo (Sektor-Maske) · 4 Aufbau Bild fuer Bild */
-    (function(){var v=3,q=/[?&]teller=([1-4])/.exec(location.search);try{v=+(localStorage.getItem("momo-teller")||1)}catch(e){}if(q){v=+q[1];try{localStorage.setItem("momo-teller",v)}catch(e){}}if(v!==2)v=3;
-    var r=document.getElementById("rot"),SZ=' sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" decoding="async"';
-    var im=function(n,c,x){return '<img class="'+(c||'')+'" src="img/'+n+'-560.webp" srcset="img/'+n+'-560.webp 560w, img/'+n+'-1000.webp 1000w"'+SZ+(x||'')+'>';};
-    var h=v==2?im("mandala_ring","",' fetchpriority="high"')+im("mandala_center","tw-c"):v==3?im("momo-teller","tw-mo",' fetchpriority="low"')+im("mandala","tw-top",' fetchpriority="high"'):"";
-    if(v==4){for(var i=0;i<12;i++)h+=im("build_"+(i<10?"0":"")+i,"tw-f"+(i?"":" on"),i?' loading="eager"':' fetchpriority="high"');}
-    if(v==1)h=im("mandala","",' fetchpriority="high"');
-    if(v==3)r.insertAdjacentHTML("afterbegin",im("momo-teller","tw-mo",' fetchpriority="low"'));else r.innerHTML=h;document.documentElement.setAttribute("data-teller",v);if(v==3){var mo=r.querySelector(".tw-mo"),su=r.querySelector(".tw-top");mo.addEventListener("load",function(){r.classList.add("mo-ok")});if(mo.complete&&mo.naturalWidth)r.classList.add("mo-ok");}
-    if(v==4){var F=[].slice.call(r.children),cur=0;F.forEach(function(f){f.decode&&f.decode().catch(function(){})});var want=0,show=function(){for(var k=want;k>0&&!(F[k].complete&&F[k].naturalWidth);k--);if(k!==cur){F[k].classList.add("on");F[cur].classList.remove("on");cur=k;}};F.forEach(function(f){f.addEventListener("load",show)});window.__tellerFrame=function(p){want=Math.min(11,Math.floor(p*12));show();};}
-    [].forEach.call(document.querySelectorAll("#tw-w button"),function(b){b.setAttribute("aria-pressed",b.dataset.v==v?"true":"false");});
-    var w=document.getElementById("tw-w");w.addEventListener("click",function(e){e.stopPropagation();var b=e.target.closest("button");if(!b||b.dataset.v==v)return;try{localStorage.setItem("momo-teller",b.dataset.v)}catch(x){}location.href=location.pathname+"?teller="+b.dataset.v;});
-    })();</script>
+    <script>/* Teller: Sushi -> Momo (einzige Fassung, 27.11 Julia) */
+    (function(){var r=document.getElementById("rot");r.insertAdjacentHTML("afterbegin",'<img class="tw-mo" src="img/momo-teller-560.webp" srcset="img/momo-teller-560.webp 560w, img/momo-teller-1000.webp 1000w" sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" decoding="async" fetchpriority="low">');document.documentElement.setAttribute("data-teller","3");var mo=r.querySelector(".tw-mo");mo.addEventListener("load",function(){r.classList.add("mo-ok")});if(mo.complete&&mo.naturalWidth)r.classList.add("mo-ok");})();</script>
   </div>
   <p class="hint" id="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>Scrollen – der Teller dreht sich</p>
 </section>
@@ -915,7 +893,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
       </div>
     </div>
     <div class="dual">
-      <div class="buehne" id="buehne" aria-hidden="true"><img class="bg" src="img/theke-leer-1000.webp" srcset="img/theke-leer-1000.webp 1000w, img/theke-leer-1800.webp 1800w" sizes="(max-width:900px) 100vw, 640px" width="1800" height="1125" alt="" loading="lazy"><img class="tl s" src="img/theke-sushi-840.webp" srcset="img/theke-sushi-840.webp 840w, img/theke-sushi-1680.webp 1680w" sizes="(max-width:900px) 70vw, 440px" width="1680" height="760" alt="" loading="lazy"><img class="tl m" src="img/theke-momo-840.webp" srcset="img/theke-momo-840.webp 840w, img/theke-momo-1680.webp 1680w" sizes="(max-width:900px) 70vw, 440px" width="1680" height="760" alt="" loading="lazy"></div>
+      
       <div class="pane on" id="p-sushi" role="tabpanel">
         <figure><img src="img/nigiri-800.webp" srcset="img/nigiri-800.webp 800w, img/nigiri-1400.webp 1400w" sizes="(max-width:900px) 100vw, 600px" width="1400" height="1050" alt="Nigiri mit Lachs, Thunfisch und Crevetten auf rotem Lacktablett" loading="lazy"></figure>
         <div>
@@ -1363,19 +1341,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     else{ let d=now.d; for(let i=1;i<8;i++){ d=(now.d+i)%7; if(HOURS[d].length) break; } stat.lastElementChild.textContent=`Geschlossen · öffnet ${(d===(now.d+1)%7)?"morgen":DL[d]} ${t(HOURS[d][0][0])}`; } }
 })();
 
-/* ================= 27.11 Ideen: Varianten-Wahl, Kirschzweig, Stuehle, Schild ================= */
-(function(){ const h=document.documentElement;
-  const VAR={beides:["theke","Sushi oder Momo",[["fotos","Fotos"],["theke","Theke"]]],boxen:["stuehle","Boxen",[["aus","Stufen"],["an","+ Stühle"]]],stimmen:["sterne","Gäste",[["raster","Sterne"],["ast","Kirschzweig"]]],besuch:["schild","Zeiten",[["tage","Tage"],["schild","Schild"]]]};
-  const box=document.createElement("div"); box.className="vwahl"; box.setAttribute("role","group"); box.setAttribute("lang","de"); document.body.appendChild(box);
-  let curSec=null;
-  const draw=id=>{ const [k,t,opts]=VAR[id]; const v=h.getAttribute("data-"+k);
-    box.innerHTML=`<b>Variante<i> · ${t}</i></b><span>${opts.map((o,i)=>`<button type="button" data-v="${o[0]}" aria-pressed="${o[0]===v}">${i+1} ${o[1]}</button>`).join("")}</span>`;
-    box.setAttribute("aria-label","Variante wählen: "+t); };
-  box.addEventListener("click",e=>{ const b=e.target.closest("button"); if(!b||!curSec) return; const k=VAR[curSec][0]; h.setAttribute("data-"+k,b.dataset.v); try{localStorage.setItem("momo-"+k,b.dataset.v)}catch(x){} draw(curSec); document.dispatchEvent(new CustomEvent("variante",{detail:k})); });
-  const vis=new Map(); const io=new IntersectionObserver(es=>{ es.forEach(e=>vis.set(e.target.id,e.intersectionRatio)); let best=null,r=0; vis.forEach((v,id)=>{ if(v>r){r=v;best=id;} });
-    if(best&&r>.18){ if(best!==curSec){ curSec=best; draw(best); } box.classList.add("on"); } else box.classList.remove("on"); },{threshold:[0,.1,.18,.3,.5,.7]});
-  Object.keys(VAR).forEach(id=>{ const s=document.getElementById(id); if(s) io.observe(s); });
-})();
+/* 27.11 Julia: Varianten-Wahl entfernt (Archiv) */
 /* Kirschzweig: Blueten-Positionen auf ihrer gemalten Wand (Prozent im Bild) */
 (function(){ const w=document.getElementById("wand"); if(!w) return; const P=[[43.79, 60.91, 1], [50.65, 74.18, 1], [40.67, 73.01, 1], [30.51, 36.14, 1], [37.72, 82.6, 1], [49.73, 6.46, 1], [43.99, 92.24, 1], [24.86, 38.64, 1], [44.83, 78.69, 1], [39.29, 10.5, 1], [34.14, 20.8, 1], [36.34, 44.59, 1], [53.84, 31.82, 1], [59.7, 32.02, 1], [32.3, 90.48, 1], [55.79, 71.09, 1], [35.97, 51.03, 1], [25.59, 45.17, 1], [32.22, 73.1, 1], [42.54, 98.12, 0], [52.07, 89.09, 0], [31.18, 65.97, 0], [33.27, 96.22, 0], [41.67, 40.4, 0], [35.62, 89.89, 0], [28.63, 75.52, 0], [44.15, 3.03, 0], [55.56, 94.58, 0], [47.66, 14.2, 0], [58.61, 40.16, 0], [54.49, 65.73, 0], [37.32, 56.28, 0], [35.22, 70.46, 0], [49.33, 84.85, 0], [67.61, 23.98, 0], [36.88, 5.17, 0], [43.2, 45.57, 0], [58.88, 73.31, 0], [28.22, 67.23, 0], [30.57, 24.31, 0], [28.08, 21.43, 0], [34.08, 9.44, 0], [54.28, 26.3, 0], [58.58, 27.95, 0], [26.56, 24.45, 0], [27.34, 63.17, 0], [63.24, 72.29, 0], [55.44, 88.06, 0], [21.17, 48.86, 0], [64.78, 73.42, 0], [61.68, 72.59, 0], [60.75, 24.54, 0], [52.44, 25.79, 0], [18.69, 49.24, 0], [22.49, 44.83, 0], [78.44, 68.78, 0], [31.41, 10.02, 0], [25.05, 64.25, 0], [51.92, 22.82, 0], [23.19, 48.2, 0], [54.55, 86.09, 0], [24.75, 22.03, 0], [44.83, 49.07, 0], [57.4, 41.75, 0], [71.24, 5.88, 1], [79.81, 4.71, 1], [73.9, 1.76, 0], [87.43, 26.47, 1], [92.95, 32.94, 1], [88.1, 19.12, 0], [84.76, 18.24, 0], [76.76, 70.0, 0], [94.1, 26.47, 0]]; const btns=[...w.children];
   btns.forEach((b,i)=>{ const q=P[i]; if(!q){ b.classList.add("weg"); return; } b.style.setProperty("--x",q[0]+"%"); b.style.setProperty("--y",q[1]+"%"); b.classList.add(q[2]?"gross":"knospe"); });
@@ -1478,8 +1444,6 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   blatt.addEventListener("click",e=>{ const li=e.target.closest(".item.hat-foto"); if(!li||e.target.closest(".qty")) return; const on=li.classList.toggle("offen"); li.querySelector(".gf-auf").setAttribute("aria-hidden",!on);
     if(on){ const l=li.closest(".items"); setTimeout(()=>{ if(l&&l.scrollHeight>l.clientHeight+2){ const r=li.getBoundingClientRect(), lr=l.getBoundingClientRect(); if(r.bottom>lr.bottom) l.scrollBy({top:r.bottom-lr.bottom+8,behavior:"smooth"}); } else li.scrollIntoView({block:"nearest",behavior:"smooth"}); },380); } });
 })();
-/* 27.11: Galerie am Handy: Tippen = Schimmer (Zoom erst beim zweiten Tippen) */
-(function(){ const g=document.querySelector(".galerie"); if(!g||matchMedia("(hover:hover)").matches) return; g.addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f) return; if(!f.classList.contains("an")){ e.stopPropagation(); e.preventDefault(); g.querySelectorAll("figure.an").forEach(x=>x.classList.remove("an")); f.classList.add("an"); } },true); })();
 /* 27.11: Karte-Zeile antippen markiert sie */
 (function(){ const b=document.getElementById("blatt"); if(!b) return; b.addEventListener("click",e=>{ const it=e.target.closest(".item"); if(!it) return; const on=it.classList.contains("an"); b.querySelectorAll(".item.an").forEach(x=>x.classList.remove("an")); if(!on) it.classList.add("an"); }); })();
 /* 27.11: Karte – Verlauf unten weg, wenn die Liste zu Ende ist */
