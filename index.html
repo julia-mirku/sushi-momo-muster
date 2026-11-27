@@ -730,6 +730,9 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
 .galerie figure.an::after{opacity:1;animation:galglanz 1.1s var(--ease) forwards}
 @keyframes galglanz{from{background-position:120% 0}to{background-position:-30% 0}}
 @media (prefers-reduced-motion:reduce){.galerie figure::after{display:none}}
+
+.entwurf .tw-b button i{display:inline;width:auto;height:auto;background:none;border-radius:0;margin:0;vertical-align:baseline;font-style:normal}
+@media (max-width:899px){.entwurf .tw-b button i{display:none}}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* 27.11 Entwurf: Varianten je Block */(function(){var D={"theke": "fotos", "stuehle": "an", "sterne": "ast", "schild": "schild"},h=document.documentElement;for(var k in D){var v=D[k];try{v=localStorage.getItem("momo-"+k)||v}catch(e){}var q=new RegExp("[?&]"+k+"=(\\w+)").exec(location.search);if(q)v=q[1];h.setAttribute("data-"+k,v)}})();</script>
