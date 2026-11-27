@@ -665,6 +665,13 @@ html[data-sterne="ast"] .wand button[aria-pressed="true"]{-webkit-backdrop-filte
 .tw-tog button{font:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:7px 12px;border-radius:999px;color:rgba(246,240,229,.75);transition:background-color .25s,color .25s}
 .tw-tog button[aria-pressed="true"]{background:var(--rice);color:var(--ink)}
 @media (hover:hover){.tw-tog button[aria-pressed="false"]:hover{color:var(--rice);background:rgba(246,240,229,.12)}}
+
+/* ===== 27.11 Laden: Vorschau sofort, Momo nie vor Sushi ===== */
+.plate .rot{background:#2a1a1d url(data:image/webp;base64,UklGRswCAABXRUJQVlA4IMACAADwDACdASooACgAPt1WokyopKMiLisxEBuJbACxH4nJF8vwp6K9sdz0WmNbzL/nqBow1lsaReaN4/fqsVJRdbWqCZRa343do8jN93nFHq+eF8n3nRg0zp556AhxwAbnkgQtjL/Aze7nlk6d8aLl2zAAAP7ZEgZ7fHU9kDSrZLwEPfnEkAskrdLq39N4mQcOdcvid1snI7TafeeeL3oUnWvve3IKW80OMz6ewEzPmBwip2NB7E7LYjpp/i333MMZDL4RSqdkmDZKdk6HHzCFjDycqmpVaMHlNk8ju7pAgmRqDDKk6goolzPpYdWB10r4v4d9wVxZEbvkFqI0YKDa2QKIw81iRO2fl1770+LScDC33+zpqWTsjVi6uTlckWFDXjNmqclqIUxU31+p/AX1zhWpnTyRWVharPUVtN9G4Lw3RpZgtpbh6vQdVxiQ0UmligAZdSSRr+mpa1vyJ4o9c90hWK6SNxWrV0o0cEXiVxKkOsUfcu2KCmif5ZbYKOTy9UBTHzw21oGbQFzIC/HT8dgO616WMB5QNWfHcN1M59CUwyFP9gT1WOPIPl8zp8zl5gXSSvagoeGsLt2u8cIAZ6srIoNsIYec990X/Xxr9PDM/Y7s7wKRU4qwnZrgUprOU/HYO1DYacMI0tMbH5nfRDUjUgA1yWo4PZH7uYsy5VD1w3TO2n3ZWi72TNvVaghdjbT0XQoC4bMYKG6hpRiHWpaDXkcS+eYHeWCr7kG3CPmm+d+W2sjLnAv5Tfdsvsw8MkjEp62cekH3aHypZ3T9oX/X1uYYUfei48Ketb8ZRYh5yBwv/+nw/T9jrH8iI3x857jyrlC1E+VFvHxXDakJPptFg65wTk1k09dJplb/B6EQ778Rs6INiwgpqMMZSOQa0r04BnWcdEw2hDm3YnsbcmnHYWrPcxEKYdwufiUj2R2AAA==) center/cover no-repeat}
+html[data-teller="3"] #rot .tw-mo{opacity:0}
+html[data-teller="3"] #hero.lauf #rot.mo-ok .tw-mo,html[data-teller="3"] #hero.momo-ende #rot.mo-ok .tw-mo{opacity:1}
+html[data-teller="3"] #hero.momo-ende:not(.lauf) #rot:not(.mo-ok) .tw-top{opacity:1}
+html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:none;mask-image:none}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* 27.11 Entwurf: Varianten je Block */(function(){var D={"theke": "fotos", "stuehle": "an", "sterne": "ast", "schild": "schild"},h=document.documentElement;for(var k in D){var v=D[k];try{v=localStorage.getItem("momo-"+k)||v}catch(e){}var q=new RegExp("[?&]"+k+"=(\\w+)").exec(location.search);if(q)v=q[1];h.setAttribute("data-"+k,v)}})();</script>
@@ -715,10 +722,10 @@ html[data-sterne="ast"] .wand button[aria-pressed="true"]{-webkit-backdrop-filte
     (function(){var v=3,q=/[?&]teller=([1-4])/.exec(location.search);try{v=+(localStorage.getItem("momo-teller")||1)}catch(e){}if(q){v=+q[1];try{localStorage.setItem("momo-teller",v)}catch(e){}}if(v!==2)v=3;
     var r=document.getElementById("rot"),SZ=' sizes="(max-width:900px) 92vw, 46vw" width="1000" height="1000" alt="" decoding="async"';
     var im=function(n,c,x){return '<img class="'+(c||'')+'" src="img/'+n+'-560.webp" srcset="img/'+n+'-560.webp 560w, img/'+n+'-1000.webp 1000w"'+SZ+(x||'')+'>';};
-    var h=v==2?im("mandala_ring","",' fetchpriority="high"')+im("mandala_center","tw-c"):v==3?im("momo-teller","")+im("mandala","tw-top",' fetchpriority="high"'):"";
+    var h=v==2?im("mandala_ring","",' fetchpriority="high"')+im("mandala_center","tw-c"):v==3?im("momo-teller","tw-mo",' fetchpriority="low"')+im("mandala","tw-top",' fetchpriority="high"'):"";
     if(v==4){for(var i=0;i<12;i++)h+=im("build_"+(i<10?"0":"")+i,"tw-f"+(i?"":" on"),i?' loading="eager"':' fetchpriority="high"');}
     if(v==1)h=im("mandala","",' fetchpriority="high"');
-    r.innerHTML=h;document.documentElement.setAttribute("data-teller",v);
+    r.innerHTML=h;document.documentElement.setAttribute("data-teller",v);if(v==3){var mo=r.querySelector(".tw-mo"),su=r.querySelector(".tw-top");mo.addEventListener("load",function(){r.classList.add("mo-ok")});if(mo.complete&&mo.naturalWidth)r.classList.add("mo-ok");}
     if(v==4){var F=[].slice.call(r.children),cur=0;F.forEach(function(f){f.decode&&f.decode().catch(function(){})});var want=0,show=function(){for(var k=want;k>0&&!(F[k].complete&&F[k].naturalWidth);k--);if(k!==cur){F[k].classList.add("on");F[cur].classList.remove("on");cur=k;}};F.forEach(function(f){f.addEventListener("load",show)});window.__tellerFrame=function(p){want=Math.min(11,Math.floor(p*12));show();};}
     [].forEach.call(document.querySelectorAll("#tw-w button"),function(b){b.setAttribute("aria-pressed",b.dataset.v==v?"true":"false");});
     var w=document.getElementById("tw-w");w.addEventListener("click",function(e){e.stopPropagation();var b=e.target.closest("button");if(!b||b.dataset.v==v)return;try{localStorage.setItem("momo-teller",b.dataset.v)}catch(x){}location.href=location.pathname+"?teller="+b.dataset.v;});
