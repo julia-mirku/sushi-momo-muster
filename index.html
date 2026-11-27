@@ -1159,7 +1159,6 @@ html.saal-dunkel .hero-saal::after{content:"";position:absolute;inset:0;backgrou
 <main>
 <section id="hero" aria-label="Willkommen">
   <div class="hero-saal" aria-hidden="true"></div>
-  <div class="saal-wahl" id="saalWahl" role="group" aria-label="Vorschau: Saal-Foto im Hintergrund"><b>Saal</b><button type="button" data-s="aus">aus</button><button type="button" data-s="an">leise</button><button type="button" data-s="dunkel">Get Nailed</button></div>
   <div class="wrap hero-in">
     <div class="htext">
       <p class="kick"><span class="k-d">Sushi · Momo · BBQ — Gossau SG</span><a class="k-m" href="https://www.google.com/maps/dir/?api=1&amp;destination=BBQ+SUSHI+MOMO+St.+Gallerstrasse+66+9200+Gossau" target="_blank" rel="noopener">St. Gallerstrasse 66 · Gossau SG</a></p>
@@ -2018,9 +2017,5 @@ if(lang==="en"){ if(document.readyState==="loading") document.addEventListener("
   addEventListener("scroll",()=>{ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
   hdr.addEventListener("focusin",()=>set(false));
 })();</script>
-<script>/* 27.11 Saal-Foto: Vorschau-Schalter */
-(function(){ const H=document.documentElement, w=document.getElementById("saalWahl"); if(!w) return; let v="an"; try{ v=localStorage.getItem("momo-saal")||"an"; }catch(e){}
-  const set=x=>{ v=x; H.classList.toggle("saal-aus",v==="aus"); H.classList.toggle("saal-dunkel",v==="dunkel"); w.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.s===v?"true":"false")); try{localStorage.setItem("momo-saal",v)}catch(e){} };
-  set(v); w.addEventListener("click",e=>{ e.stopPropagation(); const b=e.target.closest("button"); if(b) set(b.dataset.s); }); })();</script>
 </body>
 </html>
