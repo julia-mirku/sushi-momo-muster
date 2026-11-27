@@ -821,6 +821,23 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
 @media (max-width:899px){.ew-app{font-size:11px;line-height:1.3;margin-top:2px}.ew-lang{display:none}.ew-kurz{display:inline}}
 @media (max-width:899px) and (max-height:700px){.ew-app{display:none}}
 @media (max-width:420px){.ew-app{font-size:10px;letter-spacing:-.01em;white-space:nowrap}}
+
+/* ===== 27.11 Julia: erster Bildschirm am Handy kompakter, Teller groesser ===== */
+@media (max-width:899px){
+  .hero-in{padding-top:calc(var(--hdr) + var(--bar0,0px) + 8px)}
+  h1{margin-top:6px}
+  .h1a{font-size:clamp(38px,11.4vw,88px)}
+  .ending{font-size:clamp(18px,4.8vw,28px);margin-top:6px;min-height:2.4em}
+  .ending .e cite{font-size:13px;margin-top:3px}
+  .score{margin-top:8px;gap:10px}
+  .stars{font-size:18px}
+  .score b{font-size:28px}
+  .score small{font-size:12px}
+  .hcta{margin-top:12px}
+  .hcta .btn{min-height:44px;font-size:14.5px}
+  .htext .kick{font-size:12px}
+}
+@media (max-width:899px) and (max-height:700px){.h1a{font-size:clamp(34px,10.4vw,58px)}.ending{font-size:18px}}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* 27.11 Entwurf: Varianten je Block */(function(){var D={"theke": "fotos", "stuehle": "an", "sterne": "ast", "schild": "schild"},h=document.documentElement;for(var k in D){var v=D[k];try{v=localStorage.getItem("momo-"+k)||v}catch(e){}var q=new RegExp("[?&]"+k+"=(\\w+)").exec(location.search);if(q)v=q[1];h.setAttribute("data-"+k,v)}})();</script>
@@ -1197,7 +1214,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
   function finish(){ if(done) return; done=true; playing=false; p=1; set(1); cancelAnimationFrame(raf); hero.classList.add("done"); }
   function loop(){ const k=Math.min(1,(now()-t0)/DUR); p=ease(k); set(p); if(k>=1) finish(); else raf=requestAnimationFrame(loop); }
-  function play(){ if(playing||done) return; playing=true; t0=now(); raf=requestAnimationFrame(loop); setTimeout(()=>{ if(!done) finish(); },DUR+250); }
+  let tok=0; function play(){ if(playing||done) return; playing=true; t0=now(); raf=requestAnimationFrame(loop); const my=++tok; setTimeout(()=>{ if(!done&&playing&&my===tok) finish(); },DUR+250); }
   /* 27.11: frei hin und her (zurueckscrollen oben, Schalter) */
   function anim(to,cb){ cancelAnimationFrame(raf); playing=true; const p0=p; const t1=now(); const lp=()=>{ const k=Math.min(1,(now()-t1)/DUR); p=p0+(to-p0)*ease(k); set(p); if(k<1) raf=requestAnimationFrame(lp); else { playing=false; p=to; set(to); if(cb) cb(); } }; raf=requestAnimationFrame(lp); }
   const zurueck=()=>{ if(playing||p<.99||scrollY>1) return; anim(0,()=>{ done=false; hero.classList.remove("done"); }); };
@@ -1218,13 +1235,17 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   addEventListener("scroll",()=>{ if(!done && scrollY>0) finish(); },{passive:true});
   addEventListener("wheel",e=>{ if(done){ if(e.deltaY<0) zurueck(); return; } e.preventDefault(); if(e.deltaY>0) play(); },{passive:false});
   /* Touch: derselbe Wisch laeuft nach 170 sofort als normales Scrollen weiter */
-  let ty=null, lockedGesture=false;
-  addEventListener("touchstart",e=>{ ty=e.touches[0].clientY; lockedGesture=!done; },{passive:true});
-  addEventListener("touchmove",e=>{ if(ty==null) return; const y=e.touches[0].clientY;
-    if(!done){ e.preventDefault(); if(playing||ty-y>6){ play(); ty=y; } return; }
-    if(lockedGesture){ e.preventDefault(); scrollBy(0,ty-y); ty=y; return; }
-    if(y-ty>30) zurueck(); },{passive:false});
-  addEventListener("touchend",()=>{ ty=null; lockedGesture=false; },{passive:true});
+  /* 27.11 Julia: am Handy folgt der Teller dem Finger – hoch = Momo, runter = zurueck zu Sushi; loslassen = zum naechsten Ende; ganz gedreht laeuft derselbe Wisch als Seite weiter */
+  let scrub=null;
+  const SD=()=>Math.max(220,Math.min(360,innerHeight*.42));
+  addEventListener("touchstart",e=>{ scrub=null; if(scrollY>2||e.touches.length>1) return; if(e.target.closest&&e.target.closest(".tw-tog,.entwurf,.hdr,.korb")) return;
+    if(playing){ cancelAnimationFrame(raf); playing=false; tok++; } scrub={y0:e.touches[0].clientY,p0:p,moved:false}; },{passive:true});
+  addEventListener("touchmove",e=>{ if(!scrub) return; const y=e.touches[0].clientY, d=scrub.y0-y; if(!scrub.moved&&Math.abs(d)<4) return; scrub.moved=true;
+    const np=scrub.p0+d/SD();
+    if(np>=1){ if(p<1){ p=1; set(1); } if(!done){ done=true; hero.classList.add("done"); } const over=(np-1)*SD(); if(over>0){ e.preventDefault(); scrollTo(0,over); } return; }
+    e.preventDefault(); if(scrollY>0) scrollTo(0,0); p=Math.max(0,np); set(p); if(done){ done=false; hero.classList.remove("done"); } },{passive:false});
+  addEventListener("touchend",()=>{ if(!scrub) return; const s0=scrub; scrub=null; if(!s0.moved) return;
+    if(p>0&&p<1){ const to=p>=.5?1:0; anim(to,()=>{ done=to===1; hero.classList.toggle("done",done); }); } },{passive:true});
   addEventListener("keydown",e=>{ if(done) return; if(["ArrowDown","PageDown"," ","End"].includes(e.key)){ e.preventDefault(); play(); } if(["ArrowUp","PageUp","Home"].includes(e.key)) e.preventDefault(); });
   $$('a[href^="#"]').forEach(a=>a.addEventListener("click",()=>{ if(!done) finish(); }));
 })();
