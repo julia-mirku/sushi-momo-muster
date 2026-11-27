@@ -888,6 +888,13 @@ h2,h3,h4,.sh{text-wrap:balance}
   .lang button{padding:9px 11px}
 }
 html.lb-open .lang{display:none}
+
+/* ===== 27.11 Teller am Computer etwas hoeher ===== */
+@media (min-width:900px){
+  #hero{min-height:0}
+  html.bar-off .hero-in{padding-top:var(--hdr)}
+}
+@media (min-width:900px) and (min-height:800px){html.bar-off .hero-in{padding-top:calc(var(--hdr) + 44px)!important}}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* Bloecke: feste Fassung (27.11 Julia) */(function(){var h=document.documentElement;h.setAttribute("data-theke","fotos");h.setAttribute("data-stuehle","an");h.setAttribute("data-sterne","ast");h.setAttribute("data-schild","schild")})();</script>
@@ -1236,7 +1243,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const size=()=>{ const h=bar.offsetHeight; html.style.setProperty("--bar0",h+"px"); if(!html.classList.contains("bar-off")) html.style.setProperty("--bar",h+"px"); };
   size(); addEventListener("resize",size);
   const flip=fn=>{ const hi=document.querySelector("#hero .hero-in"), tx=hi&&hi.querySelector(".htext"), pl=hi&&hi.querySelector(".plate"), ro=pl&&pl.querySelector(".rot");
-      if(!ro||!matchMedia("(max-width:899px)").matches||scrollY>innerHeight||matchMedia("(prefers-reduced-motion:reduce)").matches){ fn(); return; }
+      if(!ro||scrollY>innerHeight||matchMedia("(prefers-reduced-motion:reduce)").matches){ fn(); return; }
       const a=tx.getBoundingClientRect(), b=ro.getBoundingClientRect(); fn(); const a2=tx.getBoundingClientRect(), b2=ro.getBoundingClientRect(), P=pl.getBoundingClientRect();
       const sc=b.width/b2.width, dx=(b.left+b.width/2)-(b2.left+b2.width/2), dy=(b.top+b.height/2)-(b2.top+b2.height/2);
       tx.style.transition=pl.style.transition="none"; tx.style.transform=`translateY(${a.top-a2.top}px)`;
