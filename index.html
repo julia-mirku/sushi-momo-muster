@@ -928,6 +928,16 @@ html.saal-dunkel .hero-saal::after{content:"";position:absolute;inset:0;backgrou
 .saal-wahl b{font-weight:700;margin-right:4px;letter-spacing:.04em}
 .saal-wahl button{font:inherit;font-weight:700;padding:6px 9px;border-radius:999px;color:rgba(246,240,229,.72)}
 .saal-wahl button[aria-pressed="true"]{background:var(--rice);color:var(--ink)}
+
+/* ===== 27.11 Julia: Zaehler nie leer, Start 1 ===== */
+.qty:not(.hat) output{visibility:visible;opacity:.5}
+.qty:not(.hat) .mi{visibility:visible;opacity:.3;pointer-events:none}
+
+/* ===== 27.11 Julia: Boxen-Foto faehrt mit ===== */
+@media (min-width:900px){
+  .boxen-grid .boxen-r{position:sticky;top:calc(var(--hdr) + 18px);align-self:start;transition:top .45s var(--ease)}
+  html.hdr-weg .boxen-grid .boxen-r{top:24px}
+}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* Bloecke: feste Fassung (27.11 Julia) */(function(){var h=document.documentElement;h.setAttribute("data-theke","fotos");h.setAttribute("data-stuehle","an");h.setAttribute("data-sterne","ast");h.setAttribute("data-schild","schild")})();</script>
@@ -1502,8 +1512,8 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const preis=t=>{ const ab=/^ab\s/.test(t); const v=parseFloat(String(t).replace(/^ab\s*/,"").replace(".–","").replace("–","")); return {ab,v:isNaN(v)?0:v}; };
   const fr=v=>v.toFixed(2);
   const find=k=>K.find(x=>x.k===k);
-  const cap=(k,n)=>`<span class="qty${n?" hat":""}" data-k="${k.replace(/"/g,"&quot;")}"><button type="button" class="mi" aria-label="Eins weniger">−</button><output aria-live="polite">${n||0}</output><button type="button" class="pl" aria-label="In den Korb">+</button></span>`;
-  function syncCaps(){ document.querySelectorAll(".qty[data-k]").forEach(q=>{ const it=find(q.dataset.k), n=it?it.n:0; q.classList.toggle("hat",n>0); q.querySelector("output").textContent=n; }); }
+  const cap=(k,n)=>`<span class="qty${n?" hat":""}" data-k="${k.replace(/"/g,"&quot;")}"><button type="button" class="mi" aria-label="Eins weniger">−</button><output aria-live="polite">${n||1}</output><button type="button" class="pl" aria-label="In den Korb">+</button></span>`;
+  function syncCaps(){ document.querySelectorAll(".qty[data-k]").forEach(q=>{ const it=find(q.dataset.k), n=it?it.n:0; q.classList.toggle("hat",n>0); q.querySelector("output").textContent=n||1; }); }
   function render(){
     const tot=K.reduce((s,x)=>s+x.n,0), sum=K.reduce((s,x)=>s+x.n*x.v,0), ab=K.some(x=>x.ab);
     nEl.textContent=tot; document.documentElement.classList.toggle("has-korb",tot>0);
