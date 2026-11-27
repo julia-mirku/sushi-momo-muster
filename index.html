@@ -651,10 +651,17 @@ html[data-sterne="ast"] .wand button[aria-pressed="true"]{-webkit-backdrop-filte
   .plate{padding:2px 0 36px}
   .plate .rot{width:min(calc(100cqw - 20px),calc(100cqh - 20px),640px);height:min(calc(100cqw - 20px),calc(100cqh - 20px),640px)}
   .hint{bottom:10px}
-  .tw-b button{line-height:16px}
+  .tw-w{display:inline-flex!important;margin:0 0 0 6px!important;vertical-align:-1px}
+  .tw-b button{line-height:15px!important;padding:0 7px!important}
+  .tw-b button i{display:none}
+}
+@media (max-width:400px){
+  .entwurf{font-size:11.5px;padding:5px 10px}
+  .tw-b button{font-size:11px!important;padding:0 6px!important}
 }
 .tw-tog{position:absolute;z-index:3;transform:translate(-50%,-100%);display:inline-flex;padding:3px;border-radius:999px;background:rgba(23,13,16,.72);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);box-shadow:0 4px 16px rgba(0,0,0,.35),inset 0 0 0 1px rgba(246,240,229,.16)}
 .tw-tog[hidden]{display:none}
+.tw-b button b{font-weight:700}.tw-b button i{font-style:normal}
 .tw-tog button{font:inherit;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;line-height:1;padding:7px 12px;border-radius:999px;color:rgba(246,240,229,.75);transition:background-color .25s,color .25s}
 .tw-tog button[aria-pressed="true"]{background:var(--rice);color:var(--ink)}
 @media (hover:hover){.tw-tog button[aria-pressed="false"]:hover{color:var(--rice);background:rgba(246,240,229,.12)}}
@@ -664,7 +671,7 @@ html[data-sterne="ast"] .wand button[aria-pressed="true"]{-webkit-backdrop-filte
 </head>
 <body>
 
-<div class="entwurf" id="entwurf" role="note" data-jr onclick="if(!event.target.closest('a'))window.open('https://webstudio-mirku.ch/','_blank','noopener')"><i aria-hidden="true"></i><b>Website-Entwurf von <a class="jr-link" href="https://webstudio-mirku.ch/" target="_blank" rel="noopener">Julia &amp; Robin Mirku</a></b> · nur zur Ansicht&nbsp;– einige Links und Funktionen sind noch nicht aktiv.<span class="tw-w" id="tw-w" lang="de"><span class="tw-l">Variante wählen</span><span class="tw-b" role="group" aria-label="Teller-Variante wählen"><button type="button" data-v="3" aria-pressed="true">1 Sushi → Momo</button><button type="button" data-v="2" aria-pressed="false">2 Ringe</button></span></span></div>
+<div class="entwurf" id="entwurf" role="note" data-jr onclick="if(!event.target.closest('a'))window.open('https://webstudio-mirku.ch/','_blank','noopener')"><i aria-hidden="true"></i><b>Website-Entwurf von <a class="jr-link" href="https://webstudio-mirku.ch/" target="_blank" rel="noopener">Julia &amp; Robin Mirku</a></b> · nur zur Ansicht&nbsp;– einige Links und Funktionen sind noch nicht aktiv.<span class="tw-w" id="tw-w" lang="de"><span class="tw-l">Variante wählen</span><span class="tw-b" role="group" aria-label="Teller-Variante wählen"><button type="button" data-v="3" aria-pressed="true" aria-label="Variante 1: Sushi → Momo"><b>1</b><i> Sushi → Momo</i></button><button type="button" data-v="2" aria-pressed="false" aria-label="Variante 2: Ringe"><b>2</b><i> Ringe</i></button></span></span></div>
 <script>(function(){var b=document.getElementById("entwurf"),h=b.offsetHeight+"px",r=document.documentElement;r.style.setProperty("--bar",h);r.style.setProperty("--bar0",h);})();</script>
 
 <header class="hdr" id="hdr">
