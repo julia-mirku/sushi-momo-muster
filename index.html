@@ -733,13 +733,101 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
 
 .entwurf .tw-b button i{display:inline;width:auto;height:auto;background:none;border-radius:0;margin:0;vertical-align:baseline;font-style:normal}
 @media (max-width:899px){.entwurf .tw-b button i{display:none}}
+
+/* ===== 27.11 Galerie: Rand fuer Anheben/Schimmer, Lightbox-Hinweis ===== */
+.galerie{padding:16px 18px 46px!important;margin:0 -18px -30px!important}
+@media (max-width:899px){.galerie{padding:14px 16px 40px!important;margin:0 -16px -26px!important;scroll-padding-left:16px}}
+.lb p{pointer-events:none}
+
+/* ===== 27.11 Warenkorb (Entwurf) ===== */
+.korb-btn{position:relative;display:inline-flex;align-items:center;justify-content:center;width:42px;height:40px;border-radius:999px;color:var(--rice);box-shadow:inset 0 0 0 2px rgba(246,240,229,.85);transition:background-color .2s,transform .25s var(--ease)}
+.korb-btn[hidden]{display:none}
+.korb-btn svg{width:20px;height:20px}
+.korb-btn b{position:absolute;top:-6px;right:-6px;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--lack2);color:#fff;font-size:11.5px;font-weight:900;line-height:20px;text-align:center;box-shadow:0 0 0 2px #170d10}
+.korb-btn.neu{animation:korbrein .45s var(--ease)}
+.korb-btn.stups{animation:korbstups .4s var(--ease)}
+@keyframes korbrein{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+@keyframes korbstups{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+@media (hover:hover){.korb-btn:hover{background:rgba(246,240,229,.12)}}
+html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:center}
+@media (min-width:1100px){html.has-korb .hdr .tel{font-size:15px;gap:8px;width:auto;padding:0 14px}}
+.qty{display:inline-flex;align-items:center;flex:none;align-self:flex-start;margin-left:8px;height:30px;border-radius:999px;background:var(--rice2);box-shadow:inset 0 0 0 1.5px rgba(122,34,50,.35);transition:box-shadow .2s,background-color .2s}
+.qty button{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:18px;font-weight:900;line-height:1;color:var(--lack2);transition:background-color .2s,color .2s,transform .15s}
+.qty output{width:18px;text-align:center;font-weight:900;font-size:14px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.qty:not(.hat) .mi,.qty:not(.hat) output{visibility:hidden}
+.qty.hat{box-shadow:inset 0 0 0 1.5px var(--lack2)}
+@media (hover:hover){.qty button:hover{background:var(--lack2);color:#fff}.qty:hover{box-shadow:inset 0 0 0 1.5px var(--lack2),0 0 12px rgba(190,40,60,.25)}}
+.qty button:active{transform:scale(.88)}
+.boxinfo .qty{background:rgba(246,240,229,.1);box-shadow:inset 0 0 0 1.5px rgba(246,240,229,.45);height:44px;margin:20px 0 0 10px;vertical-align:top}
+.boxinfo .qty button{width:44px;height:44px;color:var(--rice)}
+.boxinfo .qty output{color:var(--rice);width:22px;font-size:16px}
+.pq{display:flex;align-items:flex-start;gap:8px;flex:none}
+.pq .qty{margin-left:0}
+@media (max-width:599px){.pq{flex-direction:column;align-items:flex-end;gap:6px}}
+.korb-flug{position:fixed;left:0;top:0;width:40px;height:40px;z-index:95;pointer-events:none;filter:drop-shadow(0 6px 8px rgba(0,0,0,.35));will-change:transform}
+.korb-flug svg{width:100%;height:100%}
+.korb-bg{position:fixed;inset:0;z-index:88;background:rgba(10,6,8,.5);opacity:0;transition:opacity .3s}
+.korb-bg.an{opacity:1}
+.korb{position:fixed;z-index:90;display:flex;flex-direction:column;background:var(--rice);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.45);transition:transform .38s var(--ease),opacity .3s}
+.korb[hidden],.korb-bg[hidden]{display:none}
+.korb-kopf{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 10px;border-bottom:3px solid var(--ink)}
+.korb-kopf h3{font-family:var(--disp);font-weight:400;font-size:24px;line-height:1}
+.korb-zu{width:40px;height:40px;border-radius:50%;font-size:26px;line-height:1;color:var(--ink);transition:background-color .2s}
+@media (hover:hover){.korb-zu:hover{background:rgba(122,34,50,.12)}}
+.korb-liste{list-style:none;overflow-y:auto;overscroll-behavior:contain;padding:6px 18px;flex:1 1 auto;min-height:0}
+.korb-liste li{display:grid;grid-template-columns:30px 1fr auto;gap:4px 10px;align-items:center;padding:10px 0;border-bottom:1px solid rgba(23,13,16,.12)}
+.korb-liste li svg{width:30px;height:30px}
+.korb-liste li b{font-weight:900;font-size:15px}
+.korb-liste li small{display:block;font-size:13px;color:#5e4049}
+.korb-liste li .qty{margin:0}
+.korb-liste .leer{display:block;padding:22px 0;text-align:center;color:#5e4049;border:0}
+.korb-fuss{padding:12px 18px calc(14px + env(safe-area-inset-bottom));border-top:1px solid rgba(23,13,16,.12)}
+.korb-summe{display:flex;justify-content:space-between;align-items:baseline;font-size:16px}
+.korb-summe b{font-family:var(--disp);font-weight:400;font-size:26px;color:var(--lack2)}
+.korb-ab{font-size:12.5px;color:#5e4049;margin-top:2px}
+.korb-go{width:100%;margin-top:12px}
+.korb-hinweis{font-size:12px;color:#5e4049;margin-top:8px;line-height:1.4}
+.korb-leer{margin-top:6px;font-size:13px;font-weight:700;color:#5e4049;text-decoration:underline;text-underline-offset:2px}
+@media (min-width:900px){
+  .korb{top:calc(var(--hdr) + var(--bar,0px) + 10px);right:max(16px,calc((100vw - 1180px) / 2));width:390px;max-height:calc(100vh - var(--hdr) - var(--bar,0px) - 30px);border-radius:22px;overflow:hidden;transform:translateY(-12px);opacity:0}
+  .korb.an{transform:none;opacity:1}
+  .korb-bg{background:rgba(10,6,8,.25)}
+}
+@media (max-width:899px){
+  .korb{left:0;right:0;bottom:0;max-height:min(80vh,80svh);border-radius:22px 22px 0 0;transform:translateY(105%)}
+  .korb.an{transform:none}
+  .qty{height:32px}.qty button{width:32px;height:32px}
+}
+@media (max-width:899px) and (max-height:500px){.korb{left:auto;top:0;bottom:0;right:0;width:min(400px,62vw);max-height:none;border-radius:22px 0 0 22px;transform:translateX(105%)}.korb.an{transform:none}.korb-kopf{padding:10px 18px 8px}.korb-liste li{padding:6px 0}.korb-fuss{padding-bottom:10px}.korb-hinweis{font-size:11px;margin-top:6px}}
+@media (prefers-reduced-motion:reduce){.korb,.korb-bg{transition:none}}
+
+/* ===== 27.11 Fotos in der Karte (ihre Bilder aus dem Online-Shop) + Namen in der Galerie ===== */
+.item{flex-wrap:wrap}
+.gf-th{flex:none;width:52px;height:52px;border-radius:12px;object-fit:cover;background:#111;align-self:flex-start;box-shadow:0 2px 8px rgba(23,13,16,.18);transition:transform .25s var(--ease),box-shadow .25s}
+@media (hover:hover){.item:hover .gf-th{transform:scale(1.06);box-shadow:0 0 0 2px var(--lack2),0 4px 12px rgba(122,34,50,.3)}}
+.item .gf-txt{flex:1 1 0;min-width:0}
+.gf-auf{flex:0 0 100%;display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s var(--ease)}
+.gf-auf>div{overflow:hidden}
+.gf-auf img{display:block;width:192px;height:192px;max-width:100%;margin:10px 0 4px 62px;border-radius:16px;background:#000;box-shadow:0 10px 24px rgba(23,13,16,.3)}
+.item.offen .gf-auf{grid-template-rows:1fr}
+.item.offen .gf-th{box-shadow:0 0 0 2px var(--lack2)}
+@media (max-width:599px){.gf-th{width:46px;height:46px;border-radius:10px}.gf-auf img{margin-left:56px;width:min(192px,calc(100% - 56px));height:auto;aspect-ratio:1}}
+.galerie figure figcaption{position:absolute;left:12px;bottom:12px;z-index:2;padding:6px 12px;border-radius:999px;background:rgba(246,240,229,.92);color:var(--ink);font-size:13.5px;font-weight:800;letter-spacing:.01em;box-shadow:0 4px 14px rgba(0,0,0,.3);pointer-events:none;transition:transform .3s var(--ease)}
+@media (hover:hover){.galerie figure:hover figcaption{transform:translateY(-3px)}}
+
+/* ===== 27.11 Entwurfsleiste: Angebot App ===== */
+.ew-app{display:block;font-size:12px;font-weight:700;color:var(--lack2);margin-top:1px}
+.ew-kurz{display:none}
+@media (max-width:899px){.ew-app{font-size:11px;line-height:1.3;margin-top:2px}.ew-lang{display:none}.ew-kurz{display:inline}}
+@media (max-width:899px) and (max-height:700px){.ew-app{display:none}}
+@media (max-width:420px){.ew-app{font-size:10px;letter-spacing:-.01em;white-space:nowrap}}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* 27.11 Entwurf: Varianten je Block */(function(){var D={"theke": "fotos", "stuehle": "an", "sterne": "ast", "schild": "schild"},h=document.documentElement;for(var k in D){var v=D[k];try{v=localStorage.getItem("momo-"+k)||v}catch(e){}var q=new RegExp("[?&]"+k+"=(\\w+)").exec(location.search);if(q)v=q[1];h.setAttribute("data-"+k,v)}})();</script>
 </head>
 <body>
 
-<div class="entwurf" id="entwurf" role="note" data-jr onclick="if(!event.target.closest('a'))window.open('https://webstudio-mirku.ch/','_blank','noopener')"><i aria-hidden="true"></i><b>Website-Entwurf von <a class="jr-link" href="https://webstudio-mirku.ch/" target="_blank" rel="noopener">Julia &amp; Robin Mirku</a></b> · nur zur Ansicht&nbsp;– einige Links und Funktionen sind noch nicht aktiv.<span class="tw-w" id="tw-w" lang="de"><span class="tw-l">Variante wählen</span><span class="tw-b" role="group" aria-label="Teller-Variante wählen"><button type="button" data-v="3" aria-pressed="true" aria-label="Variante 1: Sushi → Momo"><b>1</b><i> Sushi → Momo</i></button><button type="button" data-v="2" aria-pressed="false" aria-label="Variante 2: Ringe"><b>2</b><i> Ringe</i></button></span></span></div>
+<div class="entwurf" id="entwurf" role="note" data-jr onclick="if(!event.target.closest('a'))window.open('https://webstudio-mirku.ch/','_blank','noopener')"><i aria-hidden="true"></i><b>Website-Entwurf von <a class="jr-link" href="https://webstudio-mirku.ch/" target="_blank" rel="noopener">Julia &amp; Robin Mirku</a></b> · nur zur Ansicht&nbsp;– einige Links und Funktionen sind noch nicht aktiv.<span class="tw-w" id="tw-w" lang="de"><span class="tw-l">Variante wählen</span><span class="tw-b" role="group" aria-label="Teller-Variante wählen"><button type="button" data-v="3" aria-pressed="true" aria-label="Variante 1: Sushi → Momo"><b>1</b><i> Sushi → Momo</i></button><button type="button" data-v="2" aria-pressed="false" aria-label="Variante 2: Ringe"><b>2</b><i> Ringe</i></button></span></span><span class="ew-app"><span class="ew-lang">Auf Wunsch überarbeiten wir auch Ihre App – teilweise oder komplett. Sagen Sie uns Bescheid, der Entwurf ist kostenlos.</span><span class="ew-kurz">Ihre App überarbeiten wir gern – teilweise oder komplett, Entwurf kostenlos.</span></span></div>
 <script>(function(){var b=document.getElementById("entwurf"),h=b.offsetHeight+"px",r=document.documentElement;r.style.setProperty("--bar",h);r.style.setProperty("--bar0",h);})();</script>
 
 <header class="hdr" id="hdr">
@@ -750,6 +838,7 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
     </nav>
     <div class="right">
       <a class="btn line tel" href="tel:+41766800066"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>076 680 00 66</a>
+      <button class="korb-btn" id="korbBtn" type="button" hidden aria-label="Warenkorb öffnen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><b id="korbN">0</b></button>
       <a class="btn red order" href="https://www.bbqsushimomo-sg.ch/menue" target="_blank" rel="noopener">Bestellen</a>
     </div>
   </div>
@@ -887,9 +976,9 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
       <h2 class="sh">So sieht es bei uns&nbsp;aus</h2>
     </div>
     <div class="galerie reveal" role="group" aria-label="Fotos aus unserer Küche">
-      <figure><img src="img/teller-560.webp" srcset="img/teller-560.webp 560w, img/teller-1000.webp 1000w" sizes="(max-width:900px) 70vw, 380px" width="1000" height="1000" alt="Grosse runde Sushi-Platte mit Maki, Nigiri, Uramaki und Blüten" loading="lazy"></figure>
-      <figure><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 60vw, 290px" width="1200" height="1600" alt="Sushi-Platte mit Sashimi, Nigiri, Maki und Rainbow Rolls" loading="lazy"></figure>
-      <figure><img src="img/rainbow-700.webp" srcset="img/rainbow-700.webp 700w, img/rainbow-1160.webp 1160w" sizes="(max-width:900px) 90vw, 500px" width="1160" height="880" alt="Rainbow Roll mit Lachs, Avocado und Ikura vor der gemalten Kirschblüte" loading="lazy"></figure>
+      <figure><img src="img/teller-560.webp" srcset="img/teller-560.webp 560w, img/teller-1000.webp 1000w" sizes="(max-width:900px) 70vw, 380px" width="1000" height="1000" alt="Grosse runde Sushi-Platte mit Maki, Nigiri, Uramaki und Blüten" loading="lazy"><figcaption>Grosse Sushi-Platte</figcaption></figure>
+      <figure><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 60vw, 290px" width="1200" height="1600" alt="Sushi-Platte mit Sashimi, Nigiri, Maki und Rainbow Rolls" loading="lazy"><figcaption>Sashimi, Nigiri &amp; Maki</figcaption></figure>
+      <figure><img src="img/rainbow-700.webp" srcset="img/rainbow-700.webp 700w, img/rainbow-1160.webp 1160w" sizes="(max-width:900px) 90vw, 500px" width="1160" height="880" alt="Rainbow Roll mit Lachs, Avocado und Ikura vor der gemalten Kirschblüte" loading="lazy"><figcaption>Rainbow Roll</figcaption></figure>
     </div>
   </div>
 </section>
@@ -957,7 +1046,7 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
           <li><a href="https://www.google.com/maps/dir/?api=1&destination=BBQ+SUSHI+MOMO+St.+Gallerstrasse+66+9200+Gossau" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span>St. Gallerstrasse 66, 9200 Gossau<small>Route in Google Maps</small></span></a></li>
           <li><a href="mailto:bbqsushimomo.sg@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>bbqsushimomo.sg@gmail.com<small>E-Mail</small></span></a></li>
         </ul>
-        <div class="pay"><span>TWINT</span><a href="https://apps.apple.com/ch/app/bbq-sushi-momo/id6472249607" target="_blank" rel="noopener">App für iPhone</a><a href="https://play.google.com/store/apps/details?id=com.foodbooking.bbqsushimomo" target="_blank" rel="noopener">App für Android</a></div>
+        <div class="pay"><a href="https://apps.apple.com/ch/app/bbq-sushi-momo/id6472249607" target="_blank" rel="noopener">App für iPhone</a><a href="https://play.google.com/store/apps/details?id=com.foodbooking.bbqsushimomo" target="_blank" rel="noopener">App für Android</a></div>
       </div>
       <div class="card wide">
         <h3>Bestellen &amp; reservieren</h3>
@@ -981,6 +1070,19 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
   </div>
 </section>
 </main>
+
+<div class="korb-bg" id="korbBg" hidden></div>
+<aside class="korb" id="korb" role="dialog" aria-modal="true" aria-label="Ihre Bestellung" hidden lang="de">
+  <div class="korb-kopf"><h3>Ihre Bestellung</h3><button type="button" class="korb-zu" id="korbZu" aria-label="Schliessen">×</button></div>
+  <ul class="korb-liste" id="korbListe"></ul>
+  <div class="korb-fuss">
+    <div class="korb-summe"><span id="korbSumLabel">Summe</span><b id="korbSum">CHF 0.00</b></div>
+    <p class="korb-ab" id="korbAb" hidden>«ab» = kleinste Portion; der Endpreis steht im Bestellsystem.</p>
+    <a class="btn red korb-go" href="https://www.foodbooking.com/ordering/restaurant/menu?company_uid=f8cef581-e37b-4b52-9f46-2af8a4245929&amp;restaurant_uid=5fe33367-5948-44d8-b8ee-4dd2f5f318d1&amp;facebook=false" target="_blank" rel="noopener">Bestellung abschliessen</a>
+    <p class="korb-hinweis">Entwurf: Die Bestellung schliessen Sie im Online-Bestellsystem von BBQ Sushi Momo ab (Abholung oder Lieferung).</p>
+    <button type="button" class="korb-leer" id="korbLeer">Korb leeren</button>
+  </div>
+</aside>
 
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto gross"><img alt=""><button class="x" type="button" aria-label="Schliessen">×</button><p>Tippen zum Zoomen · ausserhalb tippen zum Schliessen</p></div>
 
@@ -1286,6 +1388,74 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const upd=()=>{ const open=stat.classList.contains("open"), txt=stat.lastElementChild.textContent; const tf=document.getElementById("tafel");
     tf.parentNode.classList.toggle("zu",!open); document.getElementById("tafelzeit").textContent=(txt.split(" · ")[1]||"").replace(/^./,c=>c.toUpperCase()); };
   upd(); sch.addEventListener("click",()=>sch.classList.toggle("um")); sch.addEventListener("keydown",e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); sch.classList.toggle("um"); } });
+})();
+
+/* ================= 27.11 Warenkorb (Entwurf) ================= */
+(function(){
+  const SUSHI='<svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#1f2a22"/><circle cx="20" cy="20" r="14.5" fill="#f6f0e5"/><circle cx="20" cy="20" r="7.5" fill="#ef8a5c"/><path d="M15.5 17.5c2-2 4.5-2.4 6.8-1.2" stroke="#fbd0b6" stroke-width="1.6" fill="none" stroke-linecap="round"/><circle cx="23.5" cy="23" r="2.4" fill="#9dbb3c"/></svg>';
+  const MOMO='<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 26c0-9.5 7.2-16 16-16s16 6.5 16 16c0 2.2-1.6 3.5-3.8 3.5H7.8C5.6 29.5 4 28.2 4 26z" fill="#f4e7cf" stroke="#c7ad83" stroke-width="1.6"/><path d="M11.5 13.5c1.2 3.2 1.2 6.6 0 9.8M16.8 11.2c.9 3.6.9 7.6 0 11.6M23.2 11.2c-.9 3.6-.9 7.6 0 11.6M28.5 13.5c-1.2 3.2-1.2 6.6 0 9.8" stroke="#c7ad83" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>';
+  const btn=document.getElementById("korbBtn"), nEl=document.getElementById("korbN"), sheet=document.getElementById("korb"), bg=document.getElementById("korbBg"), liste=document.getElementById("korbListe"), sumEl=document.getElementById("korbSum"), sumL=document.getElementById("korbSumLabel"), abEl=document.getElementById("korbAb");
+  if(!btn||!sheet) return;
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let K=[]; try{ K=JSON.parse(localStorage.getItem("momo-korb")||"[]"); }catch(e){ K=[]; }
+  const save=()=>{ try{ localStorage.setItem("momo-korb",JSON.stringify(K)); }catch(e){} };
+  const preis=t=>{ const ab=/^ab\s/.test(t); const v=parseFloat(String(t).replace(/^ab\s*/,"").replace(".–","").replace("–","")); return {ab,v:isNaN(v)?0:v}; };
+  const fr=v=>v.toFixed(2);
+  const find=k=>K.find(x=>x.k===k);
+  const cap=(k,n)=>`<span class="qty${n?" hat":""}" data-k="${k.replace(/"/g,"&quot;")}"><button type="button" class="mi" aria-label="Eins weniger">−</button><output aria-live="polite">${n||0}</output><button type="button" class="pl" aria-label="In den Korb">+</button></span>`;
+  function syncCaps(){ document.querySelectorAll(".qty[data-k]").forEach(q=>{ const it=find(q.dataset.k), n=it?it.n:0; q.classList.toggle("hat",n>0); q.querySelector("output").textContent=n; }); }
+  function render(){
+    const tot=K.reduce((s,x)=>s+x.n,0), sum=K.reduce((s,x)=>s+x.n*x.v,0), ab=K.some(x=>x.ab);
+    nEl.textContent=tot; document.documentElement.classList.toggle("has-korb",tot>0);
+    if(tot>0&&btn.hidden){ btn.hidden=false; if(!reduce){ btn.classList.remove("neu"); void btn.offsetWidth; btn.classList.add("neu"); } }
+    if(tot===0){ btn.hidden=true; if(!sheet.hidden) zu(); }
+    sumEl.textContent="CHF "+fr(sum); sumL.textContent=ab?"Summe ab":"Summe"; abEl.hidden=!ab;
+    liste.innerHTML=K.length?K.map(x=>`<li>${x.i==="m"?MOMO:SUSHI}<span><b>${x.name}</b><small>${x.ab?"ab ":""}${fr(x.v)} · ${x.cat}</small></span>${cap(x.k,x.n)}</li>`).join(""):'<li class="leer">Noch nichts im Korb.</li>';
+    syncCaps(); save();
+  }
+  function fliege(from,icon){
+    if(reduce||!from) return;
+    const a=from.getBoundingClientRect(), b=btn.getBoundingClientRect();
+    const f=document.createElement("div"); f.className="korb-flug"; f.innerHTML=icon==="m"?MOMO:SUSHI; document.body.appendChild(f);
+    const x0=a.left+a.width/2-20, y0=a.top+a.height/2-20, x1=b.left+b.width/2-20, y1=b.top+b.height/2-20, hx=x0+(x1-x0)*.3-40, hy=y0+(y1-y0)*.62;
+    const an=f.animate([{transform:`translate(${x0}px,${y0}px) scale(.6) rotate(0deg)`,opacity:.2},{transform:`translate(${x0}px,${y0-26}px) scale(1.15) rotate(-20deg)`,opacity:1,offset:.18},{transform:`translate(${hx}px,${hy}px) scale(1) rotate(120deg)`,offset:.6},{transform:`translate(${x1}px,${y1}px) scale(.45) rotate(220deg)`,opacity:.9}],{duration:720,easing:"cubic-bezier(.45,.05,.4,1)"});
+    an.onfinish=()=>{ f.remove(); btn.classList.remove("stups"); void btn.offsetWidth; btn.classList.add("stups"); };
+  }
+  function plus(k,meta,el){ let it=find(k); if(!it){ it=Object.assign({k,n:0},meta); K.push(it); } it.n++; render(); fliege(el,it.i); }
+  function minus(k){ const it=find(k); if(!it) return; it.n--; if(it.n<=0) K=K.filter(x=>x!==it); render(); }
+  /* Karte: Kapsel an jede Zeile */
+  const blatt=document.getElementById("blatt");
+  function karteCaps(){ if(!blatt) return; const cat=(blatt.querySelector(".blatt-hd h3")||{}).textContent||"";
+    blatt.querySelectorAll(".item").forEach(li=>{ if(li.querySelector(".qty")) return; const name=li.querySelector("b").textContent, pr=li.querySelector(".price").textContent, P=preis(pr);
+      const k="K|"+name+"|"+pr; const prEl=li.querySelector(".price"); const pq=document.createElement("span"); pq.className="pq"; prEl.replaceWith(pq); pq.appendChild(prEl); pq.insertAdjacentHTML("beforeend",cap(k,(find(k)||{}).n)); const q=pq.lastElementChild;
+      q.dataset.name=name; q.dataset.v=P.v; q.dataset.ab=P.ab?1:""; q.dataset.cat=cat; q.dataset.i=(/momo/i.test(cat)||/momo/i.test(name))?"m":"s"; }); }
+  if(blatt){ new MutationObserver(karteCaps).observe(blatt,{childList:true}); karteCaps(); }
+  /* Boxen: Kapsel neben «vorbestellen» */
+  const info=document.getElementById("boxinfo");
+  function boxCaps(){ if(!info||info.querySelector(".qty")) return; const h=info.querySelector("h3"), pr=info.querySelector(".pr"); if(!h||!pr) return; const name=h.textContent, P=preis(pr.textContent);
+    const k="B|"+name; const a=info.querySelector(".btn"); if(!a) return; a.insertAdjacentHTML("afterend",cap(k,(find(k)||{}).n)); const q=a.nextElementSibling;
+    q.dataset.name=name; q.dataset.v=P.v; q.dataset.ab=""; q.dataset.cat="Sushi-Box"; q.dataset.i="s"; }
+  if(info){ new MutationObserver(boxCaps).observe(info,{childList:true}); boxCaps(); }
+  document.addEventListener("click",e=>{ const b=e.target.closest(".qty button"); if(!b) return; e.preventDefault(); e.stopPropagation(); const q=b.closest(".qty"), k=q.dataset.k;
+    if(b.classList.contains("pl")){ const it=find(k); plus(k,it?{}:{name:q.dataset.name,v:+q.dataset.v,ab:!!q.dataset.ab,cat:q.dataset.cat,i:q.dataset.i},b); } else minus(k); },true);
+  /* Korb auf/zu */
+  function auf(){ sheet.hidden=false; bg.hidden=false; requestAnimationFrame(()=>{ sheet.classList.add("an"); bg.classList.add("an"); }); btn.setAttribute("aria-expanded","true"); document.getElementById("korbZu").focus({preventScroll:true}); }
+  function zu(){ sheet.classList.remove("an"); bg.classList.remove("an"); btn.setAttribute("aria-expanded","false"); setTimeout(()=>{ if(!sheet.classList.contains("an")){ sheet.hidden=true; bg.hidden=true; } },reduce?0:380); }
+  btn.addEventListener("click",()=>sheet.hidden?auf():zu());
+  bg.addEventListener("click",zu); document.getElementById("korbZu").addEventListener("click",zu);
+  document.getElementById("korbLeer").addEventListener("click",()=>{ K=[]; render(); });
+  addEventListener("keydown",e=>{ if(e.key==="Escape"&&!sheet.hidden) zu(); });
+  render();
+})();
+
+/* ================= 27.11 Fotos in der Karte ================= */
+(function(){ const F={"Rainbow Salmon": "img/gf/rainbow-salmon.webp", "Rainbow Lachs": "img/gf/rainbow-lachs.webp", "Rainbow BBQ Salmon": "img/gf/rainbow-bbq-salmon.webp", "Rainbow Salmon Mango": "img/gf/rainbow-salmon-mango.webp", "Rainbow Tuna": "img/gf/rainbow-tuna.webp", "Salmon Nigiri": "img/gf/salmon-nigiri.webp", "Salmon Avocado": "img/gf/salmon-avocado.webp", "BBQ Salmon Nigiri": "img/gf/bbq-salmon-nigiri.webp", "Tuna Nigiri": "img/gf/tuna-nigiri.webp", "Tuna Avocado": "img/gf/tuna-avocado.webp", "Ebi Nigiri": "img/gf/ebi-nigiri.webp", "Ebi Avocado": "img/gf/ebi-avocado.webp", "Inari Nigiri": "img/gf/inari-nigiri.webp", "Avocado Nigiri": "img/gf/avocado-nigiri.webp", "Tamago": "img/gf/tamago.webp", "Crunchy Roll": "img/gf/crunchy-roll.webp", "Surimi Roll": "img/gf/surimi-roll.webp", "Mango Flowers Roll": "img/gf/mango-flowers-roll.webp", "Power Salmon Roll": "img/gf/power-salmon-roll.webp", "Tuna Mousse Roll": "img/gf/tuna-mousse-roll.webp", "Spicy Tuna Roll": "img/gf/spicy-tuna-roll.webp", "Peace Boy Roll": "img/gf/peace-boy-roll.webp", "Maki Avocado": "img/gf/maki-avocado.webp", "Maki Gurke": "img/gf/maki-gurke.webp", "Maki Sake": "img/gf/maki-sake.webp", "Maki Tekka": "img/gf/maki-tekka.webp", "Maki Sake Avocado": "img/gf/maki-sake-avocado.webp", "Maki Surimi": "img/gf/maki-surimi.webp", "Rindfleisch-Momo": "img/gf/rindfleisch-momo.webp", "Vegi-Momo": "img/gf/vegi-momo.webp", "777 Spicy Tuna": "img/gf/777-spicy-tuna.webp", "666 Sake Cucumber": "img/gf/666-sake-cucumber.webp", "555 Veggie": "img/gf/555-veggie.webp", "Salmon Sashimi": "img/gf/salmon-sashimi.webp", "Tuna Sashimi": "img/gf/tuna-sashimi.webp", "Mix Sashimi": "img/gf/mix-sashimi.webp", "Tuna Tatar": "img/gf/tuna-tatar.webp", "Lachs Tatar": "img/gf/lachs-tatar.webp", "Ikura": "img/gf/ikura.webp", "Tobiko": "img/gf/tobiko.webp", "Salmon Bowl": "img/gf/salmon-bowl.webp", "Tuna Bowl": "img/gf/tuna-bowl.webp", "Vegi Bowl": "img/gf/vegi-bowl.webp"}; const blatt=document.getElementById("blatt"); if(!blatt) return;
+  function fotos(){ blatt.querySelectorAll(".item").forEach(li=>{ if(li.dataset.gf) return; li.dataset.gf="1"; const n=li.querySelector("b").textContent, src=F[n]; const txt=li.firstElementChild; txt.classList.add("gf-txt"); if(!src) return;
+      li.insertAdjacentHTML("afterbegin",`<img class="gf-th" src="${src}" width="192" height="192" alt="" loading="lazy" decoding="async">`);
+      li.insertAdjacentHTML("beforeend",`<div class="gf-auf" aria-hidden="true"><div><img src="${src}" width="192" height="192" alt="${n.replace(/"/g,"")}" loading="lazy" decoding="async"></div></div>`); li.classList.add("hat-foto"); }); }
+  new MutationObserver(fotos).observe(blatt,{childList:true}); fotos();
+  blatt.addEventListener("click",e=>{ const li=e.target.closest(".item.hat-foto"); if(!li||e.target.closest(".qty")) return; const on=li.classList.toggle("offen"); li.querySelector(".gf-auf").setAttribute("aria-hidden",!on);
+    if(on){ const l=li.closest(".items"); setTimeout(()=>{ if(l&&l.scrollHeight>l.clientHeight+2){ const r=li.getBoundingClientRect(), lr=l.getBoundingClientRect(); if(r.bottom>lr.bottom) l.scrollBy({top:r.bottom-lr.bottom+8,behavior:"smooth"}); } else li.scrollIntoView({block:"nearest",behavior:"smooth"}); },380); } });
 })();
 /* 27.11: Galerie am Handy: Tippen = Schimmer (Zoom erst beim zweiten Tippen) */
 (function(){ const g=document.querySelector(".galerie"); if(!g||matchMedia("(hover:hover)").matches) return; g.addEventListener("click",e=>{ const f=e.target.closest("figure"); if(!f) return; if(!f.classList.contains("an")){ e.stopPropagation(); e.preventDefault(); g.querySelectorAll("figure.an").forEach(x=>x.classList.remove("an")); f.classList.add("an"); } },true); })();
