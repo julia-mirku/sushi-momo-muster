@@ -672,6 +672,16 @@ html[data-teller="3"] #rot .tw-mo{opacity:0}
 html[data-teller="3"] #hero.lauf #rot.mo-ok .tw-mo,html[data-teller="3"] #hero.momo-ende #rot.mo-ok .tw-mo{opacity:1}
 html[data-teller="3"] #hero.momo-ende:not(.lauf) #rot:not(.mo-ok) .tw-top{opacity:1}
 html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:none;mask-image:none}
+
+/* ===== 27.11 Galerie: ihre echten Fotos, ganz, gleiche Hoehe, am Handy wischen ===== */
+#galerie.pad{background:linear-gradient(to bottom,#6b1e2d 0%,#6b1e2d 50%,#6b1e2d 100%);color:var(--rice)}
+#galerie .kick{color:var(--sakura2)}
+.galerie{--gh:clamp(240px,calc((min(100vw,1212px) - 60px) / 3.07),375px);display:flex;gap:14px;margin-top:22px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+.galerie::-webkit-scrollbar{display:none}
+.galerie figure{flex:none;height:var(--gh);border-radius:20px;overflow:hidden;scroll-snap-align:start;cursor:zoom-in;background:#4f1a26;box-shadow:0 14px 34px rgba(0,0,0,.28);transition:transform .35s var(--ease),box-shadow .35s}
+.galerie img{display:block;height:100%;width:auto;transition:transform .7s var(--ease)}
+@media (hover:hover){.galerie figure:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.38)}.galerie figure:hover img{transform:scale(1.045)}}
+@media (max-width:899px){.galerie{margin-right:-16px;padding-right:16px}}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* 27.11 Entwurf: Varianten je Block */(function(){var D={"theke": "fotos", "stuehle": "an", "sterne": "ast", "schild": "schild"},h=document.documentElement;for(var k in D){var v=D[k];try{v=localStorage.getItem("momo-"+k)||v}catch(e){}var q=new RegExp("[?&]"+k+"=(\\w+)").exec(location.search);if(q)v=q[1];h.setAttribute("data-"+k,v)}})();</script>
@@ -816,6 +826,20 @@ html[data-teller="3"] #hero.lauf #rot:not(.mo-ok) .tw-top{-webkit-mask-image:non
       <div class="blatt" id="blatt" aria-live="polite"></div>
     </div>
     <p class="herkunft">Herkunft: <b>Rind</b> Schweiz · <b>Lachs</b> Schottland · <b>Thunfisch</b> Philippinen / Vietnam · <b>Crevetten</b> Vietnam. Allergene sagen wir Ihnen gern am Telefon: 076 680 00 66.</p>
+  </div>
+</section>
+
+<section id="galerie" class="pad">
+  <div class="wrap">
+    <div class="head reveal">
+      <p class="kick">Aus unserer Küche</p>
+      <h2 class="sh">So sieht es bei uns&nbsp;aus</h2>
+    </div>
+    <div class="galerie reveal" role="group" aria-label="Fotos aus unserer Küche">
+      <figure><img src="img/teller-560.webp" srcset="img/teller-560.webp 560w, img/teller-1000.webp 1000w" sizes="(max-width:900px) 70vw, 380px" width="1000" height="1000" alt="Grosse runde Sushi-Platte mit Maki, Nigiri, Uramaki und Blüten" loading="lazy"></figure>
+      <figure><img src="img/platte-700.webp" srcset="img/platte-700.webp 700w, img/platte-1200.webp 1200w" sizes="(max-width:900px) 60vw, 290px" width="1200" height="1600" alt="Sushi-Platte mit Sashimi, Nigiri, Maki und Rainbow Rolls" loading="lazy"></figure>
+      <figure><img src="img/rainbow-700.webp" srcset="img/rainbow-700.webp 700w, img/rainbow-1160.webp 1160w" sizes="(max-width:900px) 90vw, 500px" width="1160" height="880" alt="Rainbow Roll mit Lachs, Avocado und Ikura vor der gemalten Kirschblüte" loading="lazy"></figure>
+    </div>
   </div>
 </section>
 
@@ -1049,7 +1073,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const apply=()=>{ im.style.transform=`translate(${x}px,${y}px) scale(${z})`; lb.classList.toggle("zoomed",z>1); };
   const open=img=>{ im.src=big(img); im.alt=img.alt; z=1;x=0;y=0; apply(); lb.classList.add("open"); document.documentElement.style.overflow="hidden"; };
   const close=()=>{ lb.classList.remove("open"); document.documentElement.style.overflow=""; };
-  const sel=".pane figure img,.theke-foto img,.boxfoto img,.besuch-grid .saal img,.blatt-foto img";
+  const sel=".pane figure img,.theke-foto img,.boxfoto img,.besuch-grid .saal img,.blatt-foto img,.galerie img";
   document.addEventListener("click",e=>{ const img=e.target.closest(sel); if(img){ e.preventDefault(); open(img); } });
   const mark=()=>$$(sel).forEach(i=>i.classList.add("zoomable")); mark(); new MutationObserver(mark).observe($("#blatt"),{childList:true});
   lb.querySelector(".x").addEventListener("click",close);
