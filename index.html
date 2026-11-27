@@ -11,7 +11,7 @@
 <meta property="og:description" content="«Das beste Sushi in der Region!» – 5,0 Sterne aus 170 Bewertungen.">
 <meta property="og:image" content="https://julia-mirku.github.io/sushi-momo-muster/img/teller-1000.jpg">
 <meta name="theme-color" content="#170d10">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%239b3444'/%3E%3Ctext x='32' y='41' font-family='Arial Black,Arial' font-weight='900' font-size='24' text-anchor='middle' fill='%23f5efe4'%3EBSM%3C/text%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="img/logo-fav.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -851,6 +851,20 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
 
 /* ===== 27.11: erster Bildschirm ab 1600 = Kopfbreite ===== */
 @media (min-width:1600px){.wrap.hero-in{width:min(1180px,100% - 32px);grid-template-columns:1fr 1fr}}
+
+/* ===== 27.11 Julia: Logo im Kopf ===== */
+.logo i.lg{border-radius:0;background:none;box-shadow:none;display:block;flex:none}
+.logo i.lg img{display:block;width:100%;height:100%}.logo .wm img{display:block;width:100%;height:auto}
+.logo i.lg{width:62px;height:37px;margin-left:0}
+@media (min-width:1200px){.logo i.lg{margin-left:-32px}}
+.logo .wm{display:block;width:178px;height:auto;aspect-ratio:4.651;flex:none}
+.logo i.lg.st{width:95px;height:54px;margin-left:0}
+@media (max-width:599px){
+  .logo i.lg{width:54px;height:32px;margin-left:0}
+  .logo .wm{width:min(136px,calc(100vw - 234px));height:auto;aspect-ratio:4.651}
+  .logo .wm img{height:auto}
+  .logo i.lg.st{width:95px;height:54px}
+}
 </style>
 <style id="jr-link-css">[data-jr]{cursor:pointer;pointer-events:auto!important}.jr-link{color:inherit;font:inherit;text-decoration:none;cursor:pointer}.jr-link:hover,.jr-link:focus-visible{text-decoration:underline;text-underline-offset:2px}</style>
 <script>/* Bloecke: feste Fassung (27.11 Julia) */(function(){var h=document.documentElement;h.setAttribute("data-theke","fotos");h.setAttribute("data-stuehle","an");h.setAttribute("data-sterne","ast");h.setAttribute("data-schild","schild")})();</script>
@@ -862,7 +876,7 @@ html.has-korb .hdr .tel{font-size:0;gap:0;width:40px;padding:0;justify-content:c
 
 <header class="hdr" id="hdr">
   <div class="wrap">
-    <a class="logo" href="#hero" aria-label="BBQ Sushi Momo – nach oben"><i></i><span><b>BBQ SUSHI MOMO</b><small>Gossau SG</small></span></a>
+    <a class="logo" href="#hero" aria-label="BBQ Sushi Momo – nach oben"><i class="lg"><img src="img/logo-mark.svg" alt="" width="62" height="37"></i><span class="wm"><img src="img/logo-wort.svg" alt="" width="178" height="38"></span></a>
     <nav class="nav" aria-label="Seiten">
       <a href="#beides">Sushi &amp; Momo</a><a href="#theke">Geschichten</a><a href="#karte">Karte</a><a href="#boxen">Boxen</a><a href="#stimmen">Gäste</a><a href="#besuch">Besuch</a>
     </nav>
