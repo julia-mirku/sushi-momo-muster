@@ -1081,6 +1081,18 @@ html.saal-dunkel .hero-saal::after{content:"";position:absolute;inset:0;backgrou
 
 /* ===== 27.11 Menü-Buch, Computer ===== */
 .blatt[hidden]{display:none!important}
+.kap-foto{background:#000}
+.kap-foto img,.teller-bild img{object-fit:contain;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
+.teller-bild.schwarz{background:#000;border-radius:4px;align-items:center}
+.fotoleiste{flex:none;margin-top:auto;height:calc(var(--bh) * .26);display:flex;justify-content:center;align-items:flex-start;gap:14px;padding-top:10px}
+.ft{display:flex;flex-direction:column;align-items:center;gap:5px;width:var(--t,110px);cursor:zoom-in;color:var(--ink)}
+.ft-bild{display:flex;align-items:center;justify-content:center;width:var(--t,110px);height:var(--t,110px);border-radius:4px;background:#000;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s}
+.ft-bild img{width:100%;height:100%;object-fit:contain;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
+.ft-cap{max-width:calc(100% + 12px);font-size:12px;font-weight:800;line-height:1.2;text-align:center;text-wrap:balance;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+@media (hover:hover){.ft:hover .ft-bild{transform:translateY(-2px);box-shadow:0 0 0 2px var(--lack2)}.ft:hover .ft-cap{color:var(--lack2)}}
+.ft:focus-visible{outline:2px solid var(--lack2);outline-offset:3px;border-radius:6px}
+@media (max-width:899px){.fotoleiste{height:calc(var(--bh) * .25);gap:12px}}
+.teller-bild.schwarz img{border-radius:0;background:#000}
 .buch-pfeil,.buch-kopf{display:none}
 @media (min-width:900px){
   .buch,.buch-kopf{width:min(1360px,100vw - 32px);margin-left:calc((100% - min(1360px,100vw - 32px)) / 2);padding:0 196px 0 70px}
@@ -1106,8 +1118,10 @@ html.saal-dunkel .hero-saal::after{content:"";position:absolute;inset:0;backgrou
   .spread .kap-foto{min-height:calc(var(--bh) * .36);display:flex;align-items:center;justify-content:center;background:transparent;cursor:default;border-radius:0}
   .spread .kap-foto.fuell{min-height:0}
   .spread .kap-foto figcaption{display:none}
-  .kf{position:relative;flex:none;display:block;width:var(--s,200px);height:var(--s,200px);border-radius:4px;overflow:hidden;background:#1a1012;cursor:zoom-in}
-  .spread .kap-foto .kf img{position:static;display:block;width:100%;height:100%;object-fit:cover}
+  .kf{position:relative;flex:none;display:flex;align-items:center;justify-content:center;width:100%;height:var(--fh,200px);border-radius:4px;overflow:hidden;background:#000;cursor:zoom-in}
+  .kf.unten{align-items:flex-start;padding-top:4px}
+  .spread .kap-foto .kf img{position:static;display:block;flex:none;width:var(--s,200px);height:var(--s,200px);object-fit:contain}
+  .kf.unten .kf-cap{left:50%;bottom:7px;transform:translateX(-50%)}
   .kf-cap{position:absolute;left:8px;bottom:8px;max-width:calc(100% - 16px);padding:3px 10px;border-radius:999px;background:rgba(246,240,229,.93);color:var(--ink);font-size:12.5px;font-weight:800;line-height:1.35;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
   .buch-stage.spread{perspective:4200px}
   .geist{position:absolute;inset:0;z-index:5;pointer-events:none;border-radius:5px;will-change:transform,opacity}
@@ -1202,7 +1216,46 @@ html:not(.b-alt) #besuch .besuch-grid .saal{display:none}
 .gb-wahl{flex-wrap:wrap;row-gap:6px}
 .gb-wahl>b{font-size:12px;letter-spacing:.04em}
 .gb-wahl>span+b{margin-left:4px}
-@media (max-width:420px){.gb-wahl{gap:6px;padding:5px 5px 5px 10px}.gb-wahl button{padding:4px 9px}}
+@media (max-width:599px){.gb-wahl{display:grid;grid-template-columns:auto auto;align-items:center;gap:5px 8px;border-radius:16px;padding:7px 7px 7px 12px}.gb-wahl>span+b{margin-left:0}.gb-wahl button{padding:4px 10px}}
+
+/* ===== 28.11 Besuch neu: Shoji zu · Kontakt verteilt · Tischchen ===== */
+html:not(.b-alt) #besuch .schild .vorn.zu{justify-content:center;align-items:flex-start;
+  --holz:#2a1518;--holz2:#3b2125;
+  background-color:var(--holz);
+  background-image:
+    linear-gradient(90deg,transparent calc(50% - 4px),var(--holz) calc(50% - 4px),var(--holz2) 50%,var(--holz) calc(50% + 4px),transparent calc(50% + 4px)),
+    linear-gradient(to top,var(--holz) 0,var(--holz2) 13%,var(--holz) 13.5%,transparent 13.5%),
+    linear-gradient(var(--holz) 0,var(--holz2) 5%,transparent 5%),
+    linear-gradient(90deg,var(--holz) 0 2px,transparent 2px),
+    linear-gradient(var(--holz) 0 2px,transparent 2px),
+    radial-gradient(75% 60% at 50% 40%,#8a6a62 0%,#715250 50%,#583b3e 100%);
+  background-size:100% 100%,100% 100%,100% 100%,calc(50% / 5) 100%,100% 46px,100% 100%;
+  background-position:0 0,0 0,0 0,0 0,0 9px,0 0;
+  background-repeat:no-repeat,no-repeat,no-repeat,repeat-x,repeat-y,no-repeat;
+  box-shadow:inset 0 0 0 8px var(--holz),inset 0 0 0 9px rgba(246,240,229,.07)}
+/* Lesbarkeit: Text unten auf dunklem Verlauf */
+html:not(.b-alt) #besuch .schild .vorn.zu::before{background:linear-gradient(to top,rgba(23,13,16,.9) 0%,rgba(23,13,16,.55) 32%,rgba(23,13,16,0) 62%)}
+html:not(.b-alt) #besuch .schild .vorn.zu .tafel{z-index:1}
+html:not(.b-alt) #besuch .schild .vorn.zu small,html:not(.b-alt) #besuch .schild .vorn.zu em{z-index:1;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+
+@media (min-width:900px){
+  html:not(.b-alt) #besuch .besuch-grid>.card:not(.wide){display:flex;flex-direction:column}
+  html:not(.b-alt) #besuch .schild-wrap{flex:1 1 auto;display:flex}
+  html:not(.b-alt) #besuch .schild{flex:1 1 auto}
+  html:not(.b-alt) #besuch .kontakt{flex:1 1 auto;align-content:space-evenly;gap:8px;margin-top:12px}
+  html:not(.b-alt) #besuch .kontakt a{padding:10px 12px;background:rgba(246,240,229,.045);box-shadow:inset 0 0 0 1px rgba(246,240,229,.07);transition:background-color .2s,transform .25s var(--ease)}
+  html:not(.b-alt) #besuch .kontakt a small{display:block}
+  html:not(.b-alt) #besuch .kontakt a svg{width:34px;height:34px;padding:7px;border-radius:50%;background:rgba(243,163,181,.12)}
+  html:not(.b-alt) #besuch .pay{margin-top:14px}
+}
+@media (min-width:900px) and (hover:hover){html:not(.b-alt) #besuch .kontakt a:hover{transform:translateX(3px)}}
+html:not(.b-alt) #besuch .card.wide{position:relative;isolation:isolate}
+html:not(.b-alt) #besuch .card.wide::after{content:"";position:absolute;z-index:-1;pointer-events:none;right:16px;top:14px;width:110px;height:80px;opacity:.8;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 146'%3E%3Cg fill='none' stroke='rgba(246,240,229,.17)' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cellipse cx='100' cy='78' rx='60' ry='11'/%3E%3Cpath d='M100 89v44M82 138h36M28 42v96M28 92h26M52 92v46M172 42v96M172 92h-26M148 92v46M93 67q-4-11 3-17h8q7 6 3 17zM100 50q-7-15-20-22M100 50q8-13 21-17M100 50v-16'/%3E%3C/g%3E%3Cg fill='rgba(243,163,181,.32)'%3E%3Ccircle cx='80' cy='28' r='4.5'/%3E%3Ccircle cx='121' cy='33' r='4.5'/%3E%3Ccircle cx='100' cy='33' r='4'/%3E%3Ccircle cx='89' cy='36' r='3'/%3E%3Ccircle cx='112' cy='38' r='3'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat}
+@media (min-width:1200px){
+  html:not(.b-alt) #besuch .card.wide h3,html:not(.b-alt) #besuch .card.wide p{order:0}
+  html:not(.b-alt) #besuch .card.wide::after{position:static;order:1;flex:1 1 auto;width:auto;height:auto;flex:1 1 0;min-height:52px;max-height:150px;margin:6px 0 10px;opacity:.9;background-position:center bottom}
+  html:not(.b-alt) #besuch .card.wide .actions{order:2;margin-top:0}
+}
 
 /* ===== 27.11 Vorschau Kopf heller / Textur ===== */
 .kopf-wahl{position:absolute;left:12px;bottom:12px;z-index:4;display:inline-flex;align-items:center;gap:2px;padding:3px 3px 3px 10px;border-radius:999px;background:rgba(23,13,16,.78);box-shadow:inset 0 0 0 1px rgba(246,240,229,.18);font-size:11.5px;color:rgba(246,240,229,.7)}
@@ -1715,7 +1768,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 /* ================= 27.11 Variante A: Karte als Menü-Buch ================= */
 (function(){ const buch=$("#buch"); if(!buch) return;
   const stage=$("#buchStage"), reiter=$("#reiter"), nr=$("#seitenNr"), prevB=$("#buchPrev"), nextB=$("#buchNext"), teller=$("#teller"), eVor=stage.querySelector(".ecke.vor"), eZur=stage.querySelector(".ecke.zur");
-  const GF={"Rainbow Salmon": "img/gf/rainbow-salmon.webp", "Rainbow Lachs": "img/gf/rainbow-lachs.webp", "Rainbow BBQ Salmon": "img/gf/rainbow-bbq-salmon.webp", "Rainbow Salmon Mango": "img/gf/rainbow-salmon-mango.webp", "Rainbow Tuna": "img/gf/rainbow-tuna.webp", "Salmon Nigiri": "img/gf/salmon-nigiri.webp", "Salmon Avocado": "img/gf/salmon-avocado.webp", "BBQ Salmon Nigiri": "img/gf/bbq-salmon-nigiri.webp", "Tuna Nigiri": "img/gf/tuna-nigiri.webp", "Tuna Avocado": "img/gf/tuna-avocado.webp", "Ebi Nigiri": "img/gf/ebi-nigiri.webp", "Ebi Avocado": "img/gf/ebi-avocado.webp", "Inari Nigiri": "img/gf/inari-nigiri.webp", "Avocado Nigiri": "img/gf/avocado-nigiri.webp", "Tamago": "img/gf/tamago.webp", "Crunchy Roll": "img/gf/crunchy-roll.webp", "Surimi Roll": "img/gf/surimi-roll.webp", "Mango Flowers Roll": "img/gf/mango-flowers-roll.webp", "Power Salmon Roll": "img/gf/power-salmon-roll.webp", "Tuna Mousse Roll": "img/gf/tuna-mousse-roll.webp", "Spicy Tuna Roll": "img/gf/spicy-tuna-roll.webp", "Peace Boy Roll": "img/gf/peace-boy-roll.webp", "Maki Avocado": "img/gf/maki-avocado.webp", "Maki Gurke": "img/gf/maki-gurke.webp", "Maki Sake": "img/gf/maki-sake.webp", "Maki Tekka": "img/gf/maki-tekka.webp", "Maki Sake Avocado": "img/gf/maki-sake-avocado.webp", "Maki Surimi": "img/gf/maki-surimi.webp", "Rindfleisch-Momo": "img/gf/rindfleisch-momo.webp", "Vegi-Momo": "img/gf/vegi-momo.webp", "777 Spicy Tuna": "img/gf/777-spicy-tuna.webp", "666 Sake Cucumber": "img/gf/666-sake-cucumber.webp", "555 Veggie": "img/gf/555-veggie.webp", "Salmon Sashimi": "img/gf/salmon-sashimi.webp", "Tuna Sashimi": "img/gf/tuna-sashimi.webp", "Mix Sashimi": "img/gf/mix-sashimi.webp", "Tuna Tatar": "img/gf/tuna-tatar.webp", "Lachs Tatar": "img/gf/lachs-tatar.webp", "Ikura": "img/gf/ikura.webp", "Tobiko": "img/gf/tobiko.webp", "Salmon Bowl": "img/gf/salmon-bowl.webp", "Tuna Bowl": "img/gf/tuna-bowl.webp", "Vegi Bowl": "img/gf/vegi-bowl.webp"};
+  const GF={"Rainbow Salmon": "img/gf/rainbow-salmon-x4.webp", "Rainbow Lachs": "img/gf/rainbow-lachs-x4.webp", "Rainbow BBQ Salmon": "img/gf/rainbow-bbq-salmon-x4.webp", "Rainbow Salmon Mango": "img/gf/rainbow-salmon-mango-x4.webp", "Rainbow Tuna": "img/gf/rainbow-tuna-x4.webp", "Salmon Nigiri": "img/gf/salmon-nigiri-x4.webp", "Salmon Avocado": "img/gf/salmon-avocado-x4.webp", "BBQ Salmon Nigiri": "img/gf/bbq-salmon-nigiri-x4.webp", "Tuna Nigiri": "img/gf/tuna-nigiri-x4.webp", "Tuna Avocado": "img/gf/tuna-avocado-x4.webp", "Ebi Nigiri": "img/gf/ebi-nigiri-x4.webp", "Ebi Avocado": "img/gf/ebi-avocado-x4.webp", "Inari Nigiri": "img/gf/inari-nigiri-x4.webp", "Avocado Nigiri": "img/gf/avocado-nigiri-x4.webp", "Tamago": "img/gf/tamago-x4.webp", "Crunchy Roll": "img/gf/crunchy-roll-x4.webp", "Surimi Roll": "img/gf/surimi-roll-x4.webp", "Mango Flowers Roll": "img/gf/mango-flowers-roll-x4.webp", "Power Salmon Roll": "img/gf/power-salmon-roll-x4.webp", "Tuna Mousse Roll": "img/gf/tuna-mousse-roll-x4.webp", "Spicy Tuna Roll": "img/gf/spicy-tuna-roll-x4.webp", "Peace Boy Roll": "img/gf/peace-boy-roll-x4.webp", "Maki Avocado": "img/gf/maki-avocado-x4.webp", "Maki Gurke": "img/gf/maki-gurke-x4.webp", "Maki Sake": "img/gf/maki-sake-x4.webp", "Maki Tekka": "img/gf/maki-tekka-x4.webp", "Maki Sake Avocado": "img/gf/maki-sake-avocado-x4.webp", "Maki Surimi": "img/gf/maki-surimi-x4.webp", "Rindfleisch-Momo": "img/gf/rindfleisch-momo-x4.webp", "Vegi-Momo": "img/gf/vegi-momo-x4.webp", "777 Spicy Tuna": "img/gf/777-spicy-tuna-x4.webp", "666 Sake Cucumber": "img/gf/666-sake-cucumber-x4.webp", "555 Veggie": "img/gf/555-veggie-x4.webp", "Salmon Sashimi": "img/gf/salmon-sashimi-x4.webp", "Tuna Sashimi": "img/gf/tuna-sashimi-x4.webp", "Mix Sashimi": "img/gf/mix-sashimi-x4.webp", "Tuna Tatar": "img/gf/tuna-tatar-x4.webp", "Lachs Tatar": "img/gf/lachs-tatar-x4.webp", "Ikura": "img/gf/ikura-x4.webp", "Tobiko": "img/gf/tobiko-x4.webp", "Salmon Bowl": "img/gf/salmon-bowl-x4.webp", "Tuna Bowl": "img/gf/tuna-bowl-x4.webp", "Vegi Bowl": "img/gf/vegi-bowl-x4.webp"};
   /* Computer: Buchhöhe einmal in px festlegen – springt nicht mit Kopfzeile, Info-Leisten oder kleinen Fensteränderungen */
   let bhW=0, bhH=0;
   function hoehe(){ if(matchMedia("(max-width:899px)").matches){ buch.style.removeProperty("--bh"); bhW=0; return; }
@@ -1732,11 +1785,10 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   const cap=(it,c)=>{ const P=preis(it[2]); return `<span class="qty" data-k="${esc("K|"+it[0]+"|"+it[2])}" data-name="${esc(it[0])}" data-v="${P.v}" data-ab="${P.ab?1:""}" data-cat="${esc(c.n)}" data-i="${(/momo/i.test(c.n)||/momo/i.test(it[0]))?"m":"s"}"><button type="button" class="mi" aria-label="Eins weniger">−</button><output aria-live="polite">1</output><button type="button" class="pl" aria-label="In den Korb">+</button></span>`; };
   const tag=it=>it[3]?`<span class="tag ${it[3]}">${TAGN[it[3]]}</span>`:"";
   const itemHTML=(it,c)=>{ const src=GF[it[0]]; return `<li class="bz${src?" hat-foto":""}" data-n="${esc(it[0])}" data-c="${c.id}"${src?' tabindex="0"':""}>${src?`<img class="bz-th" src="${src.replace(".webp","-s.webp")}" width="120" height="120" alt="" loading="lazy" decoding="async">`:""}<span class="bz-txt"><b>${esc(it[0])}</b>${tag(it)}${it[1]?`<small>${esc(it[1])}</small>`:""}</span><span class="bz-pq"><span class="bz-pr">${esc(it[2])}</span>${cap(it,c)}</span></li>`; };
-  function pageEl(){ const a=document.createElement("article"); a.className="seite"; a.dataset.cats=""; a.innerHTML='<div class="seite-in"></div><footer class="seite-nr"></footer>'; return a; }
+  function pageEl(){ const a=document.createElement("article"); a.className="seite"; a.dataset.cats=""; a.innerHTML='<div class="seite-in"><div class="fotoleiste"></div></div><footer class="seite-nr"></footer>'; return a; }
   function blockEl(c,first){ const b=document.createElement("section"); let h="";
-    if(first){ const fi=c.items.find(i=>GF[i[0]]); b.className="kapb"+(fi?" mit-foto":"");
-      if(fi) h+=`<figure class="kap-foto" data-n="${esc(fi[0])}" data-c="${c.id}"><img src="${GF[fi[0]]}" width="600" height="600" alt="${esc(fi[0])}" loading="lazy" decoding="async"></figure>`;
-      h+=`<header class="kap${fi?"":" ohne"}"><h3>${esc(c.n)}</h3><span>${c.items.length} ${c.items.length===1?"Sorte":"Sorten"} · ab ${fr(low(c))}${c.vegan?" · vegan nach Zutatenliste":""}</span></header>`; }
+    if(first){ b.className="kapb";
+      h+=`<header class="kap"><h3>${esc(c.n)}</h3><span>${c.items.length} ${c.items.length===1?"Sorte":"Sorten"} · ab ${fr(low(c))}${c.vegan?" · vegan nach Zutatenliste":""}</span></header>`; }
     else { b.className="kapb"; h+=`<header class="kap fort"><h3>${esc(c.n)}</h3><span>Fortsetzung</span></header>`; }
     b.innerHTML=h+'<ul class="bz-liste"></ul>'; return b; }
   function endPage(){ const a=document.createElement("article"); a.className="seite ende"; a.dataset.cats=""; a.innerHTML='<div class="seite-in"><p class="ende-t">Ende der Karte</p><button type="button" class="ende-anf">Zurück zum Anfang</button></div><footer class="seite-nr"></footer>'; return a; }
@@ -1752,24 +1804,26 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     let pg=pageEl(); mess.appendChild(pg);
     const over=()=>{ const inn=pg.firstElementChild; return inn.scrollHeight>inn.clientHeight+1; };
     const neuS=()=>{ pages.push(pg); pg=pageEl(); mess.appendChild(pg); };
-    const addCat=(c,first)=>{ const b=blockEl(c,first); pg.firstElementChild.appendChild(b); pg.dataset.cats=(pg.dataset.cats+" "+c.id).trim(); return b.querySelector("ul"); };
+    const addCat=(c,first)=>{ const b=blockEl(c,first); pg.firstElementChild.insertBefore(b,pg.querySelector(".fotoleiste")); pg.dataset.cats=(pg.dataset.cats+" "+c.id).trim(); return b.querySelector("ul"); };
     F.forEach(c=>{ /* neues Kapitel auf derselben Seite nur, wenn Kopf + 2 Gerichte noch Platz haben */
       let ul;
-      if(pg.firstElementChild.children.length){ ul=addCat(c,true); c.items.slice(0,2).forEach(it=>ul.insertAdjacentHTML("beforeend",itemHTML(it,c)));
+      if(pg.querySelector(".kapb")){ ul=addCat(c,true); c.items.slice(0,2).forEach(it=>ul.insertAdjacentHTML("beforeend",itemHTML(it,c)));
         const fit=!over(); ul.closest(".kapb").remove(); pg.dataset.cats=pg.dataset.cats.replace(new RegExp("\\s?"+c.id+"$"),""); if(!fit) neuS(); }
       start[c.id]=pages.length; ul=addCat(c,true);
       c.items.forEach(it=>{ ul.insertAdjacentHTML("beforeend",itemHTML(it,c)); const li=ul.lastElementChild;
-        if(over()&&ul.children.length>1){ li.remove(); neuS(); ul=addCat(c,false); ul.appendChild(li); } }); });
+        if(over()&&ul.children.length>1){ const fl=pg.querySelector(".fotoleiste"); if(fl&&!pg.querySelector(".bz.hat-foto")){ fl.remove(); if(!over()) return; }
+          li.remove(); neuS(); ul=addCat(c,false); ul.appendChild(li); } }); });
     pages.push(pg);
-    /* viel leerer Platz unten -> grosses Foto eines Gerichts von dieser Seite */
-    const banner=new Set([...mess.querySelectorAll(".kap-foto")].map(f=>f.dataset.n));
-    pages.forEach(pg=>{ const inn=pg.firstElementChild; if(inn.querySelector(".kapb.mit-foto")||!inn.lastElementChild) return;
-      const frei=inn.getBoundingClientRect().bottom-inn.lastElementChild.getBoundingClientRect().bottom; if(frei<inn.clientHeight*.24) return;
-      const li=[...inn.querySelectorAll(".bz.hat-foto")].reverse().find(x=>!banner.has(x.dataset.n)); if(!li) return; const n=li.dataset.n; banner.add(n);
-      inn.insertAdjacentHTML("beforeend",`<figure class="kap-foto fuell" data-n="${esc(n)}" data-c="${li.dataset.c}"><img src="${GF[n]}" width="600" height="600" alt="${esc(n)}" loading="lazy" decoding="async"><figcaption>${esc(n)}</figcaption></figure>`); });
+    /* 28.11: unten auf jeder Seite so viele Fotos der Gerichte dieser Seite, wie Platz haben (max. 3), ganz gezeigt, mit Namen */
+    pages.forEach(pg=>{ const st=pg.querySelector(".fotoleiste"); if(!st) return; const li=[...pg.querySelectorAll(".bz.hat-foto")]; if(!li.length){ st.remove(); return; }
+      const t=Math.floor(Math.min(st.clientHeight-44,200)), w=st.clientWidth, k=Math.max(1,Math.min(li.length,3,Math.floor((w+14)/(t+14))));
+      const wahl=k===1?[li[0]]:Array.from({length:k},(_,i)=>li[Math.round(i*(li.length-1)/(k-1))]);
+      st.style.setProperty("--t",t+"px");
+      st.innerHTML=wahl.map(x=>{ const n=x.dataset.n; return `<button type="button" class="ft" data-n="${esc(n)}" data-c="${x.dataset.c}" aria-label="Foto: ${esc(n)}"><span class="ft-bild"><img src="${GF[n]}" width="600" height="600" alt="" loading="lazy" decoding="async"></span><span class="ft-cap">${esc(n)}</span></button>`; }).join(""); });
     if(!single) mess.querySelectorAll(".kap-foto[data-n]").forEach(fig=>{ const n=fig.dataset.n, c=fig.dataset.c, sz=Math.floor(Math.min(fig.clientHeight,fig.clientWidth,600)); if(sz<40) return;
-      fig.style.setProperty("--s",sz+"px"); fig.removeAttribute("data-n");
-      fig.innerHTML=`<span class="kf" data-n="${esc(n)}" data-c="${c}"><img src="${GF[n]}" width="600" height="600" alt="${esc(n)}" loading="lazy" decoding="async"><span class="kf-cap">${esc(n)}</span></span>`; });
+      const w=fig.clientWidth, h=fig.clientHeight; let s=Math.floor(Math.min(600,h,w*.62)); const rand=(w-s)/2, capW=n.length*7.6+26, unten=capW>rand-12; if(unten) s=Math.floor(Math.min(s,h-36));
+      fig.style.setProperty("--s",s+"px"); fig.style.setProperty("--fh",h+"px"); fig.removeAttribute("data-n");
+      fig.innerHTML=`<span class="kf${unten?" unten":""}" data-n="${esc(n)}" data-c="${c}"><img src="${GF[n]}" width="600" height="600" alt="${esc(n)}" loading="lazy" decoding="async"><span class="kf-cap">${esc(n)}</span></span>`; });
     if(!single&&pages.length%2) pages.push(endPage());
     pages.forEach((p,i)=>p.querySelector(".seite-nr").textContent=i+1);
     mess.remove(); key=mode+"|"+stage.clientWidth+"|"+stage.clientHeight; }
@@ -1788,10 +1842,10 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let tOpen=false;
   function tellerZu(){ if(!tOpen) return; tOpen=false; stage.querySelectorAll(".bz.an").forEach(x=>x.classList.remove("an")); teller.classList.remove("auf"); setTimeout(()=>{ if(!tOpen){ teller.hidden=true; teller.innerHTML=""; } },reduce?0:230); }
   function tellerAuf(el){ const c=F.find(x=>x.id===el.dataset.c), name=el.dataset.n, it=c&&c.items.find(i=>i[0]===name), src=GF[name]; if(!it||!src) return;
-    stage.querySelectorAll(".bz.an").forEach(x=>x.classList.remove("an")); if(el.classList.contains("bz")) el.classList.add("an");
+    stage.querySelectorAll(".bz.an").forEach(x=>x.classList.remove("an")); const zl=el.classList.contains("bz")?el:(el.closest(".seite")||stage).querySelector('.bz[data-n="'+CSS.escape(name)+'"]'); if(zl) zl.classList.add("an"); teller.dataset.n=name;
     const rechts=mode==="spread"&&s1.contains(el); teller.className="teller "+(mode==="spread"?(rechts?"rechts als-r":"links als-l"):"");
     teller.innerHTML=`<button type="button" class="teller-zu" aria-label="Schliessen">×</button><div class="teller-bild"><img src="${src}" width="600" height="600" alt="${esc(name)}" decoding="async"></div><div class="teller-txt"><h4>${esc(name)}</h4>${tag(it)}${it[1]?`<p>${esc(it[1])}</p>`:""}<div class="teller-fuss"><b class="teller-pr">${esc(it[2])}</b>${cap(it,c)}</div></div>`;
-    sync(teller); teller.hidden=false; const box=teller.querySelector(".teller-bild"), im=box.firstElementChild, sz=Math.floor(Math.min(box.clientWidth,box.clientHeight,600)); im.style.width=im.style.height=sz+"px"; box.style.flex="none";
+    sync(teller); teller.hidden=false; const box=teller.querySelector(".teller-bild"), im=box.firstElementChild, sz=Math.floor(Math.min(box.clientWidth,box.clientHeight,600)); im.style.width=im.style.height=sz+"px"; box.style.flex="none"; box.style.height=sz+"px"; box.classList.add("schwarz");
     tOpen=true; requestAnimationFrame(()=>requestAnimationFrame(()=>{ if(tOpen) teller.classList.add("auf"); })); }
   /* ---- Blättern ---- */
   function go(t,anim){ const n=pages.length; t=Math.max(0,Math.min(t,n-1)); if(mode==="spread") t-=t%2; fertig(); if(t===cur) return; tellerZu();
@@ -1830,7 +1884,10 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     vorn.insertAdjacentHTML("beforeend",'<i class="schatten"></i>'); hinten.insertAdjacentHTML("beforeend",'<i class="schatten"></i>'); sync(vorn); sync(hinten);
     leaf.append(vorn,hinten); stage.appendChild(leaf); if(fwd) put(s2,t+1); else put(s1,t); cur=t; nav();
     const D=760, E="cubic-bezier(.42,0,.28,1)";
+    /* Vorder-/Rückseite genau bei 90° tauschen (gleiche Kurve wie die Drehung) – WebKit blendet die Rückseite sonst nicht zuverlässig aus */
     ende([leaf.animate([{transform:"rotateY(0deg)"},{transform:`rotateY(${fwd?-180:180}deg)`}],{duration:D,easing:E,fill:"forwards"}),
+      vorn.animate([{opacity:1},{opacity:1,offset:.5},{opacity:0,offset:.5},{opacity:0}],{duration:D,easing:E,fill:"forwards"}),
+      hinten.animate([{opacity:0},{opacity:0,offset:.5},{opacity:1,offset:.5},{opacity:1}],{duration:D,easing:E,fill:"forwards"}),
       vorn.lastElementChild.animate([{opacity:0},{opacity:.6}],{duration:D/2,easing:"ease-in",fill:"forwards"}),
       hinten.lastElementChild.animate([{opacity:.6},{opacity:0}],{duration:D/2,delay:D/2,easing:"ease-out",fill:"both"})],
       ()=>{ if(fwd) put(s1,t); else put(s2,t+1); leaf.remove(); }); }
@@ -1876,8 +1933,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ec=e.target.closest(".ecke"); if(ec){ go(cur+(ec.classList.contains("vor")?step():-step())); return; }
     if(e.target.closest(".ende-anf")){ go(0); return; }
     if(e.target.closest(".teller")){ if(e.target.closest(".teller-zu")) tellerZu(); return; }
-    const fig=e.target.closest(".kap-foto .kf[data-n],.kap-foto[data-n]"); if(fig){ tellerAuf(fig); return; }
-    if(e.target.closest(".kap-foto")) { tellerZu(); return; }
+    const fig=e.target.closest(".ft[data-n]"); if(fig){ if(tOpen&&teller.dataset.n===fig.dataset.n) tellerZu(); else tellerAuf(fig); return; }
     const li=e.target.closest(".bz"); if(!li){ tellerZu(); return; }
     if(li.classList.contains("hat-foto")){ if(li.classList.contains("an")&&tOpen) tellerZu(); else tellerAuf(li); }
     else { const on=li.classList.contains("an"); tellerZu(); stage.querySelectorAll(".bz.an").forEach(x=>x.classList.remove("an")); if(!on) li.classList.add("an"); } });
@@ -2137,6 +2193,11 @@ if(lang==="en"){ if(document.readyState==="loading") document.addEventListener("
   addEventListener("scroll",()=>{ if(!tick){ tick=true; requestAnimationFrame(upd); } },{passive:true});
   hdr.addEventListener("focusin",()=>set(false));
 })();</script>
+<script>/* 28.11 Baender halten die Seite nicht */
+addEventListener("wheel",e=>{ if(e.ctrlKey||e.defaultPrevented) return; const t=e.target.closest&&e.target.closest(".galerie,.gn-spur"); if(!t) return;
+  const dx=Math.abs(e.deltaX), dy=Math.abs(e.deltaY); if(dy<=dx||dy===0) return;
+  e.preventDefault(); const k=e.deltaMode===1?16:(e.deltaMode===2?innerHeight:1); scrollBy(0,e.deltaY*k); if(dx>0) t.scrollLeft+=e.deltaX*k; },{passive:false});
+</script>
 <div class="vwahl gb-wahl" id="gbWahl" role="group" aria-label="Vorschau: Varianten wählen">
   <b>Gäste</b><span><button type="button" data-k="g" data-v="alt" aria-pressed="false">alt</button><button type="button" data-k="g" data-v="neu" aria-pressed="true">neu</button></span>
   <b>Besuch</b><span><button type="button" data-k="b" data-v="alt" aria-pressed="false">alt</button><button type="button" data-k="b" data-v="neu" aria-pressed="true">neu</button></span>
