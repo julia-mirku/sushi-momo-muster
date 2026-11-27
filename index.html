@@ -1774,7 +1774,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
 (function(){ const st=$("#stapel"), info=$("#boxinfo");
   const pcs=b=>b.n.reduce((s,x)=>s+parseInt(x),0); const maxP=Math.max(...BOXEN.map(b=>b.p)); const byP=[...BOXEN].sort((a,c)=>a.p-c.p); const rk=b=>byP.indexOf(b);
   st.innerHTML=BOXEN.map((b,i)=>`<button class="kiste" aria-pressed="false" data-k="${b.k}" style="--h:${(42+58*(.5*b.p/maxP+.5*rk(b)/(BOXEN.length-1))).toFixed(1)};--i:${i}"><b>${b.k}</b><span>${b.p}.–</span></button>`).join("");
-  const SETFOTO={A:"set-A2",B:"set-B2",C:"set-C2",D:"set-D2",E:"set-E2",F:"set-F2"}; /* img/set-X-700.webp + -1600.webp */
+  const SETFOTO={A:"set-A3",B:"set-B3",C:"set-C3",D:"set-D3",E:"set-E3",F:"set-F3"}; /* img/set-X-700.webp + -1600.webp */
   const bild=$("#boxbild"), platz=$("#boxplatz"), fig=$("#boxfoto");
   function foto(k,b){ const f=SETFOTO[k];
     if(f){ bild.src=`img/${f}-700.webp`; bild.srcset=`img/${f}-700.webp 700w, img/${f}-1600.webp 1600w`; bild.sizes="(max-width:900px) 100vw, 480px"; bild.alt=`Sushi Box ${k}: ${b.n.join(", ")}`; bild.hidden=false; platz.hidden=true; }
