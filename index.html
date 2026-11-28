@@ -1287,6 +1287,11 @@ html:not(.t-alt) .tw-logo2{display:block;order:2;height:26px;width:auto;border-r
   html:not(.t-alt) .tw-logo2{height:22px}
 }
 
+/* ===== 28.11 perf_patch ===== */
+#momoScrollSchutz{position:fixed;inset:0;z-index:2147483000;background:transparent}
+#momoScrollSchutz[hidden]{display:none}
+.hdr.solid{-webkit-backdrop-filter:none;backdrop-filter:none}
+
 /* ===== Vorschau Kopf: heller / Textur / Asanoha / Kikko / Sudare ===== */
 .kopf-wahl{position:absolute;left:12px;bottom:12px;z-index:4;display:inline-flex;flex-wrap:wrap;align-items:center;gap:2px;padding:3px 3px 3px 10px;border-radius:999px;background:rgba(23,13,16,.78);box-shadow:inset 0 0 0 1px rgba(246,240,229,.18);font-size:11.5px;color:rgba(246,240,229,.7);max-width:calc(100% - 24px)}
 @media (max-width:599px){.kopf-wahl{border-radius:16px}}
@@ -1712,7 +1717,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
   let p=0,playing=false,done=false,t0=0,raf=0,shown=0;
   const DUR=1300;
   const tog=document.getElementById("twtog"), tb=tog?[...tog.children]:[], rotEl=document.getElementById("rot"), sorte=document.documentElement.getAttribute("data-teller")==="3";
-  const set=v=>{ hero.style.setProperty("--p",v.toFixed(4)); if(window.__tellerFrame) __tellerFrame(v);
+  const pTr=hero.querySelector(".plate")||hero; const set=v=>{ pTr.style.setProperty("--p",v.toFixed(4)); if(window.__tellerFrame) __tellerFrame(v);
     hero.classList.toggle("lauf",v>0.0005&&v<0.9995); hero.classList.toggle("momo-ende",v>=0.9995);
     if(tb.length){ const m=v>.5; tb[0].setAttribute("aria-pressed",!m); tb[1].setAttribute("aria-pressed",m); }
     const i=v<.36?0:v<.72?1:2; if(i!==shown){ ends[shown].classList.remove("on"); ends[i].classList.add("on"); shown=i; } };
@@ -1842,7 +1847,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
       const t=Math.floor(Math.min(st.clientHeight-44,200)), w=st.clientWidth, k=Math.max(1,Math.min(li.length,3,Math.floor((w+14)/(t+14))));
       const wahl=k===1?[li[0]]:Array.from({length:k},(_,i)=>li[Math.round(i*(li.length-1)/(k-1))]);
       st.style.setProperty("--t",t+"px");
-      st.innerHTML=wahl.map(x=>{ const n=x.dataset.n; return `<button type="button" class="bft" data-n="${esc(n)}" data-c="${x.dataset.c}" aria-label="Foto: ${esc(n)}"><span class="ft-bild"><img src="${GF[n]}" width="600" height="600" alt="" loading="lazy" decoding="async"></span><span class="ft-cap">${esc(n)}</span></button>`; }).join(""); });
+      st.innerHTML=wahl.map(x=>{ const n=x.dataset.n; return `<button type="button" class="bft" data-n="${esc(n)}" data-c="${x.dataset.c}" aria-label="Foto: ${esc(n)}"><span class="ft-bild"><img src="${GF[n].replace("-x4.webp","-x4-m.webp")}" srcset="${GF[n].replace("-x4.webp","-x4-m.webp")} 360w, ${GF[n]} 600w" sizes="${t}px" width="600" height="600" alt="" loading="lazy" decoding="async"></span><span class="ft-cap">${esc(n)}</span></button>`; }).join(""); });
     if(!single) mess.querySelectorAll(".kap-foto[data-n]").forEach(fig=>{ const n=fig.dataset.n, c=fig.dataset.c, sz=Math.floor(Math.min(fig.clientHeight,fig.clientWidth,600)); if(sz<40) return;
       const w=fig.clientWidth, h=fig.clientHeight; let s=Math.floor(Math.min(600,h,w*.62)); const rand=(w-s)/2, capW=n.length*7.6+26, unten=capW>rand-12; if(unten) s=Math.floor(Math.min(s,h-36));
       fig.style.setProperty("--s",s+"px"); fig.style.setProperty("--fh",h+"px"); fig.removeAttribute("data-n");
@@ -2276,6 +2281,13 @@ upd();
   set(v);
   w&&w.addEventListener("click",e=>{ const b=e.target.closest('button[data-k="t"]'); if(!b) return; e.stopImmediatePropagation(); e.stopPropagation(); set(b.dataset.v); },true);
 })();</script>
+<script>/* 28.11 perf_patch: beim Scrollen mit der Maus keine Hover-Neuzeichnungen */
+/* eine durchsichtige Ebene über allem, nur während des Scrollens – kein Umschalten von Klassen am ganzen Dokument */
+(function(){ if(!matchMedia("(hover:hover) and (pointer:fine)").matches) return; const d=document.createElement("div"); d.id="momoScrollSchutz"; d.hidden=true; d.setAttribute("aria-hidden","true"); document.body.appendChild(d);
+  let t=0, ruhe=0; const weg=()=>{ d.hidden=true; }; const frei=()=>{ weg(); ruhe=performance.now()+450; };
+  addEventListener("scroll",()=>{ if(performance.now()<ruhe) return; if(d.hidden) d.hidden=false; clearTimeout(t); t=setTimeout(weg,140); },{passive:true});
+  d.addEventListener("mousedown",weg); d.addEventListener("mousemove",frei,{passive:true});
+  d.addEventListener("wheel",e=>{ if(Math.abs(e.deltaX)>2*Math.abs(e.deltaY)) frei(); },{passive:true}); })();</script>
 <script>/* Vorschau Kopf */
 (function(){ const H=document.documentElement, w=document.getElementById("kopfWahl"); if(!w) return; const V=["hell","textur","asanoha","kikko","sudare"]; let v="textur"; try{ const x=localStorage.getItem("momo-kopf2"); if(V.includes(x)) v=x; }catch(e){}
   const set=x=>{ v=x; V.forEach(k=>H.classList.toggle("kopf-"+k,v===k)); w.querySelectorAll("button[data-h]").forEach(b=>b.setAttribute("aria-pressed",b.dataset.h===v?"true":"false")); try{localStorage.setItem("momo-kopf2",v)}catch(e){} };
