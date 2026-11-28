@@ -1107,12 +1107,12 @@ html .hdr,html.bar-anim .hdr{transition:top .45s var(--ease),transform .4s cubic
 .kap-foto img,.teller-bild img{object-fit:contain;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
 .teller-bild.schwarz{background:#000;border-radius:4px;align-items:center}
 .fotoleiste{flex:none;margin-top:auto;height:calc(var(--bh) * .26);display:flex;justify-content:center;align-items:flex-start;gap:14px;padding-top:10px}
-.ft{display:flex;flex-direction:column;align-items:center;gap:5px;width:var(--t,110px);cursor:zoom-in;color:var(--ink)}
+.bft{display:flex;flex-direction:column;align-items:center;gap:5px;width:var(--t,110px);cursor:zoom-in;color:var(--ink)}
 .ft-bild{display:flex;align-items:center;justify-content:center;width:var(--t,110px);height:var(--t,110px);border-radius:4px;background:#000;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s}
 .ft-bild img{width:100%;height:100%;object-fit:contain;-webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent)}
 .ft-cap{max-width:calc(100% + 12px);font-size:12px;font-weight:800;line-height:1.2;text-align:center;text-wrap:balance;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
-@media (hover:hover){.ft:hover .ft-bild{transform:translateY(-2px);box-shadow:0 0 0 2px var(--lack2)}.ft:hover .ft-cap{color:var(--lack2)}}
-.ft:focus-visible{outline:2px solid var(--lack2);outline-offset:3px;border-radius:6px}
+@media (hover:hover){.bft:hover .ft-bild{transform:translateY(-2px);box-shadow:0 0 0 2px var(--lack2)}.bft:hover .ft-cap{color:var(--lack2)}}
+.bft:focus-visible{outline:2px solid var(--lack2);outline-offset:3px;border-radius:6px}
 @media (max-width:899px){.fotoleiste{height:calc(var(--bh) * .25);gap:12px}}
 .teller-bild.schwarz img{border-radius:0;background:#000}
 .buch-pfeil,.buch-kopf{display:none}
@@ -1842,7 +1842,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
       const t=Math.floor(Math.min(st.clientHeight-44,200)), w=st.clientWidth, k=Math.max(1,Math.min(li.length,3,Math.floor((w+14)/(t+14))));
       const wahl=k===1?[li[0]]:Array.from({length:k},(_,i)=>li[Math.round(i*(li.length-1)/(k-1))]);
       st.style.setProperty("--t",t+"px");
-      st.innerHTML=wahl.map(x=>{ const n=x.dataset.n; return `<button type="button" class="ft" data-n="${esc(n)}" data-c="${x.dataset.c}" aria-label="Foto: ${esc(n)}"><span class="ft-bild"><img src="${GF[n]}" width="600" height="600" alt="" loading="lazy" decoding="async"></span><span class="ft-cap">${esc(n)}</span></button>`; }).join(""); });
+      st.innerHTML=wahl.map(x=>{ const n=x.dataset.n; return `<button type="button" class="bft" data-n="${esc(n)}" data-c="${x.dataset.c}" aria-label="Foto: ${esc(n)}"><span class="ft-bild"><img src="${GF[n]}" width="600" height="600" alt="" loading="lazy" decoding="async"></span><span class="ft-cap">${esc(n)}</span></button>`; }).join(""); });
     if(!single) mess.querySelectorAll(".kap-foto[data-n]").forEach(fig=>{ const n=fig.dataset.n, c=fig.dataset.c, sz=Math.floor(Math.min(fig.clientHeight,fig.clientWidth,600)); if(sz<40) return;
       const w=fig.clientWidth, h=fig.clientHeight; let s=Math.floor(Math.min(600,h,w*.62)); const rand=(w-s)/2, capW=n.length*7.6+26, unten=capW>rand-12; if(unten) s=Math.floor(Math.min(s,h-36));
       fig.style.setProperty("--s",s+"px"); fig.style.setProperty("--fh",h+"px"); fig.removeAttribute("data-n");
@@ -1962,7 +1962,7 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const ec=e.target.closest(".ecke,.rand"); if(ec){ go(cur+(ec.classList.contains("vor")?step():-step())); return; }
     if(e.target.closest(".ende-anf")){ go(0); return; }
     if(e.target.closest(".teller")){ if(e.target.closest(".teller-zu")) tellerZu(); return; }
-    const fig=e.target.closest(".ft[data-n]"); if(fig){ if(tOpen&&teller.dataset.n===fig.dataset.n) tellerZu(); else tellerAuf(fig); return; }
+    const fig=e.target.closest(".bft[data-n]"); if(fig){ if(tOpen&&teller.dataset.n===fig.dataset.n) tellerZu(); else tellerAuf(fig); return; }
     const li=e.target.closest(".bz"); if(!li){ tellerZu(); return; }
     if(li.classList.contains("hat-foto")){ if(li.classList.contains("an")&&tOpen) tellerZu(); else tellerAuf(li); }
     else { const on=li.classList.contains("an"); tellerZu(); stage.querySelectorAll(".bz.an").forEach(x=>x.classList.remove("an")); if(!on) li.classList.add("an"); } });
