@@ -1210,17 +1210,16 @@ html:not(.t-alt) .tw-logo2{display:block;order:2;height:26px;width:auto;border-r
 /* ===== 27.11 Menü-Buch, Computer ===== */
 .blatt[hidden]{display:none!important}
 .curl{position:absolute;inset:0;z-index:5;pointer-events:none}
-.c-front,.c-flap{position:absolute;top:0;overflow:hidden;background:var(--rice)}
-.c-flap{left:0;transform-origin:0 0}
+.c-halb{position:absolute;left:0;top:0;overflow:hidden;transform-origin:0 0;will-change:transform}
+.c-front,.c-flap,.c-flapsch{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform,opacity}
+.c-front,.c-flap{overflow:hidden;background:var(--rice)}
+.c-flapsch{box-shadow:0 0 22px 2px rgba(30,10,6,.34)}
 .c-flap.leer{background:linear-gradient(to right,#efe6d6,#f6efe3 40%,#ece2d0)}
-.single .c-front,.single .c-flap{border-radius:6px}
-.c-flapw{position:absolute;inset:0;will-change:filter}
-.c-zone{position:absolute;inset:0;overflow:hidden}
-.c-zone i{position:absolute;left:0;top:0;transform-origin:0 0}
-.c-unter i{background:linear-gradient(to top,rgba(30,10,6,.34),rgba(30,10,6,.10) 40%,rgba(30,10,6,0))}
-.c-flach i{background:linear-gradient(to bottom,rgba(30,10,6,.16),rgba(30,10,6,0))}
-.c-glanz i{background:linear-gradient(to bottom,rgba(30,10,6,.24) 0,rgba(255,251,242,.5) 13%,rgba(255,251,242,.12) 38%,rgba(30,10,6,.05) 72%,rgba(30,10,6,.15) 100%)}
-.curl.ruhe .c-flapw,.curl.ruhe .c-zone{visibility:hidden}
+.single .c-front,.single .c-flap,.single .c-flapsch{border-radius:6px}
+.c-flach{position:absolute;left:0;top:0;width:100%;height:46px;background:linear-gradient(to bottom,rgba(30,10,6,.16),rgba(30,10,6,0));will-change:opacity}
+.c-glanz{position:absolute;left:0;top:0;height:100px;z-index:6;transform-origin:0 0;will-change:transform,opacity;background:linear-gradient(to bottom,rgba(30,10,6,.24) 0,rgba(255,251,242,.5) 13%,rgba(255,251,242,.12) 38%,rgba(30,10,6,.05) 72%,rgba(30,10,6,.15) 100%)}
+.c-unterw{position:absolute;top:0;overflow:hidden}
+.c-unter{position:absolute;left:0;top:0;height:100px;transform-origin:0 0;will-change:transform,opacity;background:linear-gradient(to bottom,rgba(30,10,6,.34),rgba(30,10,6,.10) 40%,rgba(30,10,6,0))}
 .rand{display:none}
 @media (min-width:900px){
   .spread .rand{display:block;position:absolute;top:0;bottom:48px;width:26px;z-index:4;cursor:pointer;transition:background-color .2s}
@@ -1877,37 +1876,36 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     wechsel(t); }
   /* Seitenwechsel «Blatt» (28.11): das Papier biegt sich wie in einem Magazin. Die untere Aussenecke wandert im flachen Bogen
      über den Buchrücken, die Faltlinie ist die Mittelsenkrechte zwischen Ecke-Start und Ecke-jetzt. Der flache Teil des Blatts
-     wird an der Falte abgeschnitten (darunter erscheint die neue Seite), die umgeschlagene Klappe zeigt die Rückseite – richtig
-     herum, nicht gespiegelt –, mit Glanz an der Biegung, Schatten unter der Klappe und Schatten auf der Nachbarseite.
-     Kein Zoom, nichts kippt, die Buchgrösse bleibt; am Handy folgt die Biegung dem Finger. */
+     endet an der Falte (darunter erscheint die neue Seite), die umgeschlagene Klappe zeigt die Rückseite – richtig herum –,
+     mit Glanz an der Biegung, Schatten unter der Klappe und Schatten auf der Nachbarseite. Kein Zoom, nichts kippt.
+     Leicht gebaut: pro Bild ändern sich nur transform und opacity. Die Falte schneidet ein gedrehter Behälter (overflow:hidden),
+     kein clip-path, kein filter; die Seiten selbst werden verschoben (keine Kopien) und nur einmal gemalt. */
   function kurve(fwd,frontNode,backNode){
     const sp=mode==="spread", SW=stage.clientWidth, H=stage.clientHeight, W=sp?SW/2:SW, sx=sp?W:0;
-    const px0=fwd?sx:sx-W, landL=fwd?sx-W:sx, k=2*sx-landL, C=[fwd?sx+W:sx-W,H], sg=fwd?1:-1, lift=H*.09;
+    const px0=fwd?sx:sx-W, landL=fwd?sx-W:sx, k=2*sx-landL, C=[fwd?sx+W:sx-W,H], sg=fwd?1:-1, lift=H*.09, Big=Math.ceil(Math.hypot(SW,H))+24; /* reicht für jede Falte im Buch, Ebene bleibt klein */
     const L=document.createElement("div"); L.className="curl"+(sp?"":" einzeln");
-    L.innerHTML='<div class="c-front"></div><div class="c-zone c-unter"><i></i></div><div class="c-zone c-flach"><i></i></div><div class="c-flapw"><div class="c-flap"></div></div><div class="c-zone c-glanz"><i></i></div>';
-    const fr=L.children[0], un=L.children[1], fl=L.children[2], fw=L.children[3], fp=fw.firstElementChild, gl=L.children[4];
-    fr.style.cssText=`left:${px0}px;width:${W}px;height:${H}px`; if(frontNode) fr.appendChild(frontNode);
-    fp.style.cssText=`width:${W}px;height:${H}px`; if(backNode) fp.appendChild(backNode); else fp.classList.add("leer");
+    L.innerHTML='<div class="c-unterw"><i class="c-unter"></i></div><div class="c-halb"><div class="c-front"></div><i class="c-flach"></i><div class="c-flapsch"></div><div class="c-flap"><i class="c-glanz"></i></div></div>';
+    const uw=L.children[0], un=uw.firstElementChild, hb=L.children[1], fr=hb.children[0], fl=hb.children[1], fs=hb.children[2], fp=hb.children[3], gl=fp.firstElementChild;
+    uw.style.cssText=`left:${px0}px;width:${W}px;height:${H}px`; un.style.width=gl.style.width=(2*Big)+"px";
+    hb.style.cssText=`width:${2*Big}px;height:${Big}px`;
+    fr.style.cssText=fp.style.cssText=fs.style.cssText=`width:${W}px;height:${H}px`;
+    if(frontNode) fr.appendChild(frontNode);
+    if(backNode) fp.insertBefore(backNode,gl); else fp.classList.add("leer");
     if(sp){ fr.classList.add(fwd?"als-r":"als-l"); fp.classList.add(fwd?"als-l":"als-r"); }
-    stage.appendChild(L); sync(L);
-    const rect=[[px0,0],[px0+W,0],[px0+W,H],[px0,H]];
-    const cut=(poly,f)=>{ const out=[]; for(let i=0;i<poly.length;i++){ const a=poly[i], b=poly[(i+1)%poly.length], fa=f(a), fb=f(b); if(fa<=0) out.push(a); if((fa<=0)!==(fb<=0)){ const q=fa/(fa-fb); out.push([a[0]+(b[0]-a[0])*q,a[1]+(b[1]-a[1])*q]); } } return out; };
-    const P=(pts,ox)=>pts.length>2?"polygon("+pts.map(p=>(p[0]-ox).toFixed(1)+"px "+p[1].toFixed(1)+"px").join(",")+")":"polygon(0 0,0 0,0 0)";
-    const Lg=3*Math.max(W,H);
-    const box=(z,y0,G,Fx,Fy,th)=>{ const i=z.firstElementChild; i.style.width=Lg+"px"; i.style.height=Math.max(1,G).toFixed(1)+"px"; i.style.transform=`translate(${Fx.toFixed(1)}px,${Fy.toFixed(1)}px) rotate(${th.toFixed(4)}rad) translate(${(-Lg/2).toFixed(1)}px,${y0.toFixed(1)}px)`; };
+    stage.appendChild(L);
+    const r1=v=>Math.round(v*10)/10, r4=v=>Math.round(v*1e5)/1e5;
     function set(e){ e=Math.max(0,Math.min(1,e));
-      const Px=C[0]-sg*2*W*e, Py=H-lift*Math.sin(Math.PI*e), dx=C[0]-Px, dy=C[1]-Py, len=Math.hypot(dx,dy);
-      if(len<.5){ fr.style.clipPath="none"; L.classList.add("ruhe"); return; } L.classList.remove("ruhe");
-      const nx=dx/len, ny=dy/len, Fx=(C[0]+Px)/2, Fy=(C[1]+Py)/2, f=p=>(p[0]-Fx)*nx+(p[1]-Fy)*ny;
-      const flat=cut(rect,f), fold=cut(rect,p=>-f(p)), R=p=>{ const s=2*f(p); return [p[0]-s*nx,p[1]-s*ny]; };
-      fr.style.clipPath=P(flat,px0);
-      const o=R([k,0]); fp.style.transform=`matrix(${(2*nx*nx-1).toFixed(5)},${(2*nx*ny).toFixed(5)},${(-2*nx*ny).toFixed(5)},${(1-2*ny*ny).toFixed(5)},${o[0].toFixed(1)},${o[1].toFixed(1)})`;
-      fp.style.clipPath=P(fold.map(p=>[k-p[0],p[1]]),0);
-      gl.style.clipPath=P(fold.map(R),0); un.style.clipPath=P(fold,0); fl.style.clipPath=P(flat,0);
-      const th=Math.atan2(nx,-ny), s=Math.sin(Math.PI*e), gu=Math.min(len,W)*.5;
-      box(fl,0,46,Fx,Fy,th); box(gl,0,len/2,Fx,Fy,th); box(un,-gu,gu,Fx,Fy,th);
-      un.style.opacity=(.35+.65*s).toFixed(3); fl.style.opacity=s.toFixed(3); gl.style.opacity=(.55+.45*s).toFixed(3);
-      fw.style.filter=`drop-shadow(${(-sg*3*s).toFixed(1)}px ${(2*s).toFixed(1)}px ${(4+10*s).toFixed(1)}px rgba(30,10,6,${(.12+.25*s).toFixed(3)}))`; }
+      const Px=C[0]-sg*2*W*e, Py=H-lift*Math.sin(Math.PI*e), dx=C[0]-Px, dy=C[1]-Py; let len=Math.hypot(dx,dy), nx, ny, Fx, Fy;
+      if(len<.5){ len=0; nx=sg; ny=0; Fx=C[0]; Fy=C[1]; } else { nx=dx/len; ny=dy/len; Fx=(C[0]+Px)/2; Fy=(C[1]+Py)/2; }
+      const deg=r4(Math.atan2(nx,-ny)*180/Math.PI), s=Math.sin(Math.PI*e);
+      const inv=`translate(${Big}px,0px) rotate(${-deg}deg) translate(${r1(-Fx)}px,${r1(-Fy)}px)`;
+      hb.style.transform=`translate(${r1(Fx)}px,${r1(Fy)}px) rotate(${deg}deg) translate(${-Big}px,0px)`;
+      fr.style.transform=inv+` translate(${px0}px,0px)`;
+      const q=2*((k-Fx)*nx+(0-Fy)*ny), ox=k-q*nx, oy=-q*ny;
+      fp.style.transform=fs.style.transform=inv+` matrix(${r4(2*nx*nx-1)},${r4(2*nx*ny)},${r4(-2*nx*ny)},${r4(1-2*ny*ny)},${r1(ox)},${r1(oy)})`;
+      gl.style.transform=`translate(${r1(k-Fx)}px,${r1(Fy)}px) rotate(${r4(Math.atan2(nx,ny)*180/Math.PI)}deg) translate(${-Big}px,0px) scale(1,${r4(Math.max(.01,len/200))})`;
+      un.style.transform=`translate(${r1(Fx-px0)}px,${r1(Fy)}px) rotate(${deg}deg) translate(${-Big}px,0px) scale(1,${r4(-W*.45/100)})`;
+      un.style.opacity=len?r4(.35+.65*s):0; fl.style.opacity=r4(s); gl.style.opacity=len?r4(.55+.45*s):0; fs.style.opacity=len?r4(.35+.65*s):0; }
     return {set,L};
   }
   const kEase=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
@@ -1916,19 +1914,17 @@ const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
     const step=()=>{ const q=Math.min(1,(performance.now()-t0)/D); k.set(e0+(e1-e0)*kEase(q)); if(q<1) raf=requestAnimationFrame(step); else fertig(); };
     k.set(e0); raf=requestAnimationFrame(step); }
   function wechsel(t){ const fwd=t>cur, old=cur;
-    if(mode==="spread"){ const fp=pages[fwd?old+1:old], bp=pages[fwd?t:t+1];
-      const k=kurve(fwd,fp?fp.cloneNode(true):null,bp?bp.cloneNode(true):null); if(fwd) put(s2,t+1); else put(s1,t); cur=t; nav();
+    if(mode==="spread"){ const k=kurve(fwd,pages[fwd?old+1:old]||null,pages[fwd?t:t+1]||null); if(fwd) put(s2,t+1); else put(s1,t); cur=t; nav();
       lauf(k,0,1,720,()=>{ if(fwd) put(s1,t); else put(s2,t+1); k.L.remove(); }); return; }
-    if(fwd){ const k=kurve(true,pages[old].cloneNode(true),null); put(s1,t); cur=t; nav(); lauf(k,0,1,680,()=>k.L.remove()); }
-    else { const k=kurve(true,pages[t].cloneNode(true),null); k.set(1); cur=t; nav(); lauf(k,1,0,680,()=>{ put(s1,t); k.L.remove(); }); } }
-  /* Handy: Biegung folgt dem Finger */
+    if(fwd){ const k=kurve(true,pages[old],null); put(s1,t); cur=t; nav(); lauf(k,0,1,680,()=>k.L.remove()); }
+    else { const k=kurve(true,pages[t],null); k.set(1); cur=t; nav(); lauf(k,1,0,680,()=>{ put(s1,t); k.L.remove(); }); } }
+  /* Handy: Biegung folgt dem Finger. Die Seite unter dem Finger bleibt im DOM (sie wandert in die Biegung), sonst verliert iOS die Geste. */
   function zieheStart(t){ const fwd=t>cur, W=stage.clientWidth, e0=fwd?0:1; let e=e0, k;
-    /* die Seite unter dem Finger bleibt im DOM (sonst verliert iOS die Geste) – die neue Seite liegt im zweiten Slot darüber */
-    if(fwd){ k=kurve(true,pages[cur].cloneNode(true),null); put(s2,t); s2.hidden=false; } else k=kurve(true,pages[t].cloneNode(true),null);
+    if(fwd){ k=kurve(true,pages[cur],null); put(s2,t); s2.hidden=false; } else k=kurve(true,pages[t],null);
     k.set(e0);
     return { zug(dx){ e=fwd?Math.max(0,Math.min(1,-dx/W)):Math.max(0,Math.min(1,1-dx/W)); k.set(e); },
       los(ok){ const ziel=ok?(fwd?1:0):e0, D=Math.max(160,Math.abs(ziel-e)*620);
-        lauf(k,e,ziel,D,()=>{ k.L.remove(); if(fwd){ if(ok) put(s1,t); s2.hidden=true; s2.replaceChildren(); } else if(ok) put(s1,t); if(ok){ cur=t; nav(); } }); } }; }
+        lauf(k,e,ziel,D,()=>{ if(fwd){ put(s1,ok?t:cur); s2.hidden=true; s2.replaceChildren(); } else if(ok) put(s1,t); k.L.remove(); if(ok){ cur=t; nav(); } }); } }; }
   function slide(t,dx){ const dir=t>cur?1:-1, A=s1, Bs=s2, W=stage.clientWidth+14; put(Bs,t); Bs.hidden=false;
     A.style.transition=Bs.style.transition="none"; A.style.transform=`translateX(${dx}px)`; Bs.style.transform=`translateX(${dir*W+dx}px)`; Bs.offsetWidth;
     const ms=Math.round(380*Math.max(.45,1-Math.abs(dx)/W));
